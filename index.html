@@ -2186,7 +2186,34 @@ window.toggleProfileMenu = function() {
         menu.classList.toggle('show');
     }
 };
+// ══════════════ ФУНКЦИЯ ДЛЯ КНОПКИ НАЧАТЬ ══════════════
+window.checkAuthAndEnter = function() {
+    const user = auth.currentUser;
+    if (user) {
+        enterApp();
+    } else {
+        showLoginModal();
+    }
+};
 
+// ══════════════ ФУНКЦИЯ ВХОДА В ПРИЛОЖЕНИЕ ══════════════
+window.enterApp = function() {
+    document.getElementById('landing').style.display = 'none';
+    document.getElementById('description').style.display = 'none';
+    document.getElementById('app').classList.add('active');
+    document.getElementById('btnBack').classList.add('visible');
+    window.scrollTo(0, 0);
+    initPanZoom();
+};
+
+// ══════════════ ФУНКЦИЯ ВОЗВРАТА ══════════════
+window.backToLanding = function() {
+    document.getElementById('app').classList.remove('active');
+    document.getElementById('btnBack').classList.remove('visible');
+    document.getElementById('landing').style.display = 'flex';
+    document.getElementById('description').style.display = 'flex';
+    window.scrollTo(0, 0);
+};
 // Закрытие меню при клике вне его
 document.addEventListener('click', function(e) {
     const menu = document.getElementById('profileMenu');
