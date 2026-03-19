@@ -1812,9 +1812,9 @@ let currentUserProfile = null;
 auth.onAuthStateChanged((user) => {
     currentUserProfile = user;
     updateAuthUI(user);
-    if (user) {
-        loadUserProfile(user);
-    }
+    // if (user) {
+    //     loadUserProfile(user);
+    // }
 });
 
 function updateAuthUI(user) {
