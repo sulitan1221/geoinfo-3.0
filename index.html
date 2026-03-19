@@ -1135,6 +1135,209 @@
             box-shadow: 0 0 15px rgba(200,150,62,0.3);
             background: linear-gradient(135deg, rgba(40,25,10,0.95) 0%, rgba(25,15,5,0.95) 100%);
         }
+        /* Профиль и меню */
+.profile-btn {
+    background: transparent;
+    border: 1px solid var(--gold-dark);
+    color: var(--gold-light);
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+}
+
+.profile-btn:hover {
+    border-color: var(--gold);
+    background: rgba(200,150,62,0.1);
+}
+
+.profile-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    min-width: 200px;
+    background: linear-gradient(135deg, #1e1508 0%, #140e06 100%);
+    border: 1px solid var(--gold-dark);
+    border-radius: 4px;
+    margin-top: 5px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    display: none;
+    z-index: 1000;
+}
+
+.profile-menu.show {
+    display: block;
+}
+
+.profile-menu-item {
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.2s;
+    border-bottom: 1px solid rgba(200,150,62,0.1);
+}
+
+.profile-menu-item:hover {
+    background: rgba(200,150,62,0.1);
+    color: var(--gold-light);
+}
+
+.profile-menu-icon {
+    font-size: 1.1rem;
+    min-width: 24px;
+}
+
+.profile-menu-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dark), transparent);
+    margin: 5px 0;
+}
+
+.profile-field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(200,150,62,0.1);
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.profile-field-label {
+    min-width: 120px;
+    color: var(--text-dim);
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.profile-field-value {
+    flex: 1;
+    color: var(--text-primary);
+}
+
+.profile-edit-btn {
+    background: transparent;
+    border: 1px solid var(--gold-dark);
+    color: var(--gold-light);
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.7rem;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.profile-edit-btn.small {
+    padding: 3px 6px;
+    font-size: 0.6rem;
+}
+
+.profile-edit-btn:hover {
+    border-color: var(--gold);
+    background: rgba(200,150,62,0.1);
+}
+
+.profile-action-btn {
+    background: transparent;
+    border: 1px solid var(--gold-dark);
+    color: var(--gold-light);
+    padding: 8px 16px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+}
+
+.profile-action-btn.danger {
+    border-color: #dc3545;
+    color: #ff6b6b;
+}
+
+.profile-action-btn.danger:hover {
+    background: rgba(220,53,69,0.1);
+}
+
+.social-login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--gold-dark);
+    background: rgba(0,0,0,0.3);
+    color: var(--text-primary);
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.social-login-btn.google:hover {
+    background: rgba(219,68,55,0.2);
+    border-color: #db4437;
+}
+
+.social-login-btn.email:hover {
+    background: rgba(200,150,62,0.2);
+    border-color: var(--gold);
+}
+
+.social-icon {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.auth-input {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--gold-dark);
+    color: var(--text-primary);
+    padding: 10px;
+    border-radius: 3px;
+    font-family: 'IM Fell English', serif;
+}
+
+.auth-input:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 10px rgba(200,150,62,0.2);
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 2000;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.user-info {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
         .user-info {
             display: flex;
             align-items: center;
@@ -1593,73 +1796,405 @@
   measurementId: "G-538Y5325VW"
 
 };
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const googleProvider = new firebase.auth.GoogleAuthProvider();
 
+// Дополнительные провайдеры (можно включить по желанию)
+// const facebookProvider = new firebase.auth.FacebookAuthProvider();
+// const githubProvider = new firebase.auth.GithubAuthProvider();
 
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const googleProvider = new firebase.auth.GoogleAuthProvider();
+// Состояние профиля
+let currentUserProfile = null;
 
-    // Auth state observer
-    auth.onAuthStateChanged((user) => {
-        updateAuthUI(user);
-    });
+// Auth state observer
+auth.onAuthStateChanged((user) => {
+    currentUserProfile = user;
+    updateAuthUI(user);
+    if (user) {
+        loadUserProfile(user);
+    }
+});
 
-    function updateAuthUI(user) {
-        const authContainer = document.getElementById('authContainer');
-        if (user) {
-            authContainer.innerHTML = `
-                <div class="user-info">
-                    <img src="${user.photoURL || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'}" class="user-avatar" alt="avatar">
-                    <span>${user.displayName || user.email}</span>
-                    <button class="logout-btn" onclick="logout()">Выйти</button>
+function updateAuthUI(user) {
+    const authContainer = document.getElementById('authContainer');
+    if (user) {
+        authContainer.innerHTML = `
+            <div class="user-info" id="userInfo">
+                <img src="${user.photoURL || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'}" class="user-avatar" id="userAvatar" alt="avatar">
+                <span id="userDisplayName">${user.displayName || user.email}</span>
+                <button class="profile-btn" onclick="toggleProfileMenu()">▼</button>
+                <div class="profile-menu" id="profileMenu">
+                    <div class="profile-menu-item" onclick="showProfileModal()">
+                        <span class="profile-menu-icon">👤</span> Мой профиль
+                    </div>
+                    <div class="profile-menu-item" onclick="showSettingsModal()">
+                        <span class="profile-menu-icon">⚙️</span> Настройки
+                    </div>
+                    <div class="profile-menu-divider"></div>
+                    <div class="profile-menu-item" onclick="logout()">
+                        <span class="profile-menu-icon">🚪</span> Выйти
+                    </div>
                 </div>
-            `;
-        } else {
-            authContainer.innerHTML = `
-                <button class="auth-btn" onclick="loginWithGoogle()">
-                    <span style="margin-right: 8px;">G</span> Войти с Google
+            </div>
+        `;
+    } else {
+        authContainer.innerHTML = `
+            <button class="auth-btn" onclick="showLoginModal()">
+                <span style="margin-right: 8px;">⚔</span> Войти
+            </button>
+        `;
+    }
+}
+
+// Модальное окно входа
+function showLoginModal() {
+    const modal = document.createElement('div');
+    modal.className = 'modal show';
+    modal.id = 'loginModal';
+    modal.innerHTML = `
+        <div class="modal-content" style="max-width: 400px;">
+            <button class="close-btn" onclick="closeLoginModal()">✕</button>
+            <div class="country-title" style="font-size: 1.5rem; justify-content: center;">
+                <span>⚔ Вход в GEOinfo ⚔</span>
+            </div>
+            <div class="modal-divider"></div>
+            
+            <div style="padding: 20px 0;">
+                <button class="social-login-btn google" onclick="loginWithGoogle()">
+                    <span class="social-icon">G</span>
+                    <span>Войти через Google</span>
                 </button>
-            `;
+                
+                <div style="text-align: center; margin: 15px 0; color: var(--text-dim);">или</div>
+                
+                <div style="margin-bottom: 15px;">
+                    <input type="email" id="loginEmail" class="auth-input" placeholder="Email" style="width: 100%; padding: 12px; margin-bottom: 10px; background: rgba(0,0,0,0.3); border: 1px solid var(--gold-dark); color: var(--text-primary); border-radius: 3px;">
+                    <input type="password" id="loginPassword" class="auth-input" placeholder="Пароль" style="width: 100%; padding: 12px; background: rgba(0,0,0,0.3); border: 1px solid var(--gold-dark); color: var(--text-primary); border-radius: 3px;">
+                </div>
+                
+                <button class="social-login-btn email" onclick="loginWithEmail()" style="width: 100%; margin-bottom: 10px;">
+                    <span>Войти с Email</span>
+                </button>
+                
+                <div style="text-align: center;">
+                    <a href="#" onclick="showRegisterModal()" style="color: var(--gold); text-decoration: none;">Нет аккаунта? Зарегистрироваться</a>
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+}
+
+// Модальное окно профиля
+function showProfileModal() {
+    toggleProfileMenu(); // закрываем меню
+    
+    const user = auth.currentUser;
+    if (!user) return;
+    
+    const modal = document.createElement('div');
+    modal.className = 'modal show';
+    modal.id = 'profileModal';
+    modal.innerHTML = `
+        <div class="modal-content" style="max-width: 500px;">
+            <button class="close-btn" onclick="closeProfileModal()">✕</button>
+            <div class="country-title" style="font-size: 1.8rem;">
+                <span class="country-flag">👤</span>
+                <span>Профиль</span>
+            </div>
+            <div class="modal-divider"></div>
+            
+            <div style="text-align: center; margin-bottom: 20px;">
+                <img src="${user.photoURL || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'}" 
+                     style="width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--gold); margin-bottom: 10px;" 
+                     id="profileAvatar">
+                <div>
+                    <button class="profile-edit-btn" onclick="document.getElementById('avatarUpload').click()">
+                        <span>📷</span> Изменить фото
+                    </button>
+                    <input type="file" id="avatarUpload" accept="image/*" style="display: none;" onchange="uploadAvatar(this)">
+                </div>
+            </div>
+            
+            <div class="profile-field">
+                <div class="profile-field-label">Имя</div>
+                <div class="profile-field-value" id="profileName">${user.displayName || 'Не указано'}</div>
+                <button class="profile-edit-btn small" onclick="editField('name')">✎</button>
+            </div>
+            
+            <div class="profile-field">
+                <div class="profile-field-label">Email</div>
+                <div class="profile-field-value">${user.email}</div>
+                ${!user.emailVerified ? '<span style="color: #ff6b6b; font-size: 0.8rem;">(не подтвержден)</span>' : ''}
+            </div>
+            
+            <div class="profile-field">
+                <div class="profile-field-label">Дата регистрации</div>
+                <div class="profile-field-value">${new Date(user.metadata.creationTime).toLocaleDateString('ru-RU')}</div>
+            </div>
+            
+            <div class="profile-field">
+                <div class="profile-field-label">Последний вход</div>
+                <div class="profile-field-value">${new Date(user.metadata.lastSignInTime).toLocaleDateString('ru-RU')}</div>
+            </div>
+            
+            <div style="margin-top: 30px; display: flex; gap: 10px; justify-content: flex-end;">
+                <button class="profile-action-btn" onclick="changePassword()">Сменить пароль</button>
+                <button class="profile-action-btn danger" onclick="deleteAccount()">Удалить аккаунт</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+}
+
+// Редактирование поля
+function editField(field) {
+    const user = auth.currentUser;
+    if (!user) return;
+    
+    if (field === 'name') {
+        const newName = prompt('Введите новое имя:', user.displayName || '');
+        if (newName && newName !== user.displayName) {
+            user.updateProfile({
+                displayName: newName
+            }).then(() => {
+                document.getElementById('profileName').textContent = newName;
+                document.getElementById('userDisplayName').textContent = newName;
+                showNotification('Имя успешно обновлено');
+            }).catch(error => {
+                showNotification('Ошибка: ' + error.message, 'error');
+            });
         }
     }
+}
 
-    window.loginWithGoogle = function() {
-        auth.signInWithPopup(googleProvider)
-            .then((result) => {
-                console.log('Успешный вход:', result.user.displayName);
-            })
-            .catch((error) => {
-                console.error('Ошибка входа:', error);
-                alert('Ошибка входа: ' + error.message);
-            });
-    };
-
-    window.logout = function() {
-        auth.signOut().then(() => {
-            console.log('Выход выполнен');
-        }).catch((error) => {
-            console.error('Ошибка выхода:', error);
+// Загрузка аватара
+function uploadAvatar(input) {
+    if (!input.files || !input.files[0]) return;
+    
+    const user = auth.currentUser;
+    if (!user) return;
+    
+    const file = input.files[0];
+    const reader = new FileReader();
+    
+    reader.onload = function(e) {
+        user.updateProfile({
+            photoURL: e.target.result
+        }).then(() => {
+            document.getElementById('profileAvatar').src = e.target.result;
+            document.getElementById('userAvatar').src = e.target.result;
+            showNotification('Фото профиля обновлено');
+        }).catch(error => {
+            showNotification('Ошибка: ' + error.message, 'error');
         });
     };
+    
+    reader.readAsDataURL(file);
+}
 
-    window.checkAuthAndEnter = function() {
-        const user = auth.currentUser;
-        if (user) {
-            enterApp();
-        } else {
-            if (confirm('Для доступа к карте необходимо войти через Google. Хотите войти сейчас?')) {
-                loginWithGoogle().then(() => {
-                    const unsubscribe = auth.onAuthStateChanged((user) => {
-                        if (user) {
-                            unsubscribe();
-                            enterApp();
-                        }
-                    });
-                });
-            }
-        }
-    };
+// Смена пароля
+function changePassword() {
+    const user = auth.currentUser;
+    if (!user) return;
+    
+    if (!user.email) {
+        showNotification('Для смены пароля нужен email', 'error');
+        return;
+    }
+    
+    auth.sendPasswordResetEmail(user.email).then(() => {
+        showNotification('Письмо для сброса пароля отправлено на ваш email');
+    }).catch(error => {
+        showNotification('Ошибка: ' + error.message, 'error');
+    });
+}
+
+// Удаление аккаунта
+function deleteAccount() {
+    if (!confirm('Вы уверены, что хотите удалить аккаунт? Это действие необратимо!')) return;
+    
+    const user = auth.currentUser;
+    if (!user) return;
+    
+    user.delete().then(() => {
+        showNotification('Аккаунт удален');
+        closeProfileModal();
+    }).catch(error => {
+        showNotification('Ошибка: ' + error.message, 'error');
+    });
+}
+
+// Уведомления
+function showNotification(message, type = 'success') {
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'success' ? 'rgba(40, 167, 69, 0.9)' : 'rgba(220, 53, 69, 0.9)'};
+        color: white;
+        padding: 12px 24px;
+        border-radius: 4px;
+        border-left: 4px solid var(--gold);
+        z-index: 2000;
+        font-family: 'Cinzel', serif;
+        animation: slideIn 0.3s ease;
+    `;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
+}
+
+// Закрытие модалок
+function closeLoginModal() {
+    const modal = document.getElementById('loginModal');
+    if (modal) modal.remove();
+}
+
+function closeProfileModal() {
+    const modal = document.getElementById('profileModal');
+    if (modal) modal.remove();
+}
+
+// Вход с email
+function loginWithEmail() {
+    const email = document.getElementById('loginEmail')?.value;
+    const password = document.getElementById('loginPassword')?.value;
+    
+    if (!email || !password) {
+        showNotification('Введите email и пароль', 'error');
+        return;
+    }
+    
+    auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+            closeLoginModal();
+            showNotification('Успешный вход');
+        })
+        .catch((error) => {
+            showNotification('Ошибка: ' + error.message, 'error');
+        });
+}
+
+// Регистрация
+function showRegisterModal() {
+    closeLoginModal();
+    
+    const modal = document.createElement('div');
+    modal.className = 'modal show';
+    modal.id = 'registerModal';
+    modal.innerHTML = `
+        <div class="modal-content" style="max-width: 400px;">
+            <button class="close-btn" onclick="closeRegisterModal()">✕</button>
+            <div class="country-title" style="font-size: 1.5rem; justify-content: center;">
+                <span>📜 Регистрация</span>
+            </div>
+            <div class="modal-divider"></div>
+            
+            <div style="padding: 20px 0;">
+                <div style="margin-bottom: 15px;">
+                    <input type="text" id="regName" class="auth-input" placeholder="Имя" style="width: 100%; padding: 12px; margin-bottom: 10px; background: rgba(0,0,0,0.3); border: 1px solid var(--gold-dark); color: var(--text-primary); border-radius: 3px;">
+                    <input type="email" id="regEmail" class="auth-input" placeholder="Email" style="width: 100%; padding: 12px; margin-bottom: 10px; background: rgba(0,0,0,0.3); border: 1px solid var(--gold-dark); color: var(--text-primary); border-radius: 3px;">
+                    <input type="password" id="regPassword" class="auth-input" placeholder="Пароль (минимум 6 символов)" style="width: 100%; padding: 12px; margin-bottom: 10px; background: rgba(0,0,0,0.3); border: 1px solid var(--gold-dark); color: var(--text-primary); border-radius: 3px;">
+                    <input type="password" id="regPasswordConfirm" class="auth-input" placeholder="Подтвердите пароль" style="width: 100%; padding: 12px; background: rgba(0,0,0,0.3); border: 1px solid var(--gold-dark); color: var(--text-primary); border-radius: 3px;">
+                </div>
+                
+                <button class="social-login-btn email" onclick="registerWithEmail()" style="width: 100%; margin-bottom: 10px;">
+                    <span>Зарегистрироваться</span>
+                </button>
+                
+                <div style="text-align: center;">
+                    <a href="#" onclick="showLoginModal()" style="color: var(--gold); text-decoration: none;">Уже есть аккаунт? Войти</a>
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+}
+
+function closeRegisterModal() {
+    const modal = document.getElementById('registerModal');
+    if (modal) modal.remove();
+}
+
+function registerWithEmail() {
+    const name = document.getElementById('regName')?.value;
+    const email = document.getElementById('regEmail')?.value;
+    const password = document.getElementById('regPassword')?.value;
+    const confirm = document.getElementById('regPasswordConfirm')?.value;
+    
+    if (!name || !email || !password || !confirm) {
+        showNotification('Заполните все поля', 'error');
+        return;
+    }
+    
+    if (password !== confirm) {
+        showNotification('Пароли не совпадают', 'error');
+        return;
+    }
+    
+    if (password.length < 6) {
+        showNotification('Пароль должен быть минимум 6 символов', 'error');
+        return;
+    }
+    
+    auth.createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+            return userCredential.user.updateProfile({
+                displayName: name
+            });
+        })
+        .then(() => {
+            closeRegisterModal();
+            showNotification('Регистрация успешна!');
+        })
+        .catch((error) => {
+            showNotification('Ошибка: ' + error.message, 'error');
+        });
+}
+
+window.loginWithGoogle = function() {
+    auth.signInWithPopup(googleProvider)
+        .then((result) => {
+            closeLoginModal();
+            showNotification('Добро пожаловать, ' + result.user.displayName + '!');
+        })
+        .catch((error) => {
+            showNotification('Ошибка: ' + error.message, 'error');
+        });
+};
+
+window.logout = function() {
+    auth.signOut().then(() => {
+        showNotification('До новых встреч!');
+    }).catch((error) => {
+        showNotification('Ошибка: ' + error.message, 'error');
+    });
+};
+
+// Функции для меню
+window.toggleProfileMenu = function() {
+    const menu = document.getElementById('profileMenu');
+    if (menu) {
+        menu.classList.toggle('show');
+    }
+};
+
+// Закрытие меню при клике вне его
+document.addEventListener('click', function(e) {
+    const menu = document.getElementById('profileMenu');
+    const userInfo = document.getElementById('userInfo');
+    if (menu && userInfo && !userInfo.contains(e.target) && menu.classList.contains('show')) {
+        menu.classList.remove('show');
+    }
+});
 
     // ПОЛНЫЕ ДАННЫЕ ПО ВСЕМ СТРАНАМ ЕВРОПЫ (44 страны)
     const countryData = {
