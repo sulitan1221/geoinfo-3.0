@@ -1820,17 +1820,18 @@ auth.onAuthStateChanged((user) => {
 function updateAuthUI(user) {
     const authContainer = document.getElementById('authContainer');
     if (user) {
+        // Загружаем фото из localStorage, если есть
+        const savedAvatar = localStorage.getItem('userAvatar');
+        const avatarSrc = savedAvatar || user.photoURL || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y';
+        
         authContainer.innerHTML = `
             <div class="user-info" id="userInfo">
-                <img src="${localStorage.getItem('userAvatar') || user.photoURL || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'}" class="user-avatar" id="userAvatar" alt="avatar">
+                <img src="${avatarSrc}" class="user-avatar" id="userAvatar" alt="avatar">
                 <span id="userDisplayName">${user.displayName || user.email}</span>
                 <button class="profile-btn" onclick="toggleProfileMenu()">▼</button>
                 <div class="profile-menu" id="profileMenu">
                     <div class="profile-menu-item" onclick="showProfileModal()">
                         <span class="profile-menu-icon">👤</span> Мой профиль
-                    </div>
-                    <div class="profile-menu-item" onclick="showSettingsModal()">
-                        <span class="profile-menu-icon">⚙️</span> Настройки
                     </div>
                     <div class="profile-menu-divider"></div>
                     <div class="profile-menu-item" onclick="logout()">
@@ -1888,11 +1889,16 @@ function showLoginModal() {
 }
 
 // Модальное окно профиля
+// Модальное окно профиля
 function showProfileModal() {
     toggleProfileMenu(); // закрываем меню
     
     const user = auth.currentUser;
     if (!user) return;
+    
+    // Загружаем фото из localStorage
+    const savedAvatar = localStorage.getItem('userAvatar');
+    const avatarSrc = savedAvatar || user.photoURL || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y';
     
     const modal = document.createElement('div');
     modal.className = 'modal show';
@@ -1907,9 +1913,9 @@ function showProfileModal() {
             <div class="modal-divider"></div>
             
             <div style="text-align: center; margin-bottom: 20px;">
-               <img src="${localStorage.getItem('userAvatar') || user.photoURL || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'}" 
-     style="width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--gold); margin-bottom: 10px; object-fit: cover;" 
-     id="profileAvatar">
+                <img src="${avatarSrc}" 
+                     style="width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--gold); margin-bottom: 10px; object-fit: cover;" 
+                     id="profileAvatar">
                 <div>
                     <button class="profile-edit-btn" onclick="document.getElementById('avatarUpload').click()">
                         <span>📷</span> Изменить фото
@@ -1921,7 +1927,7 @@ function showProfileModal() {
             <div class="profile-field">
                 <div class="profile-field-label">Имя</div>
                 <div class="profile-field-value" id="profileName">${user.displayName || 'Не указано'}</div>
-                <button class="profile-edit-btn small" onclick="editField('name')">✎</button>
+                <button class="profile-edit-btn small" onclick="editName()">✎</button>
             </div>
             
             <div class="profile-field">
@@ -1950,27 +1956,27 @@ function showProfileModal() {
 }
 
 // Редактирование поля
-function editField(field) {
+// Редактирование имени
+function editName() {
     const user = auth.currentUser;
     if (!user) return;
     
-    if (field === 'name') {
-        const newName = prompt('Введите новое имя:', user.displayName || '');
-        if (newName && newName !== user.displayName) {
-            user.updateProfile({
-                displayName: newName
-            }).then(() => {
-                document.getElementById('profileName').textContent = newName;
-                document.getElementById('userDisplayName').textContent = newName;
-                showNotification('Имя успешно обновлено');
-            }).catch(error => {
-                showNotification('Ошибка: ' + error.message, 'error');
-            });
-        }
+    const newName = prompt('Введите новое имя:', user.displayName || '');
+    if (newName && newName !== user.displayName) {
+        user.updateProfile({
+            displayName: newName
+        }).then(() => {
+            document.getElementById('profileName').textContent = newName;
+            document.getElementById('userDisplayName').textContent = newName;
+            showNotification('Имя успешно обновлено');
+        }).catch(error => {
+            showNotification('Ошибка: ' + error.message, 'error');
+        });
     }
 }
 
 // Загрузка аватара
+// Загрузка аватара (сохраняем в localStorage)
 // Загрузка аватара (сохраняем в localStorage)
 function uploadAvatar(input) {
     if (!input.files || !input.files[0]) {
@@ -2001,8 +2007,11 @@ function uploadAvatar(input) {
         localStorage.setItem('userAvatar', photoData);
         
         // Обновляем отображение
-        document.getElementById('profileAvatar').src = photoData;
-        document.getElementById('userAvatar').src = photoData;
+        const profileAvatar = document.getElementById('profileAvatar');
+        const userAvatar = document.getElementById('userAvatar');
+        
+        if (profileAvatar) profileAvatar.src = photoData;
+        if (userAvatar) userAvatar.src = photoData;
         
         showNotification('✅ Фото профиля обновлено');
     };
@@ -2011,9 +2020,6 @@ function uploadAvatar(input) {
         console.error('Ошибка чтения файла:', error);
         showNotification('Ошибка при чтении файла', 'error');
     };
-    
-    reader.readAsDataURL(file);
-}
     
     reader.readAsDataURL(file);
 }
