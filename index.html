@@ -388,6 +388,92 @@
             width: 100%;
             position: relative;
         }
+        .map-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 18px;
+            padding: 8px 4px 10px;
+            border-bottom: 1px solid rgba(200,150,62,0.12);
+        }
+        .map-header-copy {
+            max-width: 560px;
+        }
+        .map-kicker {
+            font-family: 'Cinzel', serif;
+            font-size: 0.68rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 8px;
+        }
+        .map-title {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.1rem;
+            color: var(--gold-light);
+            letter-spacing: 1.5px;
+            margin-bottom: 7px;
+            text-shadow: 0 0 20px rgba(200,150,62,0.2);
+        }
+        .map-subtitle {
+            color: #bca170;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            max-width: 520px;
+        }
+        .continent-switch {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        .continent-btn {
+            position: relative;
+            padding: 12px 18px;
+            min-width: 146px;
+            border: 1px solid rgba(200,150,62,0.28);
+            background: linear-gradient(180deg, rgba(51,35,13,0.92) 0%, rgba(20,13,5,0.92) 100%);
+            color: var(--text-dim);
+            font-family: 'Cinzel', serif;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-align: left;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+        }
+        .continent-btn::before {
+            content: '';
+            position: absolute;
+            inset: 3px;
+            border: 1px solid rgba(200,150,62,0.08);
+            pointer-events: none;
+        }
+        .continent-btn strong {
+            display: block;
+            font-size: 0.92rem;
+            color: var(--gold-light);
+            margin-bottom: 4px;
+            letter-spacing: 1px;
+        }
+        .continent-btn span {
+            display: block;
+            font-size: 0.72rem;
+            line-height: 1.45;
+        }
+        .continent-btn:hover {
+            transform: translateY(-2px);
+            border-color: rgba(232,191,106,0.55);
+            color: var(--text-primary);
+            box-shadow: 0 0 24px rgba(200,150,62,0.15), 0 12px 22px rgba(0,0,0,0.3);
+        }
+        .continent-btn.active {
+            background:
+                radial-gradient(circle at top, rgba(232,191,106,0.14) 0%, transparent 55%),
+                linear-gradient(180deg, rgba(63,41,12,0.98) 0%, rgba(27,17,6,0.98) 100%);
+            border-color: rgba(232,191,106,0.72);
+            color: var(--text-primary);
+            box-shadow: 0 0 28px rgba(200,150,62,0.18), 0 18px 30px rgba(0,0,0,0.35);
+        }
         .map-container::before {
             content: '';
             position: absolute;
@@ -516,6 +602,11 @@
         }
         .map-label-lg {
             font-size: 9.5px;
+        }
+        .asia-map .map-label {
+            font-size: 2.5px;
+            stroke-width: 0.85px;
+            letter-spacing: 0.12px;
         }
 
         .modal {
@@ -852,6 +943,19 @@
             opacity: 0.7;
         }
 
+        @media (max-width: 900px) {
+            .map-header {
+                flex-direction: column;
+            }
+            .continent-switch {
+                width: 100%;
+                justify-content: stretch;
+            }
+            .continent-btn {
+                flex: 1 1 220px;
+            }
+        }
+
         .corner-ornament {
             position: absolute;
             color: var(--gold-dark);
@@ -1135,209 +1239,6 @@
             box-shadow: 0 0 15px rgba(200,150,62,0.3);
             background: linear-gradient(135deg, rgba(40,25,10,0.95) 0%, rgba(25,15,5,0.95) 100%);
         }
-        /* Профиль и меню */
-.profile-btn {
-    background: transparent;
-    border: 1px solid var(--gold-dark);
-    color: var(--gold-light);
-    width: 30px;
-    height: 30px;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 0.8rem;
-    transition: all 0.2s;
-}
-
-.profile-btn:hover {
-    border-color: var(--gold);
-    background: rgba(200,150,62,0.1);
-}
-
-.profile-menu {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    min-width: 200px;
-    background: linear-gradient(135deg, #1e1508 0%, #140e06 100%);
-    border: 1px solid var(--gold-dark);
-    border-radius: 4px;
-    margin-top: 5px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-    display: none;
-    z-index: 1000;
-}
-
-.profile-menu.show {
-    display: block;
-}
-
-.profile-menu-item {
-    padding: 12px 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--text-primary);
-    cursor: pointer;
-    transition: all 0.2s;
-    border-bottom: 1px solid rgba(200,150,62,0.1);
-}
-
-.profile-menu-item:hover {
-    background: rgba(200,150,62,0.1);
-    color: var(--gold-light);
-}
-
-.profile-menu-icon {
-    font-size: 1.1rem;
-    min-width: 24px;
-}
-
-.profile-menu-divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold-dark), transparent);
-    margin: 5px 0;
-}
-
-.profile-field {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px;
-    background: rgba(0,0,0,0.2);
-    border: 1px solid rgba(200,150,62,0.1);
-    border-radius: 4px;
-    margin-bottom: 10px;
-}
-
-.profile-field-label {
-    min-width: 120px;
-    color: var(--text-dim);
-    font-family: 'Cinzel', serif;
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-}
-
-.profile-field-value {
-    flex: 1;
-    color: var(--text-primary);
-}
-
-.profile-edit-btn {
-    background: transparent;
-    border: 1px solid var(--gold-dark);
-    color: var(--gold-light);
-    padding: 5px 10px;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 0.7rem;
-    transition: all 0.2s;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.profile-edit-btn.small {
-    padding: 3px 6px;
-    font-size: 0.6rem;
-}
-
-.profile-edit-btn:hover {
-    border-color: var(--gold);
-    background: rgba(200,150,62,0.1);
-}
-
-.profile-action-btn {
-    background: transparent;
-    border: 1px solid var(--gold-dark);
-    color: var(--gold-light);
-    padding: 8px 16px;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 0.8rem;
-    transition: all 0.2s;
-}
-
-.profile-action-btn.danger {
-    border-color: #dc3545;
-    color: #ff6b6b;
-}
-
-.profile-action-btn.danger:hover {
-    background: rgba(220,53,69,0.1);
-}
-
-.social-login-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    width: 100%;
-    padding: 12px;
-    border: 1px solid var(--gold-dark);
-    background: rgba(0,0,0,0.3);
-    color: var(--text-primary);
-    border-radius: 4px;
-    cursor: pointer;
-    font-family: 'Cinzel', serif;
-    font-size: 0.9rem;
-    transition: all 0.2s;
-}
-
-.social-login-btn.google:hover {
-    background: rgba(219,68,55,0.2);
-    border-color: #db4437;
-}
-
-.social-login-btn.email:hover {
-    background: rgba(200,150,62,0.2);
-    border-color: var(--gold);
-}
-
-.social-icon {
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-
-.auth-input {
-    background: rgba(0,0,0,0.3);
-    border: 1px solid var(--gold-dark);
-    color: var(--text-primary);
-    padding: 10px;
-    border-radius: 3px;
-    font-family: 'IM Fell English', serif;
-}
-
-.auth-input:focus {
-    outline: none;
-    border-color: var(--gold);
-    box-shadow: 0 0 10px rgba(200,150,62,0.2);
-}
-
-.notification {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 2000;
-    animation: slideIn 0.3s ease;
-}
-
-@keyframes slideIn {
-    from {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-.user-info {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
         .user-info {
             display: flex;
             align-items: center;
@@ -1541,6 +1442,23 @@
 <div class="map-container">
     <span class="corner-ornament tl">⚜</span>
     <span class="corner-ornament bl">⚜</span>
+    <div class="map-header">
+        <div class="map-header-copy">
+            <div class="map-kicker">Атлас Континентов</div>
+            <div class="map-title" id="activeContinentTitle">Европа • политическая и тематическая карта</div>
+            <div class="map-subtitle" id="activeContinentSubtitle">Выбирай континент, переключай режим карты и кликай по странам, чтобы открыть сведения, историю, экономику и культурные опоры.</div>
+        </div>
+        <div class="continent-switch">
+            <button class="continent-btn active" id="continent-europe" onclick="setContinent('europe')">
+                <strong>Европа</strong>
+                <span>Текущая карта с подписями, модалкой и всеми режимами.</span>
+            </button>
+            <button class="continent-btn" id="continent-asia" onclick="setContinent('asia')">
+                <strong>Азия</strong>
+                <span>Подключённый SVG-атлас с теми же режимами, зумом и карточками стран.</span>
+            </button>
+        </div>
+    </div>
 
     <div class="mfab" id="mfab">
         <button class="mfab-trigger" id="mfabTrigger" onclick="toggleModeMenu()">
@@ -1741,7 +1659,7 @@
             <text class="map-label map-label-lg" x="548" y="527">ИТАЛИЯ</text>
     </svg>
     </div>
-    <footer>✦ клик по стране — полные данные · тяни мышью — перемещение · колесо — зум ✦</footer>
+    <footer id="mapFooter">✦ клик по стране — полные данные · тяни мышью — перемещение · колесо — зум ✦</footer>
 </div>
 </div>
 
@@ -1776,6 +1694,8 @@
     <button class="value-close" onclick="closeValueModal()">Закрыть</button>
 </div>
 
+<script src="./asia-data.js"></script>
+<script src="./asia-map.js"></script>
 <script>
     // ══════════════ FIREBASE CONFIG ══════════════
     // ЗАМЕНИТЕ ЭТИ ДАННЫЕ НА СВОИ ИЗ КОНСОЛИ FIREBASE
@@ -1796,464 +1716,76 @@
   measurementId: "G-538Y5325VW"
 
 };
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const googleProvider = new firebase.auth.GoogleAuthProvider();
 
-// Дополнительные провайдеры (можно включить по желанию)
-// const facebookProvider = new firebase.auth.FacebookAuthProvider();
-// const githubProvider = new firebase.auth.GithubAuthProvider();
 
-// Состояние профиля
-let currentUserProfile = null;
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const googleProvider = new firebase.auth.GoogleAuthProvider();
 
-// Auth state observer
-auth.onAuthStateChanged((user) => {
-    currentUserProfile = user;
-    updateAuthUI(user);
-    // if (user) {
-    //     loadUserProfile(user);
-    // }
-});
-
-function updateAuthUI(user) {
-    const authContainer = document.getElementById('authContainer');
-    if (user) {
-        // Загружаем фото из localStorage, если есть
-        const savedAvatar = localStorage.getItem('userAvatar');
-        const avatarSrc = savedAvatar || user.photoURL || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y';
-        
-        authContainer.innerHTML = `
-            <div class="user-info" id="userInfo">
-                <img src="${avatarSrc}" class="user-avatar" id="userAvatar" alt="avatar">
-                <span id="userDisplayName">${user.displayName || user.email}</span>
-                <button class="profile-btn" onclick="toggleProfileMenu()">▼</button>
-                <div class="profile-menu" id="profileMenu">
-                    <div class="profile-menu-item" onclick="showProfileModal()">
-                        <span class="profile-menu-icon">👤</span> Мой профиль
-                    </div>
-                    <div class="profile-menu-divider"></div>
-                    <div class="profile-menu-item" onclick="logout()">
-                        <span class="profile-menu-icon">🚪</span> Выйти
-                    </div>
-                </div>
-            </div>
-        `;
-    } else {
-        authContainer.innerHTML = `
-            <button class="auth-btn" onclick="showLoginModal()">
-                <span style="margin-right: 8px;">⚔</span> Войти
-            </button>
-        `;
-    }
-}
-
-// Модальное окно входа
-function showLoginModal() {
-    const modal = document.createElement('div');
-    modal.className = 'modal show';
-    modal.id = 'loginModal';
-    modal.innerHTML = `
-        <div class="modal-content" style="max-width: 400px;">
-            <button class="close-btn" onclick="closeLoginModal()">✕</button>
-            <div class="country-title" style="font-size: 1.5rem; justify-content: center;">
-                <span>⚔ Вход в GEOinfo ⚔</span>
-            </div>
-            <div class="modal-divider"></div>
-            
-            <div style="padding: 20px 0;">
-                <button class="social-login-btn google" onclick="loginWithGoogle()">
-                    <span class="social-icon">G</span>
-                    <span>Войти через Google</span>
-                </button>
-                
-                <div style="text-align: center; margin: 15px 0; color: var(--text-dim);">или</div>
-                
-                <div style="margin-bottom: 15px;">
-                    <input type="email" id="loginEmail" class="auth-input" placeholder="Email" style="width: 100%; padding: 12px; margin-bottom: 10px; background: rgba(0,0,0,0.3); border: 1px solid var(--gold-dark); color: var(--text-primary); border-radius: 3px;">
-                    <input type="password" id="loginPassword" class="auth-input" placeholder="Пароль" style="width: 100%; padding: 12px; background: rgba(0,0,0,0.3); border: 1px solid var(--gold-dark); color: var(--text-primary); border-radius: 3px;">
-                </div>
-                
-                <button class="social-login-btn email" onclick="loginWithEmail()" style="width: 100%; margin-bottom: 10px;">
-                    <span>Войти с Email</span>
-                </button>
-                
-                <div style="text-align: center;">
-                    <a href="#" onclick="showRegisterModal()" style="color: var(--gold); text-decoration: none;">Нет аккаунта? Зарегистрироваться</a>
-                </div>
-            </div>
-        </div>
-    `;
-    document.body.appendChild(modal);
-}
-
-// Модальное окно профиля
-// Модальное окно профиля
-function showProfileModal() {
-    toggleProfileMenu(); // закрываем меню
-    
-    const user = auth.currentUser;
-    if (!user) return;
-    
-    // Загружаем фото из localStorage
-    const savedAvatar = localStorage.getItem('userAvatar');
-    const avatarSrc = savedAvatar || user.photoURL || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y';
-    
-    const modal = document.createElement('div');
-    modal.className = 'modal show';
-    modal.id = 'profileModal';
-    modal.innerHTML = `
-        <div class="modal-content" style="max-width: 500px;">
-            <button class="close-btn" onclick="closeProfileModal()">✕</button>
-            <div class="country-title" style="font-size: 1.8rem;">
-                <span class="country-flag">👤</span>
-                <span>Профиль</span>
-            </div>
-            <div class="modal-divider"></div>
-            
-            <div style="text-align: center; margin-bottom: 20px;">
-                <img src="${avatarSrc}" 
-                     style="width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--gold); margin-bottom: 10px; object-fit: cover;" 
-                     id="profileAvatar">
-                <div>
-                    <button class="profile-edit-btn" onclick="document.getElementById('avatarUpload').click()">
-                        <span>📷</span> Изменить фото
-                    </button>
-                    <input type="file" id="avatarUpload" accept="image/*" style="display: none;" onchange="uploadAvatar(this)">
-                </div>
-            </div>
-            
-            <div class="profile-field">
-                <div class="profile-field-label">Имя</div>
-                <div class="profile-field-value" id="profileName">${user.displayName || 'Не указано'}</div>
-                <button class="profile-edit-btn small" onclick="editName()">✎</button>
-            </div>
-            
-            <div class="profile-field">
-                <div class="profile-field-label">Email</div>
-                <div class="profile-field-value">${user.email}</div>
-                ${!user.emailVerified ? '<span style="color: #ff6b6b; font-size: 0.8rem;">(не подтвержден)</span>' : ''}
-            </div>
-            
-            <div class="profile-field">
-                <div class="profile-field-label">Дата регистрации</div>
-                <div class="profile-field-value">${new Date(user.metadata.creationTime).toLocaleDateString('ru-RU')}</div>
-            </div>
-            
-            <div class="profile-field">
-                <div class="profile-field-label">Последний вход</div>
-                <div class="profile-field-value">${new Date(user.metadata.lastSignInTime).toLocaleDateString('ru-RU')}</div>
-            </div>
-            
-            <div style="margin-top: 30px; display: flex; gap: 10px; justify-content: flex-end;">
-                <button class="profile-action-btn" onclick="changePassword()">Сменить пароль</button>
-                <button class="profile-action-btn danger" onclick="deleteAccount()">Удалить аккаунт</button>
-            </div>
-        </div>
-    `;
-    document.body.appendChild(modal);
-}
-
-// Редактирование поля
-// Редактирование имени
-function editName() {
-    const user = auth.currentUser;
-    if (!user) return;
-    
-    const newName = prompt('Введите новое имя:', user.displayName || '');
-    if (newName && newName !== user.displayName) {
-        user.updateProfile({
-            displayName: newName
-        }).then(() => {
-            document.getElementById('profileName').textContent = newName;
-            document.getElementById('userDisplayName').textContent = newName;
-            showNotification('Имя успешно обновлено');
-        }).catch(error => {
-            showNotification('Ошибка: ' + error.message, 'error');
-        });
-    }
-}
-
-// Загрузка аватара
-// Загрузка аватара (сохраняем в localStorage)
-// Загрузка аватара (сохраняем в localStorage)
-function uploadAvatar(input) {
-    if (!input.files || !input.files[0]) {
-        showNotification('Выберите файл', 'error');
-        return;
-    }
-    
-    const file = input.files[0];
-    
-    // Проверяем размер файла (не больше 2MB)
-    if (file.size > 2 * 1024 * 1024) {
-        showNotification('Файл слишком большой. Максимум 2MB', 'error');
-        return;
-    }
-    
-    // Проверяем тип файла
-    if (!file.type.match('image.*')) {
-        showNotification('Можно загружать только изображения', 'error');
-        return;
-    }
-    
-    const reader = new FileReader();
-    
-    reader.onload = function(e) {
-        const photoData = e.target.result;
-        
-        // Сохраняем в localStorage
-        localStorage.setItem('userAvatar', photoData);
-        
-        // Обновляем отображение
-        const profileAvatar = document.getElementById('profileAvatar');
-        const userAvatar = document.getElementById('userAvatar');
-        
-        if (profileAvatar) profileAvatar.src = photoData;
-        if (userAvatar) userAvatar.src = photoData;
-        
-        showNotification('✅ Фото профиля обновлено');
-    };
-    
-    reader.onerror = function(error) {
-        console.error('Ошибка чтения файла:', error);
-        showNotification('Ошибка при чтении файла', 'error');
-    };
-    
-    reader.readAsDataURL(file);
-}
-
-// Смена пароля
-function changePassword() {
-    const user = auth.currentUser;
-    if (!user) return;
-    
-    if (!user.email) {
-        showNotification('Для смены пароля нужен email', 'error');
-        return;
-    }
-    
-    auth.sendPasswordResetEmail(user.email).then(() => {
-        showNotification('Письмо для сброса пароля отправлено на ваш email');
-    }).catch(error => {
-        showNotification('Ошибка: ' + error.message, 'error');
+    // Auth state observer
+    auth.onAuthStateChanged((user) => {
+        updateAuthUI(user);
     });
-}
 
-// Удаление аккаунта
-function deleteAccount() {
-    if (!confirm('Вы уверены, что хотите удалить аккаунт? Это действие необратимо!')) return;
-    
-    const user = auth.currentUser;
-    if (!user) return;
-    
-    user.delete().then(() => {
-        showNotification('Аккаунт удален');
-        closeProfileModal();
-    }).catch(error => {
-        showNotification('Ошибка: ' + error.message, 'error');
-    });
-}
-
-// Уведомления
-function showNotification(message, type = 'success') {
-    const notification = document.createElement('div');
-    notification.className = `notification ${type}`;
-    notification.textContent = message;
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: ${type === 'success' ? 'rgba(40, 167, 69, 0.9)' : 'rgba(220, 53, 69, 0.9)'};
-        color: white;
-        padding: 12px 24px;
-        border-radius: 4px;
-        border-left: 4px solid var(--gold);
-        z-index: 2000;
-        font-family: 'Cinzel', serif;
-        animation: slideIn 0.3s ease;
-    `;
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-        notification.remove();
-    }, 3000);
-}
-
-// Закрытие модалок
-function closeLoginModal() {
-    const modal = document.getElementById('loginModal');
-    if (modal) modal.remove();
-}
-
-function closeProfileModal() {
-    const modal = document.getElementById('profileModal');
-    if (modal) modal.remove();
-}
-
-// Вход с email
-function loginWithEmail() {
-    const email = document.getElementById('loginEmail')?.value;
-    const password = document.getElementById('loginPassword')?.value;
-    
-    if (!email || !password) {
-        showNotification('Введите email и пароль', 'error');
-        return;
-    }
-    
-    auth.signInWithEmailAndPassword(email, password)
-        .then(() => {
-            closeLoginModal();
-            showNotification('Успешный вход');
-        })
-        .catch((error) => {
-            showNotification('Ошибка: ' + error.message, 'error');
-        });
-}
-
-// Регистрация
-function showRegisterModal() {
-    closeLoginModal();
-    
-    const modal = document.createElement('div');
-    modal.className = 'modal show';
-    modal.id = 'registerModal';
-    modal.innerHTML = `
-        <div class="modal-content" style="max-width: 400px;">
-            <button class="close-btn" onclick="closeRegisterModal()">✕</button>
-            <div class="country-title" style="font-size: 1.5rem; justify-content: center;">
-                <span>📜 Регистрация</span>
-            </div>
-            <div class="modal-divider"></div>
-            
-            <div style="padding: 20px 0;">
-                <div style="margin-bottom: 15px;">
-                    <input type="text" id="regName" class="auth-input" placeholder="Имя" style="width: 100%; padding: 12px; margin-bottom: 10px; background: rgba(0,0,0,0.3); border: 1px solid var(--gold-dark); color: var(--text-primary); border-radius: 3px;">
-                    <input type="email" id="regEmail" class="auth-input" placeholder="Email" style="width: 100%; padding: 12px; margin-bottom: 10px; background: rgba(0,0,0,0.3); border: 1px solid var(--gold-dark); color: var(--text-primary); border-radius: 3px;">
-                    <input type="password" id="regPassword" class="auth-input" placeholder="Пароль (минимум 6 символов)" style="width: 100%; padding: 12px; margin-bottom: 10px; background: rgba(0,0,0,0.3); border: 1px solid var(--gold-dark); color: var(--text-primary); border-radius: 3px;">
-                    <input type="password" id="regPasswordConfirm" class="auth-input" placeholder="Подтвердите пароль" style="width: 100%; padding: 12px; background: rgba(0,0,0,0.3); border: 1px solid var(--gold-dark); color: var(--text-primary); border-radius: 3px;">
+    function updateAuthUI(user) {
+        const authContainer = document.getElementById('authContainer');
+        if (user) {
+            authContainer.innerHTML = `
+                <div class="user-info">
+                    <img src="${user.photoURL || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'}" class="user-avatar" alt="avatar">
+                    <span>${user.displayName || user.email}</span>
+                    <button class="logout-btn" onclick="logout()">Выйти</button>
                 </div>
-                
-                <button class="social-login-btn email" onclick="registerWithEmail()" style="width: 100%; margin-bottom: 10px;">
-                    <span>Зарегистрироваться</span>
+            `;
+        } else {
+            authContainer.innerHTML = `
+                <button class="auth-btn" onclick="loginWithGoogle()">
+                    <span style="margin-right: 8px;">G</span> Войти с Google
                 </button>
-                
-                <div style="text-align: center;">
-                    <a href="#" onclick="showLoginModal()" style="color: var(--gold); text-decoration: none;">Уже есть аккаунт? Войти</a>
-                </div>
-            </div>
-        </div>
-    `;
-    document.body.appendChild(modal);
-}
+            `;
+        }
+    }
 
-function closeRegisterModal() {
-    const modal = document.getElementById('registerModal');
-    if (modal) modal.remove();
-}
-
-function registerWithEmail() {
-    const name = document.getElementById('regName')?.value;
-    const email = document.getElementById('regEmail')?.value;
-    const password = document.getElementById('regPassword')?.value;
-    const confirm = document.getElementById('regPasswordConfirm')?.value;
-    
-    if (!name || !email || !password || !confirm) {
-        showNotification('Заполните все поля', 'error');
-        return;
-    }
-    
-    if (password !== confirm) {
-        showNotification('Пароли не совпадают', 'error');
-        return;
-    }
-    
-    if (password.length < 6) {
-        showNotification('Пароль должен быть минимум 6 символов', 'error');
-        return;
-    }
-    
-    auth.createUserWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-            return userCredential.user.updateProfile({
-                displayName: name
+    window.loginWithGoogle = function() {
+        auth.signInWithPopup(googleProvider)
+            .then((result) => {
+                console.log('Успешный вход:', result.user.displayName);
+            })
+            .catch((error) => {
+                console.error('Ошибка входа:', error);
+                alert('Ошибка входа: ' + error.message);
             });
-        })
-        .then(() => {
-            closeRegisterModal();
-            showNotification('Регистрация успешна!');
-        })
-        .catch((error) => {
-            showNotification('Ошибка: ' + error.message, 'error');
+    };
+
+    window.logout = function() {
+        auth.signOut().then(() => {
+            console.log('Выход выполнен');
+        }).catch((error) => {
+            console.error('Ошибка выхода:', error);
         });
-}
+    };
 
-window.loginWithGoogle = function() {
-    auth.signInWithPopup(googleProvider)
-        .then((result) => {
-            closeLoginModal();
-            showNotification('Добро пожаловать, ' + result.user.displayName + '!');
-        })
-        .catch((error) => {
-            showNotification('Ошибка: ' + error.message, 'error');
-        });
-};
-
-window.logout = function() {
-    auth.signOut().then(() => {
-        showNotification('До новых встреч!');
-    }).catch((error) => {
-        showNotification('Ошибка: ' + error.message, 'error');
-    });
-};
-
-// Функции для меню
-window.toggleProfileMenu = function() {
-    const menu = document.getElementById('profileMenu');
-    if (menu) {
-        menu.classList.toggle('show');
-    }
-};
-// ══════════════ ФУНКЦИЯ ДЛЯ КНОПКИ НАЧАТЬ ══════════════
-window.checkAuthAndEnter = function() {
-    const user = auth.currentUser;
-    if (user) {
-        enterApp();
-    } else {
-        showLoginModal();
-    }
-};
-
-// ══════════════ ФУНКЦИЯ ВХОДА В ПРИЛОЖЕНИЕ ══════════════
-window.enterApp = function() {
-    document.getElementById('landing').style.display = 'none';
-    document.getElementById('description').style.display = 'none';
-    document.getElementById('app').classList.add('active');
-    document.getElementById('btnBack').classList.add('visible');
-    window.scrollTo(0, 0);
-    initPanZoom();
-};
-
-// ══════════════ ФУНКЦИЯ ВОЗВРАТА ══════════════
-window.backToLanding = function() {
-    document.getElementById('app').classList.remove('active');
-    document.getElementById('btnBack').classList.remove('visible');
-    document.getElementById('landing').style.display = 'flex';
-    document.getElementById('description').style.display = 'flex';
-    window.scrollTo(0, 0);
-};
-// Закрытие меню при клике вне его
-document.addEventListener('click', function(e) {
-    const menu = document.getElementById('profileMenu');
-    const userInfo = document.getElementById('userInfo');
-    if (menu && userInfo && !userInfo.contains(e.target) && menu.classList.contains('show')) {
-        menu.classList.remove('show');
-    }
-});
+    window.checkAuthAndEnter = function() {
+        const user = auth.currentUser;
+        if (user) {
+            enterApp();
+        } else {
+            if (confirm('Для доступа к карте необходимо войти через Google. Хотите войти сейчас?')) {
+                loginWithGoogle().then(() => {
+                    const unsubscribe = auth.onAuthStateChanged((user) => {
+                        if (user) {
+                            unsubscribe();
+                            enterApp();
+                        }
+                    });
+                });
+            }
+        }
+    };
 
     // ПОЛНЫЕ ДАННЫЕ ПО ВСЕМ СТРАНАМ ЕВРОПЫ (44 страны)
-    const countryData = {
+    const countryDataEurope = {
         albania: {
             name: 'Албания',
             flag: '🇦🇱',
@@ -3087,6 +2619,220 @@ document.addEventListener('click', function(e) {
         }
     };
 
+    let activeContinent = 'europe';
+    let asiaCountryData = {};
+    let asiaGeoLoaded = false;
+    const EUROPE_MAP_SVG = document.getElementById('mapSvg').outerHTML;
+    const ASIA_TITLE = {
+        europe: {
+            title: 'Европа • политическая и тематическая карта',
+            subtitle: 'Выбирай континент, переключай режим карты и кликай по странам, чтобы открыть сведения, историю, экономику и культурные опоры.',
+            footer: '✦ клик по стране — полные данные · тяни мышью — перемещение · колесо — зум ✦'
+        },
+        asia: {
+            title: 'Азия • политическая и тематическая карта',
+            subtitle: 'Карта Азии построена на твоём SVG-файле и поддерживает те же режимы, карточки стран, зум и перемещение, что и Европа.',
+            footer: '✦ Азия подключена через SVG · те же режимы карты · клики по странам и плавный зум ✦'
+        }
+    };
+
+    const CLIMATE_COLOR_LABELS = {
+        subarctic: 'Субарктический',
+        oceanic: 'Морской',
+        continental: 'Континентальный',
+        mediterranean: 'Средиземноморский',
+        tropical: 'Тропический',
+        monsoon: 'Муссонный',
+        arid: 'Засушливый',
+        highland: 'Высокогорный',
+        subtropical: 'Субтропический',
+        temperate: 'Умеренный'
+    };
+
+    function formatPopulationRu(value) {
+        if (!value && value !== 0) return '—';
+        if (value >= 1000000000) return `${(value / 1000000000).toFixed(2).replace('.', ',')} млрд`;
+        if (value >= 1000000) return `${(value / 1000000).toFixed(1).replace('.', ',')} млн`;
+        if (value >= 1000) return `${(value / 1000).toFixed(0).replace('.', ',')} тыс.`;
+        return `${value}`;
+    }
+
+    function formatAreaRu(value) {
+        if (!value && value !== 0) return '—';
+        return `${Math.round(value).toLocaleString('ru-RU')} км²`;
+    }
+
+    function formatMoneyShort(value) {
+        if (value >= 1000) return `${(value / 1000).toFixed(1).replace('.', ',')} трлн $`;
+        return `${value.toLocaleString('ru-RU')} млрд $`;
+    }
+
+    function buildAsiaCountryData() {
+        const result = {};
+        Object.entries(window.ASIA_COUNTRY_META || {}).forEach(([key, meta]) => {
+            const geo = asiaCountryData[key] || {};
+            const baseValues = window.ASIA_REGION_VALUES?.[meta.region] || [];
+            result[key] = {
+                name: geo.ru || meta.label || key.toUpperCase(),
+                flag: geo.flag || '🏳️',
+                geo: {
+                    capital: geo.capital || '—',
+                    population: formatPopulationRu(geo.population),
+                    area: formatAreaRu(geo.area),
+                    currency: geo.currency || '—',
+                    language: geo.languages || '—',
+                    calling_code: geo.phone || '—',
+                    religion: meta.religion || '—'
+                },
+                arsenal: `${geo.flag || '🏳️'} Оборонный профиль ${geo.ru || meta.label}:\n• ${meta.military}\n• Основной театр безопасности: ${terrainLabel(meta.terrain)}\n• Текущая модель: сочетание национальных сил, географии и региональных рисков`,
+                gdp: `${geo.flag || '🏳️'} Экономический профиль ${geo.ru || meta.label}:\n• Номинальный ВВП: ~${formatMoneyShort(meta.nm)}\n• На душу населения: ~${meta.pc.toLocaleString('ru-RU')} $\n• ППС на душу: ~${meta.pp.toLocaleString('ru-RU')} $\n• Ключевые отрасли: ${meta.sectors}`,
+                history: (meta.history || []).map(item => ({ year: item[0], desc: item[1] })),
+                values: baseValues
+            };
+        });
+        return result;
+    }
+
+    async function ensureAsiaGeoData() {
+        if (asiaGeoLoaded || !window.ASIA_FETCH_CODES) return;
+        try {
+            const response = await fetch(`https://restcountries.com/v3.1/alpha?codes=${window.ASIA_FETCH_CODES}&fields=cca2,translations,capital,population,area,currencies,languages,idd,flag`);
+            const data = await response.json();
+            data.forEach(item => {
+                const currencyEntry = item.currencies ? Object.entries(item.currencies)[0] : null;
+                asiaCountryData[item.cca2.toLowerCase()] = {
+                    ru: item.translations?.rus?.common || item.cca2,
+                    flag: item.flag,
+                    capital: (item.capital || []).join(', '),
+                    population: item.population,
+                    area: item.area,
+                    currency: currencyEntry ? `${currencyEntry[1].name} (${currencyEntry[0]})` : '—',
+                    languages: item.languages ? Object.values(item.languages).join(', ') : '—',
+                    phone: `${item.idd?.root || ''}${item.idd?.suffixes?.[0] || ''}`
+                };
+            });
+            asiaCountryData = buildAsiaCountryData();
+            asiaGeoLoaded = true;
+        } catch (error) {
+            asiaCountryData = buildAsiaCountryData();
+            asiaGeoLoaded = true;
+        }
+    }
+
+    function getCountryDataset() {
+        return activeContinent === 'asia' ? asiaCountryData : countryDataEurope;
+    }
+
+    function getModeDataset() {
+        return activeContinent === 'asia' ? (window.ASIA_COUNTRY_META || {}) : CMD_EUROPE;
+    }
+
+    function getReliefDataset() {
+        return activeContinent === 'asia' ? (window.ASIA_TERRAIN_COLORS || {}) : RELIEF_GRAD_EUROPE;
+    }
+
+    function terrainLabel(key) {
+        const labels = {
+            mountain: 'горы и перевалы',
+            desert: 'пустыня и полупустыня',
+            plateau: 'плато и внутренние возвышенности',
+            forest: 'лесные и влажные зоны',
+            plains: 'равнины и долины',
+            island: 'островной и прибрежный рельеф',
+            urban: 'плотная прибрежная урбанизация',
+            delta: 'дельты и прибрежные равнины',
+            steppe: 'степи и сухие равнины',
+            hills: 'холмы и предгорья'
+        };
+        return labels[key] || 'смешанный рельеф';
+    }
+
+    function getPaintTargets(el) {
+        if (!el) return [];
+        const tag = el.tagName.toLowerCase();
+        if (['path', 'polygon', 'rect', 'circle', 'ellipse'].includes(tag)) return [el];
+        return Array.from(el.querySelectorAll('path, polygon, rect, circle, ellipse'));
+    }
+
+    function paintCountryElement(el, fill) {
+        getPaintTargets(el).forEach(target => {
+            if (!target.dataset.df) target.dataset.df = target.getAttribute('fill') || fill;
+            target.setAttribute('fill', fill);
+        });
+        if (!el.dataset.df) el.dataset.df = fill;
+    }
+
+    function enhanceAsiaMap() {
+        const svg = document.getElementById('mapSvg');
+        if (!svg) return;
+        svg.classList.add('asia-map');
+        Object.entries(window.ASIA_COUNTRY_META || {}).forEach(([id, meta]) => {
+            const el = svg.querySelector(`#${id}`);
+            if (!el) return;
+            el.classList.add('country');
+            const baseFill = window.ASIA_REGION_COLORS?.[meta.region] || '#8b9a7a';
+            el.dataset.df = baseFill;
+            paintCountryElement(el, baseFill);
+            if (!el.dataset.bound) {
+                el.dataset.bound = '1';
+                el.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    showCountryInfo(id);
+                });
+            }
+        });
+
+        const oldLayer = svg.querySelector('#asiaLabelLayer');
+        if (oldLayer) oldLayer.remove();
+        const NS = 'http://www.w3.org/2000/svg';
+        const labelLayer = document.createElementNS(NS, 'g');
+        labelLayer.id = 'asiaLabelLayer';
+        Object.entries(window.ASIA_COUNTRY_META || {}).forEach(([id, meta]) => {
+            const el = svg.querySelector(`#${id}`);
+            if (!el || !el.getBBox) return;
+            const box = el.getBBox();
+            if (!box.width || !box.height || box.width * box.height < 16) return;
+            const text = document.createElementNS(NS, 'text');
+            text.setAttribute('x', box.x + box.width / 2);
+            text.setAttribute('y', box.y + box.height / 2);
+            text.setAttribute('class', 'map-label');
+            text.textContent = meta.label || id.toUpperCase();
+            labelLayer.appendChild(text);
+        });
+        svg.appendChild(labelLayer);
+    }
+
+    window.setContinent = async function(continent) {
+        if (continent === activeContinent) return;
+        activeContinent = continent;
+        document.getElementById('continent-europe').classList.toggle('active', continent === 'europe');
+        document.getElementById('continent-asia').classList.toggle('active', continent === 'asia');
+        document.getElementById('activeContinentTitle').textContent = ASIA_TITLE[continent].title;
+        document.getElementById('activeContinentSubtitle').textContent = ASIA_TITLE[continent].subtitle;
+        document.getElementById('mapFooter').textContent = ASIA_TITLE[continent].footer;
+
+        const viewport = document.getElementById('mapViewport');
+        viewport.innerHTML = `<div class="map-legend" id="mapLegend"></div>${continent === 'europe' ? EUROPE_MAP_SVG : window.ASIA_MAP_SVG}`;
+        const activeSvg = viewport.querySelector('svg');
+        if (activeSvg) {
+            activeSvg.id = 'mapSvg';
+            activeSvg.classList.add('map-svg');
+            activeSvg.removeAttribute('width');
+            activeSvg.removeAttribute('height');
+        }
+        if (continent === 'asia') {
+            await ensureAsiaGeoData();
+            enhanceAsiaMap();
+        }
+        scale = 1;
+        panX = 0;
+        panY = 0;
+        initPanZoom();
+        applyTransform();
+        applyMode();
+    };
+
     const modal = document.getElementById('infoModal');
     const valueModal = document.getElementById('valueDetailModal');
     const countryNameSpan = document.getElementById('countryName');
@@ -3103,7 +2849,7 @@ document.addEventListener('click', function(e) {
     });
 
     window.showCountryInfo = function (countryKey) {
-        const data = countryData[countryKey];
+        const data = getCountryDataset()[countryKey];
         if (!data) return;
 
         countryNameSpan.innerText = data.name;
@@ -3145,7 +2891,7 @@ document.addEventListener('click', function(e) {
     };
 
     window.showValueDetail = function (countryKey, valueIndex) {
-        const value = countryData[countryKey].values[valueIndex];
+        const value = getCountryDataset()[countryKey].values[valueIndex];
         document.getElementById('valueTitle').innerText = value.name;
         document.getElementById('valueDescription').innerText = value.desc;
         valueModal.classList.add('show');
@@ -3174,6 +2920,7 @@ document.addEventListener('click', function(e) {
         document.getElementById('btnBack').classList.add('visible');
         window.scrollTo(0, 0);
         initPanZoom();
+        ensureAsiaGeoData();
     };
 
     window.backToLanding = function() {
@@ -3184,7 +2931,7 @@ document.addEventListener('click', function(e) {
         window.scrollTo(0, 0);
     };
 
-    const CMD = {
+    const CMD_EUROPE = {
         AL: { ct:'mediterranean', tmp:12, pc:9000,   pp:16000,  nm:22  },
         AT: { ct:'continental',   tmp:8,  pc:58000,  pp:67000,  nm:540 },
         BY: { ct:'continental',   tmp:6,  pc:8000,   pp:18000,  nm:75  },
@@ -3227,7 +2974,7 @@ document.addEventListener('click', function(e) {
         GB: { ct:'oceanic',       tmp:10, pc:46000,  pp:55000,  nm:3200},
     };
 
-    const RELIEF_GRAD = {
+    const RELIEF_GRAD_EUROPE = {
         NO:{x1:0,y1:.5,x2:1,y2:.5,   s:[[0,'#8B7040'],[.5,'#7A9050'],[1,'#90B860']]},
         SE:{x1:0,y1:0, x2:1,y2:1,    s:[[0,'#8B7040'],[.4,'#7A9050'],[1,'#90C860']]},
         FI:{x1:.5,y1:0,x2:.5,y2:1,   s:[[0,'#8AB060'],[.5,'#80B870'],[1,'#90C870']]},
@@ -3273,13 +3020,10 @@ document.addEventListener('click', function(e) {
     const CLIMATE_COLORS = {
         subarctic:'#5890B8', oceanic:'#509868',
         continental:'#C4A030', mediterranean:'#E8B820',
+        tropical:'#3fb58f', monsoon:'#4eaa86',
+        arid:'#d58b32', highland:'#7b8aa8',
+        subtropical:'#6ea2c6', temperate:'#7aaa68'
     };
-    const CLIMATE_LABELS = [
-        {c:'#5890B8',t:'Субарктический'},
-        {c:'#509868',t:'Морской'},
-        {c:'#C4A030',t:'Континентальный'},
-        {c:'#E8B820',t:'Средиземноморский'},
-    ];
 
     function tempColor(t) {
         if(t<=2)  return '#4870C8';
@@ -3305,12 +3049,13 @@ document.addEventListener('click', function(e) {
     }
 
     function ensureReliefGradients() {
+        if(activeContinent !== 'europe') return;
         const svg = document.getElementById('mapSvg');
         if(svg.querySelector('#_rdefs')) return;
         const NS = 'http://www.w3.org/2000/svg';
         const defs = document.createElementNS(NS,'defs');
         defs.id='_rdefs';
-        for(const [id,g] of Object.entries(RELIEF_GRAD)) {
+        for(const [id,g] of Object.entries(RELIEF_GRAD_EUROPE)) {
             const lg = document.createElementNS(NS,'linearGradient');
             lg.id=`_r${id}`;
             lg.setAttribute('x1',g.x1); lg.setAttribute('y1',g.y1);
@@ -3382,8 +3127,15 @@ document.addEventListener('click', function(e) {
 
     function legendHTML() {
         const m=currentMode, s=currentSub;
+        const dataset = getModeDataset();
         if(m==='normal') return '';
         if(m==='relief') {
+            if(activeContinent === 'asia') {
+                const used = [...new Set(Object.values(dataset).map(d => d.terrain))].filter(Boolean);
+                return '<div class="legend-title">Рельеф</div>' + used.map(key =>
+                    `<div class="legend-item"><div class="legend-swatch" style="background:${window.ASIA_TERRAIN_COLORS[key] || '#777'}"></div><span class="legend-text">${terrainLabel(key)}</span></div>`
+                ).join('');
+            }
             return '<div class="legend-title">Рельеф</div>'+[
                 {c:'#A0D870',t:'Равнины'},
                 {c:'#7A9050',t:'Холмы / леса'},
@@ -3398,12 +3150,13 @@ document.addEventListener('click', function(e) {
                     '<div class="legend-gradient-bar" style="background:linear-gradient(90deg,#4870C8,#5898D0,#88B888,#A8B858,#C8A838,#C86820)"></div>'+
                     '<div class="legend-bar-labels"><span>≤2°</span><span>9°</span><span>16°+</span></div>';
             }
+            const used = [...new Set(Object.values(dataset).map(d => d.ct))].filter(Boolean);
             return '<div class="legend-title">Тип климата</div>'+
-                CLIMATE_LABELS.map(l=>`<div class="legend-item"><div class="legend-swatch" style="background:${l.c}"></div><span class="legend-text">${l.t}</span></div>`).join('');
+                used.map(key=>`<div class="legend-item"><div class="legend-swatch" style="background:${CLIMATE_COLORS[key] || '#888'}"></div><span class="legend-text">${CLIMATE_COLOR_LABELS[key] || window.ASIA_CLIMATE_LABELS?.[key] || key}</span></div>`).join('');
         }
         if(m==='gdp') {
             const lbl = s==='nom'?['<30bn','300bn','2000bn+'] : s==='ppp'?['<18k','45k','90k+'] : ['<10k','35k','90k+'];
-            const title = s==='nom'?'ВВП номинал (EUR bn)' : s==='ppp'?'ВВП ППС / душу (EUR)' : 'ВВП / душу номинал (EUR)';
+            const title = s==='nom'?'ВВП номинал (USD bn)' : s==='ppp'?'ВВП ППС / душу (USD)' : 'ВВП / душу номинал (USD)';
             return `<div class="legend-title">${title}</div>`+
                 '<div class="legend-gradient-bar" style="background:linear-gradient(90deg,#8B2020,#B84020,#C87820,#A89830,#6A9A40,#208A60)"></div>'+
                 `<div class="legend-bar-labels"><span>${lbl[0]}</span><span>${lbl[1]}</span><span>${lbl[2]}</span></div>`;
@@ -3413,23 +3166,25 @@ document.addEventListener('click', function(e) {
 
     function applyMode() {
         const m=currentMode, s=currentSub;
-        document.querySelectorAll('.country').forEach(el=>{
-            if(!el.dataset.df) el.dataset.df=el.getAttribute('fill');
-        });
+        const countries = document.querySelectorAll('#mapSvg .country');
         if(m==='relief') ensureReliefGradients();
 
-        document.querySelectorAll('.country').forEach(el=>{
+        countries.forEach(el=>{
             const id=el.getAttribute('id');
-            const d=CMD[id];
-            if(m==='normal') { el.setAttribute('fill',el.dataset.df); return; }
-            if(!d && m!=='relief') { el.setAttribute('fill','#444'); return; }
+            const d=getModeDataset()[id];
+            if(m==='normal') { paintCountryElement(el, el.dataset.df || '#666'); return; }
+            if(!d && m!=='relief') { paintCountryElement(el, '#444'); return; }
             if(m==='relief') {
-                el.setAttribute('fill', RELIEF_GRAD[id] ? `url(#_r${id})` : (el.dataset.df||'#666'));
+                if(activeContinent === 'asia') {
+                    paintCountryElement(el, window.ASIA_TERRAIN_COLORS?.[d?.terrain] || el.dataset.df || '#666');
+                } else {
+                    getPaintTargets(el).forEach(target => target.setAttribute('fill', RELIEF_GRAD_EUROPE[id] ? `url(#_r${id})` : (target.dataset.df || el.dataset.df || '#666')));
+                }
             } else if(m==='climate') {
-                el.setAttribute('fill', s==='temp' ? tempColor(d.tmp) : (CLIMATE_COLORS[d.ct]||'#888'));
+                paintCountryElement(el, s==='temp' ? tempColor(d.tmp) : (CLIMATE_COLORS[d.ct]||'#888'));
             } else if(m==='gdp') {
                 const val = s==='ppp'?d.pp : s==='nom'?d.nm : d.pc;
-                el.setAttribute('fill', gdpColor(val, s||'pc'));
+                paintCountryElement(el, gdpColor(val, s||'pc'));
             }
         });
 
@@ -3592,6 +3347,18 @@ document.addEventListener('click', function(e) {
             setTimeout(() => { mapDragged = false; }, 10);
         });
     }
+
+// ═══════════════════════════════════════════════
+//  ASIA DATA
+// ═══════════════════════════════════════════════
+window.ASIA_MAP_SVG = "<svg\n   xmlns=\"http://www.w3.org/2000/svg\"\n   width=\"1009\"\n   height=\"771\"\n   viewBox=\"0 0 134.05301 115.48181\"\n   version=\"1.1\"\n   id=\"svg8\">\n  <g\n     id=\"layer1\"\n     transform=\"translate(10.930216,-71.684311)\">\n    <g\n       style=\"fill:#cccccc;stroke-linejoin:round\"\n       id=\"mv\"\n       transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\" />\n    <g\n       style=\"fill:#cccccc;stroke-linejoin:round\"\n       id=\"fm\"\n       transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\" />\n    <g\n       id=\"g2758\">\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"ps\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path5917\"\n           d=\"m 302.92969,-683.2689 c 0.10163,-3.49421 -0.56648,-2.22633 -1.27346,2.41667 -0.42449,2.7878 -0.33447,3.3939 0.29705,2 0.49837,-1.1 0.93776,-3.0875 0.97641,-4.41667 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"tw\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path5959\"\n           d=\"m 650.39968,-641.12571 c -0.6052,-0.39959 -1.6457,-1.76188 -2.3124,-3.02733 -1.0049,-1.9076 -0.9007,-2.83384 0.6095,-5.41972 2.3324,-3.99369 3.9075,-4.492 4.6646,-1.47573 0.7964,3.17298 -1.5053,10.88443 -2.9617,9.92278 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"af\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path5909\"\n           d=\"m 405.41827,-677.5666 c 0.46002,-2.87684 0.24363,-3.97813 -0.86527,-4.40366 -0.81329,-0.31209 -2.40714,-3.04888 -3.54188,-6.08175 -1.78316,-4.76592 -1.89537,-5.97838 -0.82677,-8.93353 0.78665,-2.17544 1.72655,-3.23112 2.58386,-2.90213 2.12686,0.81615 8.71943,-3.04469 10.0007,-5.85676 1.52458,-3.34608 5.18639,-4.19939 9.17334,-2.13765 3.84112,1.98632 6.55547,1.27903 10.24368,-2.66921 2.2953,-2.45713 3.04918,-2.74547 4.7701,-1.82446 1.12417,0.60164 2.04395,1.7265 2.04395,2.49969 0,2.18492 1.3682,2.53706 5.46374,1.40623 2.45548,-0.67799 4.11738,-0.70128 4.75205,-0.0666 0.63468,0.63468 -0.42527,1.21275 -3.03083,1.65296 -2.20377,0.37232 -4.81207,1.56671 -5.79623,2.6542 -1.52525,1.68539 -1.61548,2.43798 -0.61123,5.09853 1.02865,2.72522 0.93736,3.28994 -0.71949,4.45044 -1.0437,0.73104 -2.64604,3.5824 -3.56076,6.33637 -0.91473,2.75397 -2.0626,4.76034 -2.55082,4.4586 -1.44375,-0.89229 -6.9486,2.44377 -8.06095,4.88511 -1.67649,3.6795 -4.87283,4.96558 -12.73192,5.12282 l -7.34871,0.14704 0.61344,-3.83623 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"am\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path5861\"\n           d=\"m 336.48719,-718.36632 c -1.1199,-1.23747 -2.52286,-1.79193 -3.63834,-1.43789 -1.17856,0.37406 -2.7719,-0.38009 -4.54126,-2.14945 -2.59249,-2.59249 -2.62996,-2.76313 -0.76665,-3.49182 1.07747,-0.42137 2.47434,-0.79776 3.10414,-0.83641 1.57206,-0.0965 10.49818,8.4531 9.6798,9.27148 -1.0709,1.07089 -1.90966,0.77455 -3.83769,-1.35591 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"az\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path9522\"\n           d=\"m 346.39663,-727.93817 c 0.90779,1.02468 3.75471,4.19091 5.13023,5.66986 1.68073,1.80711 1.97518,3.34443 0.46138,2.40885 -0.56245,-0.34761 -1.2849,0.74047 -1.62684,2.45015 l -0.61509,3.07544 -2.38453,-2.57294 c -1.51517,-1.63491 -3.02928,-2.36832 -4.15302,-2.01165 -1.12435,0.35685 -2.97617,-0.54175 -5.0842,-2.46713 l -3.3157,-3.02843 2.56727,-2.01942 c 1.92594,-1.51494 3.02496,-1.77446 4.39944,-1.03886 1.18777,0.63567 2.3408,0.63871 3.27829,0.009 z\" />\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path5863\"\n           d=\"m 333.99998,-717.85218 c -0.69443,-0.83674 -0.80272,-1.5 -0.24489,-1.5 0.55,0 1.5602,0.675 2.24489,1.5 0.69443,0.83674 0.80272,1.5 0.24489,1.5 -0.55,0 -1.5602,-0.675 -2.24489,-1.5 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"bh\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           transform=\"translate(-470,-892.401)\"\n           id=\"path4048\"\n           d=\"m 833.50115,236.22916 c 0.0722,0.2377 0.35421,0.53133 0.55928,0.79699 0.0932,-0.1072 0.0396,-0.46607 0.11186,-0.69911 0.033,-0.23303 -0.0119,-0.43811 -0.0839,-0.67114 -0.33636,-0.0263 -0.43371,-0.0334 -0.56461,0.13546 -0.0926,0.22808 -0.0226,0.26303 -0.0226,0.4378 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"bd\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path6291\"\n           transform=\"translate(-470,-892.401)\"\n           d=\"m 988.25,234.84375 c -1.0081,0.16544 -0.65307,2.00124 1.25,5.40625 1.3986,2.5022 2.2638,5.24353 1.9375,6.09375 -0.30418,0.79257 -0.0941,2.3474 0.4375,3.59375 L 993,252.25 c 1.58989,-0.45669 3.4953,-0.94424 4.125,-1.28125 2.61023,-1.39696 5.0216,0.19037 7.0938,4.53125 l 2.625,-0.875 c 0.058,-0.0203 0.032,-0.043 0.094,-0.0625 1.1415,-0.36228 2.0625,-1.30461 2.0625,-2.125 0,-0.8204 -0.4064,-1.24644 -0.9062,-0.9375 -0.092,0.0565 -0.2727,-0.047 -0.4688,-0.15625 l -0.3125,-0.15625 -0.094,-0.0312 c -0.011,-0.006 -0.02,-0.0255 -0.031,-0.0312 l -0.1563,-0.0937 c -0.01,-0.004 -0.024,0.004 -0.031,0 -0.7008,-0.38405 -1.5632,-1.04884 -2.4688,-2.125 -1.8654,-2.21731 -2.5221,-4.04417 -2.3124,-6.25 0.2921,-3.07591 -0.1699,-3.34973 -3.31255,-2.125 -1.0079,0.39279 -3.19025,-0.69957 -5.90625,-2.96875 -2.3597,-1.97146 -3.96592,-2.84743 -4.75,-2.71875 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"bt\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path5933\"\n           d=\"m 521.24998,-661.38339 c -2.3903,-0.96077 -2.8051,-2.54273 -1.2936,-4.93259 0.709,-1.12084 1.5596,-1.23797 3.6311,-0.5 3.6421,1.29748 5.4406,4.18402 3.4125,5.4769 -1.8044,1.15026 -2.7971,1.14261 -5.75,-0.0443 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"bn\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path4113\"\n           d=\"m 634.03125,-559.39579 c 0.35892,0.28081 0.34071,0.35439 0.59499,0.47454 0.25428,0.12016 -0.1544,0.58043 0.7456,0.36341 0.52031,-0.12546 0.72102,-1.91637 0.91386,-2.15713 0.19284,-0.24076 0.9158,0.6977 1.15185,0.25668 1.20498,-1.48622 1.31476,-2.78764 -2.69276,-1.39063 -0.4742,0.16531 -1.71405,1.03501 -2.14723,1.299 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"kh\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path6055\"\n           d=\"m 586.07338,-589.92869 c -1.3347,-1.95955 -2.5039,-4.54398 -2.5983,-5.74317 -0.0944,-1.19919 -0.4997,-2.93305 -0.9007,-3.85302 -1.0643,-2.44187 2.9659,-6.20107 5.7681,-5.38012 6.78,1.98639 7.1107,2.01864 10.3897,1.01326 1.8291,-0.56083 2.4289,-0.16765 3.3216,2.17757 1.9372,5.08872 0.1712,8.1862 -6.8245,11.97017 -3.4489,1.86549 -6.3739,3.38873 -6.5,3.38497 -0.1261,-0.004 -1.3213,-1.61011 -2.6559,-3.56966 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"cn\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path5981\"\n           d=\"m 605.21248,-623.53973 c -2.6479,-2.64791 -0.0271,-5.8125 4.8138,-5.8125 2.1459,0 2.1476,0.0175 0.3066,3.16972 -2.1461,3.67458 -3.4273,4.33586 -5.1204,2.64278 z\" />\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path5971\"\n           d=\"m 607.07518,-634.65453 c -1.0347,-2.72145 -3.8402,-4.10885 -6.3562,-3.14337 -1.8785,0.72085 -5.7236,-1.17365 -7.5203,-3.70529 -2.4831,-3.49882 -4.8477,-4.04775 -9.9538,-2.31073 -2.6097,0.88778 -5.8699,1.71299 -7.2449,1.83381 -1.9964,0.17541 -2.4673,0.7263 -2.3376,2.73472 0.1479,2.29171 -0.1527,2.49024 -3.3851,2.23568 -1.9511,-0.15366 -3.6316,-0.40609 -3.7344,-0.56095 -0.1028,-0.15486 -1.3935,-2.38921 -2.8682,-4.96522 -1.4747,-2.57601 -3.5568,-4.96153 -4.6268,-5.30115 -2.7843,-0.8837 -3.3705,-3.80742 -1.6087,-8.02384 1.3735,-3.28727 1.3708,-3.95817 -0.0269,-6.66104 -0.8989,-1.73814 -3.3166,-3.84377 -5.7333,-4.99322 -2.2984,-1.09319 -5.304,-2.62212 -6.679,-3.39762 -1.375,-0.7755 -3.3098,-1.41663 -4.2997,-1.42474 -2.8161,-0.0231 -7.4963,2.76713 -8.1626,4.86632 -0.8588,2.70614 -3.7833,3.14821 -6.4644,0.97719 -2.7817,-2.25245 -5.9251,-2.40805 -6.7215,-0.33273 -0.4486,1.16922 -0.9055,1.25987 -1.95585,0.38813 -0.75376,-0.62557 -2.0835,-0.86379 -2.95498,-0.52937 -0.92152,0.35362 -3.01465,-0.4828 -5.00253,-1.99903 -2.03271,-1.55043 -4.07351,-2.35553 -5.03532,-1.98645 -2.37959,0.91314 -8.46568,-0.99385 -12.37373,-3.87712 -1.87987,-1.38692 -4.69548,-2.52168 -6.25691,-2.52168 -1.56143,0 -5.01785,-1.10412 -7.68093,-2.45361 -4.70183,-2.3826 -6.69,-4.76906 -5.53289,-6.64131 0.31084,-0.50294 0.73243,-2.9672 0.93688,-5.47613 0.40755,-5.00144 -1.70189,-8.29443 -5.49554,-8.57895 -1.1,-0.0825 -2.5625,-0.195 -3.25,-0.25 -0.6875,-0.055 -3.90727,-1.7875 -7.15504,-3.85 -3.24777,-2.0625 -6.17277,-3.75032 -6.5,-3.75071 -0.32723,-3.8e-4 -0.66248,-1.16756 -0.74501,-2.59373 -0.0922,-1.59264 -1.42951,-3.66116 -3.46645,-5.36168 l -3.14605,-2.144 3.07546,-2.30313 c 1.60869,-1.20471 3.66574,-1.41896 4.17896,-1.10177 1.2989,0.80276 10.05757,-3.8013 12.64319,-6.64599 3.44992,-3.79558 3.65094,-6.07278 0.86894,-9.84356 -1.3772,-1.8667 -2.504,-3.52001 -2.504,-3.67403 0,-0.15402 1.32472,-0.96508 2.94382,-1.80235 1.6191,-0.83727 3.55073,-2.76132 4.29252,-4.27568 0.84448,-1.72398 2.06501,-2.68846 3.26463,-2.57974 3.60042,0.32629 5.68275,-1.56069 5.02533,-4.55389 -0.43343,-1.97338 -0.0665,-3.22591 1.3101,-4.47169 1.82434,-1.651 2.05509,-1.61024 5.02323,0.88729 1.71108,1.43978 4.67017,3.04827 6.57576,3.57443 2.57198,0.71016 4.30937,2.2602 6.74292,6.0158 3.78727,5.84476 7.68872,8.28218 11.80848,7.37733 3.53126,-0.77559 11.20091,2.92338 15.51321,7.48185 2.8193,2.9802 3.3059,3.13337 8.0787,2.54269 3.8045,-0.47086 7.7661,0.0448 15.7906,2.05559 10.1924,2.55399 10.8917,2.60665 14.4213,1.08597 2.0402,-0.879 5.9594,-1.89754 8.7094,-2.26344 5.5418,-0.73736 10.079,-2.68932 10.7724,-4.63452 0.2493,-0.69907 -0.1584,-2.483 -0.9059,-3.96429 -1.5247,-3.02136 -0.5229,-4.30855 2.5856,-3.32196 2.0855,0.66191 9.2155,-2.49305 12.5786,-5.56593 1.1169,-1.02049 3.1419,-1.75721 4.5,-1.63715 1.3581,0.12006 2.6511,-0.23171 2.8733,-0.78171 0.6712,-1.66109 -5.5266,-4.61747 -10.3569,-4.94039 -8.0149,-0.53581 -10.0191,-4.3799 -3.8083,-7.30433 3.385,-1.5939 3.7431,-2.13869 3.7844,-5.75787 0.026,-2.27572 -0.7376,-5.16128 -1.7729,-6.69968 l -1.8185,-2.70227 4.2787,-1.15213 c 3.2598,-0.8778 5.5895,-0.86693 9.7841,0.0456 4.7001,1.02258 6.3099,2.03479 11.0054,6.92038 7.6663,7.97658 11.7587,10.804 17.5,12.09066 2.726,0.61092 6.3162,2.14609 7.9782,3.41149 4.667,3.55339 6.8819,3.89863 10.6705,1.66327 3.4111,-2.0126 6.831,-1.46892 5.3932,0.85741 -0.3929,0.63568 0.0299,2.29164 0.9396,3.67991 1.6131,2.46191 1.568,2.60509 -1.8298,5.80965 l -3.4837,3.28553 1.9094,2.89637 c 2.326,3.52831 9.23117,9.71439 1.0311,5.53345 -0.77266,-0.39396 -3.5925,1.19311 -5.2183,2.81891 -1.6258,1.62579 -3.5211,2.73913 -4.2118,2.4741 -0.6907,-0.26504 -2.5649,1.25849 -4.1649,3.38563 -1.6001,2.12714 -4.6026,4.8421 -6.6722,6.03325 -3.698,2.12827 -3.781,2.13215 -4.8022,0.22412 -0.5715,-1.06788 -1.0391,-2.63036 -1.0391,-3.47216 0,-0.84181 -0.8405,-1.9804 -1.8679,-2.53021 -1.5279,-0.81773 -2.4925,-0.32368 -5.3006,2.71482 -1.8881,2.04295 -4.307,4.21154 -5.3753,4.81909 -1.6576,0.94265 -1.746,1.34124 -0.6033,2.71818 0.7366,0.88746 3.2794,2.69798 5.6508,4.02339 3.7718,2.10807 4.4938,2.22778 5.7655,0.95599 1.2091,-1.20902 2.1929,-1.25325 5.8423,-0.2627 l 4.3885,1.19115 -2.4457,1.63468 c -4.5361,3.03185 -5.9663,4.62339 -6.6138,7.35959 -0.5313,2.24553 -0.2143,2.92101 1.8016,3.83955 1.3455,0.61305 3.3909,3.05881 4.5454,5.43503 1.1544,2.37621 3.4604,5.1246 5.1244,6.10753 3.6599,2.16194 4.7215,4.45899 2.6076,5.64198 -1.9402,1.08583 -1.0441,2.751 1.4805,2.751 1.0351,0 2.1556,0.4428 2.4901,0.984 0.3345,0.5412 -0.6102,5.51795 -2.0994,11.05943 -3.5717,13.29149 -6.7539,17.46302 -16.0976,21.10261 -3.7432,1.45806 -7.1953,2.26804 -7.689,1.80411 -1.2467,-1.17163 -7.9843,2.44651 -10.4917,5.63408 l -2.0766,2.64003 -0.9606,-2.52656 z\" />\n        <g\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"hk\">\n          <path\n             style=\"fill:#003399;fill-opacity:1\"\n             d=\"m 1091.25,257.47916 a 1.25,1.25 0 0 1 -1.25,1.25 1.25,1.25 0 0 1 -1.25,-1.25 1.25,1.25 0 0 1 1.25,-1.25 1.25,1.25 0 0 1 1.25,1.25 z\"\n             id=\"path4052-1\"\n             transform=\"translate(-466.25,-896.59266)\" />\n        </g>\n        <g\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"mo\">\n          <path\n             style=\"fill:#003399;fill-opacity:1\"\n             transform=\"translate(-470.41667,-896.56766)\"\n             d=\"m 1091.25,257.47916 a 1.25,1.25 0 0 1 -1.25,1.25 1.25,1.25 0 0 1 -1.25,-1.25 1.25,1.25 0 0 1 1.25,-1.25 1.25,1.25 0 0 1 1.25,1.25 z\"\n             id=\"path4052\" />\n        </g>\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"cy\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           transform=\"translate(-470,-892.401)\"\n           id=\"path3897\"\n           d=\"m 755.03243,194.67848 c -0.53065,0 -0.53065,-0.53056 -0.53065,-0.53056 0.53065,0.53056 1.59186,-0.53076 2.12252,-0.53076 1.06114,0 0,-0.53063 1.06114,-0.53063 1.0612,0 1.59181,0 2.65307,-0.53059 1.06114,0 2.12239,-1.0611 3.18363,-1.0611 -1.06124,0.53055 -1.59184,1.59169 -2.12249,1.59169 -1.06114,0.53063 0,1.06139 0,1.59195 0,0 -1.06114,0 -1.06114,0 -0.53059,0.53057 -0.53059,0.53057 -1.06126,1.06112 -0.53061,0 -1.59181,0 -1.59181,0.53055 -1.06114,-0.53055 -2.12241,0 -2.65301,-1.59167\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"ge\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path3298\"\n           d=\"m 322.43871,-735.38346 c 2.76599,0.29557 11.44329,3.74697 14.99495,5.73458 1.69897,0.95079 1.67035,1.11078 -0.46643,2.60744 -1.67543,1.17351 -2.77366,1.3284 -4.15963,0.58665 -1.03574,-0.55431 -2.77323,-0.72534 -3.86109,-0.38007 -3.25144,1.03197 -8.86794,-1.35566 -9.54623,-4.0582 -0.21235,-0.84607 -0.96892,-1.78317 -2.41259,-2.92421 -0.72183,-0.57053 -4.64252,-3.09181 -5.7624,-3.71689 4.02197,-1.05449 7.57997,2.39347 11.21342,2.1507 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"in\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path6083\"\n           d=\"m 551.99998,-570.3522 c 0,-0.55 0.45,-1 1,-1 0.55,0 1,0.45 1,1 0,0.55 -0.45,1 -1,1 -0.55,0 -1,-0.45 -1,-1 z\" />\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           transform=\"translate(-470,-892.401)\"\n           id=\"path6071\"\n           d=\"m 934.78125,192.71875 c -0.91912,0.21815 -1.76369,0.81833 -3.09375,1.9375 -2.39143,2.01229 -3.70612,2.42059 -6.28125,1.9375 -1.78812,-0.33546 -3.52193,-0.17697 -3.84375,0.34375 -1.10529,1.7884 1.34932,6.01295 4.40625,7.59375 2.61668,1.35313 2.9091,1.86383 2,3.5625 -0.5847,1.09247 -0.81181,2.40172 -0.5,2.90625 1.06321,1.72031 -8.74562,13.99908 -12.0625,15.09375 -1.71236,0.56513 -3.62695,2.13256 -4.25,3.5 -1.02493,2.24947 -0.75338,2.8547 2.90625,6.40625 l 4.0625,3.9375 -2.09375,2.0625 c -1.40935,1.4093 -2.80645,1.89369 -4.375,1.5 -3.42751,-0.86025 -5.22106,1.73247 -2.75,3.96875 1.04418,0.94497 2.69693,1.58024 3.65625,1.40625 2.65402,-0.48133 2.91324,2.06917 0.3125,3.03125 l -2.28125,0.84375 2.65625,2.65625 c 4.00543,4.00544 9.13345,3.28322 9.21875,-1.28125 0.0145,-0.77765 0.59713,-1.58295 1.28125,-1.8125 1.70647,-0.57261 3.45481,4.46124 2.71875,7.8125 -1.08924,4.95927 0.80723,10.22432 13.59375,37.6875 2.11328,4.53895 4.11951,9.76337 4.46875,11.625 0.38697,2.06274 1.49627,3.8031 2.8125,4.4375 2.98871,1.4405 3.49909,1.16472 6.96875,-3.625 3.87912,-5.35496 5.41719,-14.1283 4.40625,-25.125 -0.16769,-1.82413 0.87548,-3.28168 4.25,-5.875 2.46556,-1.89478 5.25351,-4.68291 6.1875,-6.21875 0.934,-1.53583 2.57051,-3.07157 3.625,-3.40625 1.05448,-0.33468 2.43892,-1.72514 3.0625,-3.09375 0.62358,-1.36861 2.71927,-3.28016 4.6875,-4.21875 2.53268,-1.20775 3.44692,-2.20648 3.125,-3.4375 -0.72504,-2.77257 1.47192,-4.65931 6.71875,-5.8125 0.69762,-0.15332 1.0575,-0.37429 1.75,-0.5625 l -1.53125,-3.78125 c -0.23641,-0.78544 -0.33705,-1.59028 -0.1875,-2.1875 0.2843,-1.13516 -0.5936,-3.96137 -2,-6.4375 -2.12787,-3.74613 -2.2682,-4.6068 -1.09375,-5.78125 1.17446,-1.17445 2.0065,-0.8357 5.625,2.1875 4.6369,3.87401 4.87295,3.95874 7.03125,2.59375 2.20065,-1.39186 4.03555,0.66595 3.40625,3.8125 -0.3209,1.60462 0.1825,3.1102 1.2812,4.75 l 2.9376,2.8125 1.125,-3.0625 c 1.3961,-3.76653 2.634,-8.2365 3.7187,-13.46875 0.3397,-1.63874 1.5694,-3.05924 3.3125,-3.78125 3.2837,-1.36016 6.1272,-5.09375 3.875,-5.09375 -0.7623,0 -1.9071,-0.64785 -2.5625,-1.4375 -3.1682,-3.81746 -11.822,-2.57433 -13.9063,2 -0.6096,1.33782 -1.788,2.4375 -2.625,2.4375 -0.83655,0 -1.5312,0.66321 -1.5312,1.5 0,0.83679 -1.02825,1.99156 -2.28125,2.5625 -3.1332,1.42758 -7.49935,-0.35541 -8.71875,-3.5625 -0.52651,-1.38486 -1.64204,-2.5 -2.5,-2.5 -1.27082,0 -1.37701,0.3654 -0.46875,2.0625 0.88836,1.65991 0.77682,2.48554 -0.59375,4 -1.94387,2.14796 -2.35486,2.07086 -15.5,-2.125 C 956.35944,225.98514 950,222.52868 950,219.71875 c 0,-1.25573 0.46301,-2.74426 1.03125,-3.3125 0.71089,-0.71089 -0.24397,-1.62118 -3.09375,-2.90625 -4.37091,-1.97101 -7.55084,-5.63609 -6.4375,-7.4375 0.84661,-1.36982 1.40782,-9.08593 0.78125,-10.71875 -0.26193,-0.68258 -2.07756,-1.71056 -4.03125,-2.25 -1.56484,-0.43207 -2.54963,-0.59315 -3.46875,-0.375 z\" />\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path6049\"\n           d=\"m 455.99998,-589.3522 c 0,-0.55 0.45,-1 1,-1 0.55,0 1,0.45 1,1 0,0.55 -0.45,1 -1,1 -0.55,0 -1,-0.45 -1,-1 z\" />\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path6041\"\n           d=\"m 546.76918,-592.30853 c -0.6912,-2.46112 -0.2778,-3.88556 0.8116,-2.7962 0.3194,0.31944 0.4227,1.63194 0.2295,2.91667 l -0.3513,2.33586 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"id\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path6181\"\n           d=\"m 654.99848,-494.89846 c -1.4485,-0.80164 -1.8681,-1.3912 -0.9985,-1.40286 1.7862,-0.024 4.6423,1.64029 3.9695,2.31305 -0.2599,0.2599 -1.5968,-0.14969 -2.971,-0.91019 z\" />\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path6179\"\n           d=\"m 672.00838,-496.36383 c 2.0135,-2.82774 3.9916,-3.21897 3.9916,-0.78947 0,1.34336 -3.0464,3.72668 -4.8181,3.76943 -0.9002,0.0217 -0.6381,-0.92315 0.8265,-2.97996 z\" />\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path6167\"\n           d=\"m 643.24378,-498.99305 c -0.691,-0.29141 -1.0019,-0.94141 -0.691,-1.44443 0.7639,-1.236 7.1731,-1.16712 7.9472,0.0854 0.3399,0.55 0.029,1.00614 -0.691,1.01365 -0.7199,0.008 -2.209,0.20751 -3.309,0.44443 -1.1,0.23693 -2.5653,0.19235 -3.2562,-0.0991 z\" />\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path6165\"\n           d=\"m 658.08988,-499.74371 c -1.8171,-2.18954 0.2769,-2.85595 4.988,-1.58739 4.746,1.27798 4.73,1.47758 -0.1894,2.3657 -2.5547,0.4612 -3.9589,0.23344 -4.7986,-0.77831 z\" />\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path6163\"\n           d=\"m 740.96788,-500.8862 c -1.7491,-1.86182 -3.0555,-2.39289 -4.9243,-2.00177 -4.0824,0.85441 -5.6539,-0.83417 -2.624,-2.81948 2.5263,-1.6553 2.5304,-1.68153 0.8231,-5.26192 -1.3724,-2.87794 -3.2657,-4.37754 -9.4571,-7.49051 -4.2577,-2.14071 -9.0709,-3.89219 -10.696,-3.89219 -3.7188,0 -5.2544,-3.4278 -2.4532,-5.47609 1.6663,-1.21842 1.4225,-1.52127 -2.9245,-3.63323 -4.6161,-2.24265 -4.682,-2.33751 -2.4771,-3.56191 1.2458,-0.69184 3.2522,-1.27385 4.4585,-1.29333 2.3428,-0.0379 5.3067,3.34241 5.3067,6.05221 0,0.90345 0.9724,2.87888 2.161,4.38984 2.1297,2.70749 2.1839,2.71853 3.75,0.76359 0.8739,-1.091 3.6822,-3.18337 6.2406,-4.64973 l 4.6517,-2.6661 5.5983,2.74569 5.5984,2.7457 v 14.29168 c 0,7.86042 -0.1466,14.29168 -0.3257,14.29168 -0.1791,0 -1.397,-1.14036 -2.7064,-2.53413 z\" />\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path6157\"\n           d=\"m 626.99998,-501.53164 c -3.575,-0.49563 -8.6155,-1.59528 -11.2012,-2.44367 -2.5856,-0.84838 -5.6321,-1.24704 -6.77,-0.88591 -2.2895,0.72667 -12.0288,-2.13632 -12.0288,-3.53603 0,-3.19654 8.9648,-3.43933 13.7286,-0.37181 1.7784,1.14518 3.1804,1.22174 6.9408,0.37903 4.1656,-0.93353 5.0334,-0.81859 7.4809,0.99097 1.5228,1.12584 3.2217,2.04699 3.7753,2.04699 1.977,0 7.9791,3.34522 7.4726,4.16479 -0.2839,0.45937 -1.0522,0.77256 -1.7072,0.696 -0.6551,-0.0766 -4.116,-0.54473 -7.691,-1.04036 z\" />\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path6149\"\n           d=\"m 591.43058,-514.69189 c -3.6741,-2.093 -10.3005,-10.19074 -12.4578,-15.22397 -1.1637,-2.71492 -3.8305,-7.18621 -5.9264,-9.93621 -2.0958,-2.75 -4.5016,-6.35 -5.3461,-8 -0.8445,-1.65 -3.4096,-4.8 -5.7003,-7 -4.8297,-4.63853 -7.8,-9.51289 -5.7757,-9.47804 2.6237,0.0452 9.3786,3.80085 12.2757,6.82528 7.9923,8.34342 9.6298,9.82826 13.4026,12.15276 3.6412,2.24337 5.3651,4.57806 5.5382,7.5 0.0326,0.55 1.0681,2.125 2.3011,3.5 1.2331,1.375 3.5595,3.96104 5.1698,5.74676 1.6104,1.78571 3.219,4.57182 3.5747,6.19134 1.1643,5.30099 -3.1046,9.97299 -7.0558,7.72208 z\" />\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path6145\"\n           d=\"m 654.49448,-515.36107 c -0.343,-0.55492 -0.3407,-1.9002 0.005,-2.9895 0.3575,-1.12633 -0.0391,-2.93387 -0.9195,-4.19085 -1.4051,-2.00606 -1.393,-2.44594 0.1312,-4.7605 0.9237,-1.40261 2.0127,-4.98612 2.42,-7.96336 0.4996,-3.65157 1.5058,-6.17834 3.0919,-7.76447 2.1824,-2.1824 2.731,-2.2793 7.6371,-1.34889 4.2124,0.79888 5.87,0.70029 8.1631,-0.48553 3.84,-1.98576 4.1202,-1.89696 2.845,0.90178 -1.621,3.55761 -4.8597,4.69464 -8.275,2.90515 -6.0982,-3.19516 -14.1894,1.55344 -9.9206,5.82223 1.569,1.56907 2.4373,1.71174 5.3438,0.87817 4.9816,-1.42872 6.9457,-1.16636 3.8521,0.51457 -3.5017,1.90261 -4.1662,4.01404 -2.3615,7.50384 0.8211,1.58784 1.4929,4.05017 1.4929,5.47183 0,2.27568 -0.2394,2.45672 -2.0016,1.5136 -1.101,-0.58919 -2.6892,-2.71675 -3.5295,-4.72791 -1.5163,-3.62887 -1.5428,-3.6418 -3.4833,-1.70124 -1.7019,1.70189 -1.8167,2.45792 -0.8853,5.83105 0.8417,3.04836 0.7851,4.0563 -0.2651,4.72199 -1.7666,1.11983 -2.5871,1.08742 -3.3407,-0.13196 z\" />\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path6135\"\n           d=\"m 644.4688,-559.3385 c -1.7,0.17491 -3.7124,2.08959 -5.0626,5.625 -1.8597,4.86966 -5.2775,7.76718 -9.375,8 -1.3991,0.0795 -4.6883,0.94394 -7.3437,1.90625 -4.8243,1.74834 -4.8297,1.73031 -7,-0.625 l -0.4687,-0.5 -1.4063,-1.40625 c -0.1621,0.17764 -0.3482,0.37489 -0.5313,0.625 -0.7889,1.07781 -1.1182,2.93915 -0.7812,4.375 1.2255,5.22189 3.5023,12.52916 4.2812,13.71875 0.979,1.49501 10.8875,3.50828 13.375,2.71875 0.9757,-0.30966 2.9915,0.0846 4.5,0.875 1.9203,1.00608 3.2256,1.13586 4.3438,0.4375 1.6061,-1.00301 8.008,-14.20942 8,-16.5 -0.002,-0.67482 1.1302,-1.94621 2.5,-2.84375 l 2.4688,-1.625 -2.2188,-3.125 c -1.3441,-1.8877 -2.2188,-4.59823 -2.2188,-6.875 0,-3.39648 -1.3625,-4.95616 -3.0624,-4.78125 z\" />\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path6131\"\n           d=\"m 692.74998,-524.04145 c -2.0694,-0.54078 -2.3566,-2.31067 -0.375,-2.31067 0.7562,0 2.8727,0.29954 4.7032,0.66564 2.8183,0.56366 3.029,0.78269 1.375,1.42971 -2.1714,0.84945 -3.1371,0.88591 -5.7032,0.21532 z\" />\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path6123\"\n           d=\"m 689.24678,-539.50532 c -0.7994,-0.79942 -0.8466,-1.72609 -0.1538,-3.02066 0.5497,-1.02711 0.7329,-2.29887 0.407,-2.82614 -0.9018,-1.4592 1.3573,-5 3.1902,-5 1.4702,0 1.4644,0.17171 -0.0636,1.86015 -1.3214,1.46007 -1.4683,2.42604 -0.6831,4.49131 1.5873,4.17482 -0.1392,7.05283 -2.6967,4.49534 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"ir\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path5943\"\n           d=\"m 398.1339,-654.42947 c -3.17235,-0.62349 -5.22703,-1.85409 -7.51507,-4.50096 l -3.149,-3.64285 -4.26783,1.27867 c -4.00089,1.1987 -4.64732,1.09728 -10.33564,-1.62149 -5.08416,-2.43 -6.45343,-3.66111 -8.44648,-7.59421 -2.31021,-4.55897 -4.71906,-6.26492 -8.9199,-6.31708 -1.35906,-0.0169 -2.66358,-1.40681 -4.07065,-4.3372 -1.13886,-2.3718 -3.32528,-5.13538 -4.85871,-6.1413 -4.26128,-2.79536 -6.73663,-7.05088 -6.09569,-10.47948 0.41841,-2.23828 -0.0435,-3.55088 -1.94987,-5.54068 -3.3784,-3.52629 -8.58935,-13.86843 -7.36801,-14.62325 0.53292,-0.32937 1.76353,0.12023 2.73468,0.99911 2.21522,2.00474 4.52246,2.02789 7.50253,0.0753 3.03631,-1.98946 4.93209,-1.15588 7.22986,3.17902 1.38739,2.6174 3.6369,4.42987 8.6387,6.96034 6.48073,3.27868 6.88746,3.35697 9.75,1.87669 1.64294,-0.8496 2.98716,-1.92775 2.98716,-2.3959 0,-0.46814 2.28103,-1.83244 5.06896,-3.03178 4.95014,-2.12949 5.1904,-2.1403 10.25,-0.46098 13.80581,4.58225 16.5414,7.20457 14.03929,13.45796 -1.32751,3.31778 -1.26945,4.09965 0.69414,9.34782 1.17855,3.14996 2.77165,5.96851 3.54023,6.26344 1.01356,0.38893 1.23172,1.57243 0.7942,4.30851 -0.52907,3.30864 -0.18023,4.24827 2.83823,7.64493 4.77519,5.37351 5.27379,7.21274 2.69845,9.95407 -1.19718,1.27434 -1.81149,2.79079 -1.40015,3.45635 1.64757,2.66583 -2.54557,3.42661 -10.38943,1.88498 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"iq\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path5915\"\n           d=\"m 337.49998,-674.03552 c -1.65,-0.88176 -4.47501,-2.88598 -6.2778,-4.45382 -3.70814,-3.22486 -10.40102,-6.86289 -12.62566,-6.86289 -1.41345,0 -4.59654,-3.60249 -4.59654,-5.20218 0,-0.41645 1.75594,-1.65299 3.90209,-2.74787 3.547,-1.80954 3.96502,-2.44829 4.59368,-7.01921 0.38038,-2.76568 1.10678,-5.2851 1.61423,-5.59872 0.50744,-0.31362 0.64757,-1.01526 0.3114,-1.55921 -0.38339,-0.62032 1.24755,-0.83997 4.37521,-0.58923 4.22387,0.33861 5.46762,0.94776 8.13277,3.9832 2.43523,2.77358 3.00201,4.15841 2.50781,6.12744 -0.80113,3.19197 2.52851,8.88173 6.60769,11.29136 1.59392,0.94156 3.3665,3.05576 3.93907,4.69823 0.57257,1.64248 1.81665,3.84336 2.76462,4.89086 1.67187,1.84739 1.61358,1.8839 -1.9427,1.21673 -3.07182,-0.57627 -3.87873,-0.34759 -4.97662,1.4104 -1.55128,2.484 -4.20969,2.61642 -8.32925,0.41491 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"il\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path5921\"\n           d=\"m 297.43678,-676.49238 c -1.40829,-3.12304 -1.57964,-4.31224 -0.66524,-4.61704 0.67739,-0.22579 1.51342,-2.1728 1.85784,-4.32667 0.34442,-2.15388 0.9435,-3.91614 1.33129,-3.91614 0.81813,0 0.6955,2.12535 -0.39631,6.8686 -0.50956,2.21372 -0.33474,4.19197 0.50991,5.77021 0.86783,1.62156 0.95628,2.73062 0.27234,3.41456 -0.68395,0.68395 -1.62907,-0.35331 -2.90983,-3.19352 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"jp\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path5901\"\n           d=\"m 678.99998,-682.7755 c 0,-0.78281 -1.0924,-2.72151 -2.4275,-4.30824 -3.1694,-3.76663 -2.0468,-6.28057 1.7065,-3.82133 2.6981,1.76784 4.1083,5.37985 3.1131,7.97338 -0.7548,1.96696 -2.3921,2.07387 -2.3921,0.15619 z\" />\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path5897\"\n           d=\"m 684.57308,-690.02228 c -0.6483,-1.68957 0.8823,-3.28653 3.1769,-3.31464 1.5891,-0.0195 1.6187,2.21604 0.05,3.78469 -1.6305,1.63054 -2.4676,1.50861 -3.2269,-0.47005 z\" />\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path5893\"\n           d=\"m 693.70968,-693.67255 c -1.9415,-2.96311 -4.6841,-3.36993 -10.9629,-1.62621 -2.553,0.70901 -4.3118,0.71695 -5.5,0.0248 -0.9607,-0.55962 -1.2188,-1.03117 -0.5735,-1.04789 0.6453,-0.0167 2.529,-1.1712 4.186,-2.56551 2.1378,-1.79877 3.7043,-2.36156 5.3933,-1.93763 1.7898,0.44921 3.7218,-0.41031 7.7854,-3.46362 7.9111,-5.94434 8.6265,-7.81883 5.4078,-14.17056 -3.0892,-6.09632 -2.2282,-8.05903 2.3493,-5.35505 3.3316,1.96799 6.4709,7.60527 5.5588,9.982 -0.3282,0.85545 0.1612,3.54008 1.0876,5.96585 1.3109,3.43262 1.4352,4.87599 0.5606,6.51016 -1.2845,2.40009 -4.8586,4.00395 -8.9225,4.00395 -2.2775,0 -2.9579,0.58437 -3.7022,3.17968 l -0.9119,3.17968 -1.7558,-2.67968 z\" />\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path5851\"\n           d=\"m 693.11288,-730.19363 c -1.8306,-2.5708 -1.881,-3.04464 -0.5292,-4.97452 1.3278,-1.89582 1.3229,-2.46406 -0.0448,-5.10889 -2.2497,-4.35035 -1.9336,-4.61354 1.9676,-1.63801 1.9285,1.47098 5.7342,3.33608 8.457,4.14467 5.6264,1.67088 6.9843,2.98262 4.051,3.91359 -1.108,0.35166 -2.0145,1.29263 -2.0145,2.09105 0,1.08756 -0.6898,1.27517 -2.75,0.74798 -5.2761,-1.35007 -6.7758,-1.02026 -6.4371,1.41558 0.415,2.98465 -0.2587,2.83708 -2.7,-0.59145 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"jo\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path5919\"\n           d=\"m 303.26272,-686.34316 c 1.38175,0.86583 2.62533,0.61978 5.75363,-1.13842 3.89634,-2.18987 4.02375,-2.19804 5.37876,-0.34495 1.23012,1.68229 1.14446,2.01883 -0.75362,2.96058 -1.17783,0.58439 -2.78587,2.91538 -3.57341,5.17997 -0.85849,2.46859 -2.53736,4.77045 -4.1924,5.74811 -2.74347,1.6206 -2.77067,1.60923 -4.40847,-1.84217 -1.16348,-2.45187 -1.4204,-4.44289 -0.87389,-6.77251 0.42575,-1.81482 0.80901,-3.74968 0.85169,-4.29968 z m -0.33303,3.07426 c 0.10163,-3.49421 -0.56648,-2.22633 -1.27346,2.41667 -0.42449,2.7878 -0.33447,3.3939 0.29705,2 0.49837,-1.1 0.93776,-3.0875 0.97641,-4.41667 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"kz\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path5885\"\n           d=\"m 454.62116,-733.94092 c -1.72472,0.32356 -4.6485,0.15447 -6.49729,-0.37576 -2.52886,-0.72527 -4.07001,-0.59763 -6.22219,0.5153 -1.89827,0.98164 -4.1813,1.26819 -6.78581,0.85171 -3.28974,-0.52605 -4.10031,-0.30017 -5.00782,1.39553 -0.59552,1.11275 -2.61312,2.96898 -4.48355,4.12497 -3.37202,2.08402 -3.43765,2.08588 -7.76265,0.21943 -2.44913,-1.05692 -5.8077,-3.69345 -7.65899,-6.01242 -2.88926,-3.61915 -3.7988,-4.13005 -7.35265,-4.13005 -2.64705,0 -7.04163,-1.39934 -12.65365,-4.02922 -8.32598,-3.90168 -8.7653,-3.99451 -13.87992,-2.93272 -2.90498,0.60307 -5.49568,1.44258 -5.7571,1.86557 -0.26142,0.42299 0.3915,3.63195 1.45093,7.13102 1.05943,3.49907 1.80385,6.48435 1.65425,6.63394 -0.1496,0.1496 -1.93268,-0.90959 -3.96241,-2.35377 -3.13417,-2.22999 -4.03045,-2.4508 -5.94637,-1.46502 l -2.92114,0.89451 c -0.71894,-0.55072 -1.71057,-1.17078 -2.80138,-1.72727 -4.8276,-2.46285 -6.54554,-5.19167 -5.03976,-8.00525 1.13959,-2.12934 5.21089,-3.62144 6.94948,-2.54694 2.34407,1.44872 3.03494,-0.68688 1.10089,-3.40301 -3.0948,-4.34625 -7.26136,-5.67269 -11.98743,-3.81624 -3.80902,1.49623 -3.91737,1.47446 -7.09144,-1.42461 -1.77283,-1.61922 -4.29024,-3.64312 -5.59425,-4.49754 -3.595,-2.35553 -2.7635,-9.17882 0.94512,-7.75568 1.17271,0.45001 1.93958,-0.10994 2.62709,-1.91824 0.53402,-1.40457 2.3843,-3.28463 4.11173,-4.17793 2.68971,-1.3909 3.88076,-1.45031 8.29296,-0.4137 2.83369,0.66575 6.32937,1.80545 7.76818,2.53266 1.9076,0.96415 3.56074,1.06135 6.10473,0.35892 2.58417,-0.71353 4.58439,-0.57672 7.7145,0.52765 3.79998,1.34071 4.54014,1.32838 7.34562,-0.12239 l 3.11985,-1.61333 -2.56018,-2.20218 c -2.25912,-1.94321 -2.39972,-2.42161 -1.19566,-4.06825 0.75048,-1.02635 1.11183,-2.6622 0.803,-3.63523 -0.42338,-1.33396 0.12895,-1.91356 2.24532,-2.35623 1.54374,-0.32289 6.87501,-1.68788 11.84725,-3.03331 10.88595,-2.9456 11.9001,-2.98079 15.33895,-0.53211 1.47848,1.05277 4.47294,2.237 6.65437,2.63163 2.18143,0.39462 4.74968,1.12193 5.70721,1.61623 1.14941,0.59335 2.69711,0.40428 4.5549,-0.55642 2.55891,-1.32326 3.10351,-1.2718 6.00903,0.56785 1.75731,1.11265 3.1951,2.45374 3.1951,2.98021 0,0.52647 2.19462,1.86926 4.87693,2.98398 2.95831,1.22942 5.31051,2.97836 5.97904,4.44563 0.84207,1.84815 1.87387,2.41452 4.37307,2.40046 7.49035,-0.0422 11.5554,0.78328 16.55845,3.36233 2.90812,1.49912 5.72465,2.45549 6.25895,2.12528 0.5343,-0.33022 1.90591,-0.30381 3.04802,0.0587 l 2.07656,0.65908 -2.1373,2.27504 c -1.5252,1.62351 -1.95797,2.98955 -1.51112,4.76994 0.64315,2.56251 -1.5706,4.47236 -3.67586,3.17124 -1.20585,-0.74526 -4.84674,2.42784 -4.84674,4.22403 0,0.72563 -1.32146,2.00269 -2.93659,2.8379 -4.15359,2.1479 -4.30777,2.813 -1.52618,6.58325 1.31585,1.78354 1.94766,3.27559 1.88386,4.73918 -0.0319,0.7318 -0.23767,1.45648 -0.61875,2.20693 -3.36121,-1.0243 -6.67773,-2.27208 -10.18116,-2.58528 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"kp\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path9518\"\n           d=\"m 655.97989,-725.8761 c 1.4573,1.75596 0.3787,4.03985 -2.5349,5.36736 -3.1482,1.43442 -3.0829,2.51415 0.305,5.0418 1.9513,1.45587 2.2773,2.06093 1.1224,2.08341 -0.8951,0.0174 -2.1877,0.70668 -2.8724,1.53168 -1.3553,1.633 -1.3511,1.63252 -5,0.57844 l -10e-6,-3.5e-4 c -1.811,-0.52315 -2.4334,-1.32795 -2.2583,-2.92006 0.1668,-1.51701 -0.685,-2.76145 -2.7499,-4.01718 l -2.9917,-1.81933 2.75,-3.62846 c 1.5124,-1.99565 3.2894,-3.44103 3.9488,-3.21195 0.6593,0.22909 2.6529,-0.94181 4.4301,-2.60199 1.8609,-1.73833 3.75168,-4.33653 8.85181,-1.28272 -0.0346,3.70272 -3.7626,3.96159 -3.0009,4.87935 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"kr\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path5891\"\n           d=\"m 657.00168,-700.63708 c -1.218,-2.86833 -3.0817,-6.16011 -4.1415,-7.31506 -2.0502,-2.23434 -1.4773,-3.33216 2.4771,-4.74697 2.6501,-0.94815 9.198,4.05392 11.267,8.60708 0.9397,2.0681 1.5257,3.92529 1.3022,4.12708 -0.2236,0.20178 -2.2703,1.30651 -4.5483,2.45495 l -4.1419,2.08807 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"kw\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path5929\"\n           d=\"m 348.24998,-671.57272 c -2.44664,-1.17998 -2.8471,-2.29245 -1.19316,-3.31464 1.9777,-1.22228 5.51459,0.38139 5.51459,2.5004 0,2.25203 -0.9637,2.43361 -4.32143,0.81424 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"kg\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path3310\"\n           d=\"m 463.1317,-728.99412 c -2.1384,2.43506 -10.94099,6.87782 -12.14855,6.13151 -1.14024,-0.70471 -4.68448,1.03327 -7.69402,3.7729 -1.93612,1.76248 -2.57935,1.85993 -5.17628,0.78425 -1.63099,-0.67558 -3.95479,-0.91431 -5.164,-0.53052 -1.39076,0.44141 -2.49587,0.21674 -3.00773,-0.61147 -1.23303,-1.99508 -0.0547,-3.03592 2.11955,-1.87228 2.09297,1.12013 4.65774,0.21664 6.83612,-2.40814 1.01029,-1.21733 0.84192,-1.6938 -0.93448,-2.6445 -1.19174,-0.6378 -2.94382,-0.95644 -3.89352,-0.70808 -0.9497,0.24835 -2.43142,-0.0637 -3.29272,-0.69353 -1.3303,-0.97275 -1.36377,-1.42163 -0.22237,-2.98258 1.0562,-1.44444 2.0973,-1.6961 4.86708,-1.17649 2.33194,0.43748 4.50726,0.15228 6.43257,-0.84333 2.19853,-1.13691 3.73012,-1.26888 6.27052,-0.5403 1.84879,0.53023 4.77257,0.69932 6.49729,0.37576 1.97388,-0.3703 4.29251,0.74824 6.25734,1.02589 1.71681,0.8878 3.12148,1.10524 3.03182,1.46101 -0.0897,0.35576 -0.41205,1.04247 -0.77862,1.4599 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"la\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path6011\"\n           d=\"m 593.96918,-604.37118 c -0.7875,-0.4867 -0.9953,-1.74104 -0.5694,-3.43759 0.5101,-2.03265 0.0643,-3.39153 -1.8647,-5.68406 -1.3943,-1.65703 -2.5351,-3.57482 -2.5351,-4.26175 0,-0.68693 -1.0825,-2.26596 -2.4057,-3.50895 -2.0001,-1.879 -2.7622,-2.06918 -4.5206,-1.12807 -1.1633,0.62255 -2.5841,0.84203 -3.1574,0.48771 -0.5733,-0.35431 -1.8584,0.0943 -2.8558,0.99693 -1.6693,1.51076 -1.8629,1.51223 -2.4361,0.0185 -0.3424,-0.89245 -0.3602,-2.66833 -0.0394,-3.94641 0.3696,-1.47257 0.0565,-2.63394 -0.8549,-3.17053 -4.0361,-2.37646 -4.3127,-8.68185 -0.357,-8.13877 1.779,0.24423 2.0798,-0.15786 1.8391,-2.458 -0.3792,-3.62251 1.3453,-3.50639 3.2725,0.22036 0.8448,1.63369 2.3948,3.42995 3.4444,3.99168 1.0496,0.56173 2.2068,2.38 2.5715,4.0406 0.3776,1.71915 1.6943,3.55956 3.0579,4.274 2.9642,1.55311 14.4415,16.3557 14.4415,18.62562 0,1.92726 -5.2056,4.20676 -7.0308,3.07873 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"lb\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path5895\"\n           d=\"m 300.61664,-690.16347 c -0.83377,-1.34906 0.28665,-6.18876 1.43273,-6.18876 1.71141,0 1.99472,2.03771 0.64222,4.61905 -0.84638,1.61538 -1.66431,2.23414 -2.07495,1.56971 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"my\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path4092\"\n           d=\"m 632.16539,-560.28103 c -0.74497,0.69327 -1.29681,1.45765 -1.68101,2.38524 -0.71709,1.73129 -3.30118,4.44415 -5.42188,5.52604 -2.0129,1.02689 -4.219,3.02901 -4.875,4.46875 -1.049,2.30226 -1.4307,2.49258 -3.3437,1.46875 -1.3594,-0.72752 -2.047,-0.86639 -2.7813,-0.21875 l 1.9063,1.9375 c 1.8845,1.53248 2.3757,1.46167 6.75,-0.125 2.6287,-0.95354 5.9062,-1.84175 7.2812,-1.96875 4.5115,-0.41672 6.1088,-1.75759 8.4688,-7.09375 2.4816,-5.6113 5.0852,-7.29401 8.4374,-5.5 1.6123,0.86283 2.2675,0.64805 3.5313,-1.15625 1.4608,-2.08566 1.3465,-2.40199 -1.6563,-5.5 -1.7534,-1.80904 -3.7265,-3.28125 -4.4062,-3.28125 -1.378,0 -5.7049,5.61998 -6.0312,7.84375 -0.1155,0.78616 -0.20236,2.09828 -1.88542,1.20312 -0.50057,1.98491 -1.33868,2.77908 -2.55218,1.23438 z\" />\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path6109\"\n           d=\"m 574.375,-569.0885 c -0.1199,0.0184 -0.1977,0.0774 -0.25,0.1875 0.3305,0.87431 0.6271,1.85965 0.9688,3.125 2.2998,8.52224 4.8223,12.87947 9.4062,16.34375 4.0032,3.02544 6.5,3.86786 6.5,2.1875 0,-1.9661 -4.2806,-14.75095 -5.6562,-16.90625 -1.032,-1.61632 -2.0365,-2.12226 -3.4063,-1.6875 -1.2145,0.38544 -2.9237,-0.14843 -4.5625,-1.4375 -0.4506,-0.35449 -0.8005,-0.67716 -1.0938,-0.96875 0,0 -1.2927,-0.93769 -1.9062,-0.84375 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"mu\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           d=\"m 393.33263,-452.0434 c 0,-0.24254 0.53815,-0.78493 0.83638,-0.29006 0.0433,0.11241 0.0541,0.29518 -0.17292,0.49065 -0.4168,0.35885 -0.66346,0.042 -0.66346,-0.20059 z m 2.22062,0.8914 c 0,-0.24254 0.53815,-0.78493 0.83638,-0.29006 0.0433,0.11241 0.0541,0.29518 -0.17292,0.49065 -0.4168,0.35885 -0.66346,0.042 -0.66346,-0.20059 z m -3.50002,3.59564 c 0,-0.24254 0.45,-0.7191 1,-1.05902 0.55,-0.33992 1,-0.14148 1,0.44098 0,0.58246 -0.45,1.05902 -1,1.05902 -0.55,0 -1,-0.19844 -1,-0.44098 z\"\n           id=\"path6205-0-9\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"mn\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path5847\"\n           d=\"m 547.49998,-730.95335 c -6.7051,-1.80291 -10.4025,-2.27245 -14.5,-1.84138 -5.2083,0.54791 -5.6591,0.41094 -8.5,-2.58267 -4.3278,-4.56041 -11.98708,-8.24635 -15.52229,-7.46988 -3.98215,0.87462 -7.21284,-1.14073 -11.22917,-7.0049 -2.4929,-3.63983 -4.48152,-5.35296 -7.31023,-6.29748 -2.13717,-0.71362 -4.68768,-2.02321 -5.66779,-2.9102 -1.69924,-1.53779 -1.67144,-1.68656 0.59843,-3.20251 1.30926,-0.8744 3.55041,-2.42157 4.98034,-3.43817 3.40633,-2.42169 8.62005,-2.46305 16.80065,-0.13328 5.55191,1.58114 7.09964,1.68895 9.37347,0.65293 2.64909,-1.20703 2.67419,-1.29547 0.91691,-3.23724 -1.56671,-1.73119 -1.61631,-2.18266 -0.37348,-3.39952 1.21206,-1.18673 2.20456,-1.19949 6.43316,-0.0827 2.75,0.72628 7.25,2.52944 10,4.00703 3.8059,2.04491 5.862,2.5523 8.6094,2.12451 2.372,-0.36935 6.4606,0.29137 11.9262,1.92731 9.6832,2.89831 12.3865,3.04656 17.395,0.95391 4.4598,-1.86344 15.3911,-0.60311 14.0194,1.61637 -1.5934,2.5781 4.0036,7.99285 6.6019,6.38701 1.2895,-0.79695 8.1518,1.2061 10.479,3.05872 1.8772,1.49442 1.8249,1.53996 -1.1216,0.97599 -2.182,-0.41766 -3.4865,-0.1146 -4.4371,1.03089 -2.2381,2.69665 -10.8997,6.62424 -13.0815,5.93175 -1.0927,-0.34679 -2.6282,-0.0981 -3.4124,0.55267 -1.2263,1.01778 -1.2298,1.5619 -0.025,3.89175 2.2404,4.33251 -0.301,6.37367 -9.4533,7.59239 -3.025,0.40282 -6.7152,1.35463 -8.2003,2.11514 -3.4609,1.77221 -4.479,1.69114 -15.2997,-1.21842 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"mm\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           transform=\"translate(-470,-892.401)\"\n           id=\"path6272\"\n           d=\"m 1007.9688,255.0625 -3.125,1.5 c 1.1335,2.17288 2.6539,3.86255 4.3437,4.5625 3.4285,1.42011 9.2652,11.87336 8.3125,14.875 -0.5246,1.65294 1.6898,5.0625 3.2812,5.0625 0.3433,0 1.7972,-1.13914 3.25,-2.53125 3.5148,-3.36716 5.4988,-2.40906 6.9063,3.34375 0.6301,2.5751 2.3108,7.07809 3.7187,10 2.0652,4.28482 2.4463,6.21938 1.9688,10 -0.4885,3.86765 -0.4047,4.25028 0.4688,2.1875 1.9626,-4.63626 -1.1478,-20.26473 -5.8126,-29.3125 -3.0627,-5.94129 -2.5245,-8.53164 2.4688,-12.28125 5.3258,-3.99931 6.7595,-6.40625 3.8125,-6.40625 -0.7907,0 -2.6323,-2.22068 -4.0937,-4.90625 -1.4619,-2.68556 -3.6939,-5.35659 -4.9688,-5.9375 -3.1801,-1.44892 -3.8752,-4.34913 -2.0625,-8.6875 1.3404,-3.20823 1.3634,-3.98289 0.094,-6.4375 -1.9293,-3.73116 -4.5421,-4.64836 -6.5,-2.28125 -0.8476,1.02476 -2.6928,2.58157 -4.125,3.46875 -1.9745,1.223 -2.773,2.73886 -3.25,6.21875 -0.346,2.52437 -1.3183,5.94434 -2.1874,7.625 -0.9826,1.90017 -1.3591,4.16062 -0.9688,5.9375 0.4921,2.24061 0.1752,3.06945 -1.4688,3.96875 v 0 c -0.025,0.014 -0.036,0.0172 -0.062,0.0312 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"np\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path5935\"\n           d=\"m 509.59741,-660.07094 c -5.9867,-1.53148 -19.77057,-6.36629 -23.89251,-8.38049 -4.05602,-1.98199 -4.7496,-2.7329 -4.5,-4.87197 0.43682,-3.74355 5.74482,-4.02867 10.72676,-0.57618 4.36674,3.02616 9.7747,4.77532 12.29295,3.97606 1.89161,-0.60038 9.30953,4.06104 10.26106,6.44804 0.54285,1.36178 -1.1458,4.23134 -2.35813,4.00725 -0.34516,-0.0638 -1.48372,-0.33502 -2.53013,-0.60271 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"om\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path5995\"\n           d=\"m 374.93709,-620.4755 c -1.14215,-2.23879 -1.93274,-4.19973 -1.75687,-4.35763 0.17587,-0.15791 2.62847,-1.27158 5.45023,-2.47482 4.05766,-1.73025 5.48972,-2.98439 6.84851,-5.99766 1.35348,-3.00147 1.47748,-4.25946 0.58435,-5.92828 -0.62353,-1.16508 -1.57942,-2.11833 -2.12419,-2.11833 -0.54478,0 -0.2477,-1.4625 0.66016,-3.25 2.86919,-5.64917 3.25048,-5.87898 6.75129,-4.06922 4.1553,2.14812 10.64941,7.40186 10.64941,8.61538 0,0.52879 -1.4625,2.65792 -3.25,4.7314 -1.7875,2.07347 -4.52794,5.84845 -6.08986,8.38884 -3.34532,5.44101 -7.89061,9.07741 -12.40327,9.92309 -3.0113,0.56432 -3.39158,0.31679 -5.31976,-3.46277 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"pk\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path5949\"\n           d=\"m 433.57141,-648.92366 c -0.86429,-0.86428 -1.57143,-1.97773 -1.57143,-2.47432 0,-0.49659 -1.41238,-1.63326 -3.13861,-2.52593 -2.51791,-1.30206 -3.63742,-1.39577 -5.66087,-0.47382 -3.40382,1.55088 -12.86512,0.36193 -13.66285,-1.71694 -0.3332,-0.8683 0.31104,-2.51207 1.46666,-3.74217 2.45648,-2.6148 1.6929,-5.61394 -2.39823,-9.4197 -1.43336,-1.33338 -2.6061,-2.70323 -2.6061,-3.04412 0,-0.34089 3.0375,-0.62333 6.75,-0.62764 7.24989,-0.008 11.63718,-1.89774 12.78187,-5.50436 0.65125,-2.05188 5.61458,-5.09145 7.60875,-4.65964 0.66055,0.14304 2.04883,-1.98993 3.08506,-4.73993 1.03623,-2.75 2.76142,-5.67849 3.83376,-6.50775 1.71411,-1.32556 1.80549,-1.88985 0.75616,-4.66983 -1.50418,-3.98504 -0.19148,-5.84172 4.79104,-6.77645 1.94446,-0.36478 4.06973,-0.86829 4.72281,-1.1189 0.65308,-0.25061 3.83814,1.20237 7.07789,3.22885 l 5.89047,3.68451 -2.35044,1.90327 c -1.69108,1.36935 -3.23688,1.73697 -5.51041,1.31045 -4.24848,-0.79702 -5.81387,1.0662 -4.37164,5.20338 0.6509,1.86717 2.19541,3.52204 3.97524,4.25927 2.45091,1.0152 2.74931,1.50732 1.88885,3.1151 -0.56204,1.05019 -0.76371,2.32719 -0.44815,2.83778 1.0876,1.75978 -7.78909,12.85425 -11.24865,14.05904 -1.88774,0.6574 -3.90057,2.3623 -4.76693,4.03764 -1.46498,2.83297 -1.4078,2.99152 2.48168,6.881 3.58102,3.58102 3.82675,4.13567 2.4446,5.51782 -0.92237,0.92237 -2.43678,1.31069 -3.78849,0.97143 -1.39794,-0.35086 -2.74418,0.028 -3.55012,0.9991 -1.63301,1.96766 -2.50852,1.96626 -4.48192,-0.007 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"pw\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path6081\"\n           d=\"m 714.99998,-573.23417 c 0,-0.55 0.45,-1.27811 1,-1.61803 0.55,-0.33992 1,-0.16803 1,0.38197 0,0.55 -0.45,1.27811 -1,1.61803 -0.55,0.33992 -1,0.16803 -1,-0.38197 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"ph\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path6091\"\n           d=\"m 674.01018,-569.82837 c -1.9072,-4.44938 -2.1618,-4.64944 -5.0969,-4.00479 -2.926,0.64266 -3.0282,0.56415 -1.9318,-1.48443 0.9078,-1.69632 1.7494,-2.03299 3.9007,-1.56049 2.0738,0.45548 3.3988,-0.005 5.4304,-1.88807 1.4781,-1.3698 2.6973,-3.29954 2.7094,-4.2883 0.0308,-2.52399 3.7448,5.9405 4.5921,10.46601 0.6434,3.43614 0.5631,3.62318 -0.9996,2.32862 -2.3197,-1.92158 -4.5529,0.0719 -2.6497,2.36524 0.7595,0.91506 0.8568,1.54238 0.2394,1.54238 -0.5723,0 -1.7484,0.27161 -2.6135,0.60359 -1.1609,0.44545 -2.0989,-0.62339 -3.5805,-4.07976 z\" />\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path6067\"\n           d=\"m 644.99998,-579.12958 c 0,-0.42756 2.0048,-3.01506 4.4552,-5.75 3.5905,-4.00747 4.4639,-4.57384 4.5,-2.91804 0.0246,1.13002 -1.4784,3.71752 -3.3401,5.75 -3.1568,3.44646 -5.6151,4.72397 -5.6151,2.91804 z\" />\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path6063\"\n           d=\"m 666.65918,-581.79784 c -0.3643,-0.94944 -0.2904,-2.39101 0.1643,-3.20349 0.7046,-1.25901 0.9978,-1.27113 1.9847,-0.082 0.8838,1.06497 0.8449,1.82325 -0.1643,3.20348 -1.2395,1.69516 -1.3637,1.70029 -1.9847,0.082 z\" />\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path6057\"\n           d=\"m 673.36928,-585.95907 c -0.3727,-1.04122 -0.8599,-2.23063 -1.0825,-2.64313 -0.2227,-0.4125 0.0192,-0.75 0.5376,-0.75 0.9974,0 2.4026,4.1063 1.6595,4.84946 -0.2403,0.24024 -0.7418,-0.41511 -1.1146,-1.45633 z\" />\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path6051\"\n           d=\"m 663.23578,-588.56807 c -1.4046,-1.69246 -0.0356,-4.10135 2.0644,-3.63252 1.3172,0.29405 1.3654,0.70991 0.3088,2.66606 -1.0195,1.88752 -1.4599,2.06689 -2.3732,0.96646 z\" />\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path6043\"\n           d=\"m 675.05858,-592.00486 c -1.1476,-1.45897 -1.9197,-2.81956 -1.7157,-3.02354 0.8126,-0.81262 3.6248,0.97801 5.1202,3.26017 2.2996,3.50975 -0.6171,3.30702 -3.4045,-0.23663 z\" />\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path6035\"\n           d=\"m 658.61898,-595.87601 c -0.8904,-0.89048 -1.619,-2.1369 -1.619,-2.76984 0,-0.63294 0.9875,-0.16329 2.1944,1.04365 1.207,1.20694 1.9356,2.45337 1.6191,2.76984 -0.3165,0.31647 -1.304,-0.15317 -2.1945,-1.04365 z\" />\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path6021\"\n           d=\"m 668.67758,-599.50457 c -1.0024,-0.56543 -2.9029,-0.75689 -4.2234,-0.42546 -1.936,0.4859 -3.2713,-0.29295 -6.8959,-4.02231 -5.1204,-5.26842 -6.1158,-7.4897 -4.6137,-10.29632 0.5805,-1.08461 1.0554,-3.32505 1.0554,-4.97875 0,-5.4281 3.6358,-5.20869 6.301,0.38025 1.4765,3.09635 1.4858,3.76112 0.0981,7.08227 -1.494,3.57554 -1.4646,3.7349 1.2003,6.51645 1.9249,2.00918 3.3692,2.69127 4.8903,2.30949 1.2858,-0.32271 2.6724,0.0772 3.429,0.98887 1.8008,2.16982 1.015,3.7182 -1.2411,2.44551 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"qa\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path5945\"\n           d=\"m 365.89085,-652.92642 c -0.17412,-1.06798 -0.27067,-1.40678 0.16633,-2.45935 0.58555,-1.41036 1.06497,-1.28036 1.92749,0.0335 1.22923,1.87252 1.26138,2.72989 0.12862,3.42997 -0.48768,0.30141 -2.36865,1.4575 -2.27837,-0.78045 z\" />\n      </g>\n      <path\n         id=\"path5735\"\n         d=\"m 31.83615,72.881058 c -1.770361,-0.140583 -1.977845,-0.254203 -1.442254,-0.789797 0.501727,-0.501726 1.713376,-0.54443 2.860074,-0.100803 0.628928,0.243316 0.701482,0.358746 0.430626,0.685106 -0.179158,0.215871 -0.400458,0.37169 -0.491779,0.346266 -0.09132,-0.02543 -0.701823,-0.08877 -1.356667,-0.140772 z m 2.177294,0.137412 c 0.135665,-0.407001 2.022726,-0.480542 2.122185,-0.08271 0.03638,0.14552 -0.452276,0.301802 -1.085902,0.347289 -0.85915,0.06168 -1.122617,-0.0056 -1.036283,-0.264583 z m 3.484422,0.972949 c 0.120314,-0.819761 0.553408,-0.947607 2.031476,-0.59968 l 1.434933,0.337775 -1.322916,0.08202 c -0.727605,0.04511 -1.436026,0.193937 -1.574271,0.33073 -0.374301,0.370361 -0.635559,0.301127 -0.569222,-0.150845 z m 42.095575,2.51622 c -0.09713,-0.157139 0.21254,-0.264584 0.76253,-0.264584 0.509322,0 0.999622,0.119063 1.089554,0.264584 0.09713,0.157138 -0.21254,0.264583 -0.762529,0.264583 -0.509323,0 -0.999623,-0.119063 -1.089555,-0.264583 z m -1.802474,0.09371 c -0.345043,-0.345043 -0.180313,-0.622874 0.369306,-0.622874 0.307922,0 0.504984,0.138687 0.446484,0.314193 -0.128878,0.386646 -0.570653,0.55381 -0.81579,0.308681 z m -3.187382,0.04017 c -0.277548,-0.723257 0.03469,-0.909425 1.426845,-0.850728 1.053756,0.04443 1.313868,0.147059 1.313947,0.518417 8e-5,0.276379 -0.199866,0.463021 -0.495988,0.463021 -0.272838,0 -0.851032,0.07099 -1.284843,0.15775 -0.593328,0.118665 -0.831162,0.0472 -0.959961,-0.28846 z M 8.9496923,80.5361 C 7.596965,80.001782 7.6247463,80.030997 8.0183431,79.556742 8.202419,79.334944 8.2491523,79.149686 8.122192,79.145058 c -0.1269576,-0.0046 0.0073,-0.188349 0.2983336,-0.408265 0.2910417,-0.219917 0.5291667,-0.484251 0.5291667,-0.587407 0,-0.103153 0.3952769,-0.621935 0.8783928,-1.152842 0.8449919,-0.928585 0.9606939,-0.9705 3.0427079,-1.102329 1.190374,-0.07537 2.65737,-0.215913 3.25999,-0.312314 0.647578,-0.103595 1.163129,-0.06613 1.260612,0.0916 0.187595,0.303533 -0.170412,0.432551 -2.223994,0.801489 -2.037766,0.366096 -3.262628,0.936588 -4.069377,1.895353 -0.849868,1.010013 -0.878321,1.647733 -0.09781,2.19219 l 0.595313,0.415268 -0.79375,-0.01183 c -0.436563,-0.0065 -1.2700004,-0.199949 -1.8520837,-0.429866 z m 94.2623877,26.46477 c -0.2245,-0.25466 -0.76554,-1.17763 -1.20232,-2.05103 -0.43677,-0.8734 -1.59155,-2.47731 -2.566166,-3.56423 -1.088893,-1.21435 -1.642189,-2.019514 -1.435206,-2.088507 0.185261,-0.06175 0.582533,0.21491 0.882809,0.61481 0.727922,0.969357 1.624303,1.811077 3.038763,2.853427 1.17242,0.86398 1.75221,1.6637 0.99568,1.3734 -0.87233,-0.33474 -0.6546,0.45982 0.47432,1.7309 0.65813,0.74103 1.19661,1.40289 1.19661,1.47079 0,0.32178 -1.02259,0.071 -1.38449,-0.33956 z M -4.5179458,100.16558 c 0.7537555,-0.1414 1.0073216,-0.0433 1.7141004,0.66353 1.0735972,1.0736 1.88494459,1.47658 3.744423,1.8598 1.1791474,0.243 1.6383688,0.48441 2.0672531,1.08672 0.5736616,0.80563 0.5315241,1.04292 -0.3613283,2.0347 -0.294759,0.32743 -0.441063,0.59532 -0.3251173,0.59532 0.1159457,0 0.060201,0.18147 -0.1238753,0.40327 -0.1840759,0.2218 -0.2629323,0.47501 -0.1752388,0.56271 0.087693,0.0877 -0.00823,0.48369 -0.2131722,0.88 l -0.3726153,0.72056 2.160352,1.19128 0.8019335,-0.042 c 0.2618873,-0.006 0.9964367,-0.008 1.4104514,0.25016 0.5146702,0.32151 0.5251953,0.21639 0.9060551,0.20234 0.2804742,-0.17334 1.1490589,0.30736 4.0615715,1.61334 0.859414,0.38537 1.347078,0.56867 1.57907,0.52622 l 0.575278,-0.15368 c -0.514339,-0.65938 -1.203378,-1.61467 -1.203378,-1.7652 0,-0.19567 -0.25504,-0.52511 -0.566753,-0.73208 -0.477414,-0.31699 -0.519205,-0.46515 -0.265121,-0.93991 0.165897,-0.30998 0.663946,-0.8216 1.106774,-1.13692 l 0.805143,-0.57331 -0.667245,-0.61838 c -0.366983,-0.34011 -1.086244,-0.93797 -1.598353,-1.32858 -0.512112,-0.3906 -0.9311114,-0.94201 -0.9311114,-1.22534 0,-0.85461 0.5158684,-1.57859 1.0124974,-1.42096 0.296415,0.0941 0.54039,-0.0568 0.711488,-0.44 0.143214,-0.32075 0.648454,-0.80778 1.122754,-1.0823 0.771197,-0.44636 1.008957,-0.46467 2.248958,-0.17324 0.762627,0.17924 1.698062,0.48331 2.078747,0.67572 0.504719,0.2551 0.942112,0.28081 1.61521,0.095 0.683987,-0.18886 1.213085,-0.15254 2.04285,0.14022 0.951132,0.33558 1.222679,0.34118 1.802879,0.0372 l 0.683088,-0.35791 -0.710737,-0.46569 c -0.583306,-0.3822 -0.652748,-0.53557 -0.387308,-0.8554 0.177888,-0.21434 0.328795,-0.702449 0.335357,-1.084682 0.0087,-0.508889 0.189034,-0.745961 0.673383,-0.885402 2.573663,-0.740936 5.788147,-1.542036 6.187564,-1.542036 0.262692,0 0.797679,0.227899 1.188858,0.506444 0.391181,0.278545 1.183465,0.591873 1.760635,0.696285 0.57717,0.10441 1.256686,0.296844 1.510033,0.427628 0.304863,0.157374 0.716142,0.105656 1.216215,-0.152942 0.704239,-0.364176 0.82127,-0.346094 1.722181,0.266091 0.531628,0.361251 0.966597,0.755414 0.966597,0.875919 0,0.120504 0.544304,0.426971 1.209564,0.681035 0.734393,0.28047 1.322142,0.70902 1.496139,1.0909 0.212122,0.46556 0.499349,0.62854 1.105541,0.62775 1.949487,-0.003 3.020949,0.2161 4.310364,0.88098 0.756102,0.38989 1.560692,0.63752 1.78798,0.55031 0.227285,-0.0872 0.71025,0.036 1.073256,0.27387 0.587107,0.38469 0.742439,0.38983 1.406289,0.0465 0.410456,-0.21226 0.900308,-0.57151 1.088562,-0.79834 0.721948,-0.86989 2.215756,-1.00208 4.321882,-0.38245 1.251712,0.36826 2.219621,0.50873 2.690719,0.39049 0.715846,-0.17967 0.722884,-0.19891 0.259737,-0.71068 -0.458952,-0.50713 -0.457645,-0.54406 0.03645,-1.02919 0.470622,-0.46208 0.620562,-0.47459 1.835396,-0.15308 0.727604,0.19256 1.918229,0.66998 2.645833,1.06092 1.006978,0.54105 1.550988,0.6753 2.277904,0.56211 0.627592,-0.0977 1.709367,0.0771 3.155474,0.50994 2.556192,0.7651 3.277975,0.80577 4.587742,0.25852 0.9348,-0.39058 2.648612,-0.32641 3.604922,0.13498 0.218281,0.10531 0.752633,0.0417 1.187423,-0.1414 0.679239,-0.28601 0.792295,-0.4764 0.802878,-1.35223 0.0068,-0.56511 -0.201771,-1.33748 -0.468074,-1.73324 -0.462201,-0.686844 -0.462359,-0.723534 -0.0043,-0.968705 1.020154,-0.545967 2.411042,-0.615471 3.864002,-0.193085 1.166574,0.33913 1.712886,0.704956 2.734283,1.83094 1.762443,1.94288 2.916793,2.74352 4.451456,3.08744 0.721254,0.16164 1.671161,0.56782 2.110899,0.90262 1.237218,0.942 1.833827,1.03675 2.8058,0.44565 0.972635,-0.59149 2.004801,-0.33285 1.71241,0.42909 -0.08737,0.22763 0.02884,0.70028 0.258207,1.05034 0.399468,0.60967 0.378909,0.67461 -0.487998,1.54153 -0.860028,0.86002 -0.884317,0.93466 -0.488394,1.49992 0.229155,0.32717 1.454134,1.47405 1.252839,1.6353 0.25568,1.44215 0.399301,-0.50296 0.792234,-0.35358 1.028329,0.39098 1.728549,-0.17068 2.354262,-1.88843 0.903729,-2.48098 0.684213,-6.27582 -0.396504,-6.85419 -0.285618,-0.15287 -0.748348,-0.7269 -1.028303,-1.27563 -0.683419,-1.339633 -2.872291,-3.04614 -3.589788,-2.798723 -0.930222,0.32076 -2.15728,0.169506 -3.282711,-0.404651 -1.036876,-0.528973 -1.071933,-0.585554 -0.709216,-1.145413 0.209867,-0.323921 0.520065,-1.144704 0.689319,-1.82396 0.16928,-0.679255 0.603356,-1.512692 0.964644,-1.852084 0.572347,-0.537636 0.935144,-0.619837 2.818342,-0.638569 1.188799,-0.01183 2.471975,-0.109784 2.851494,-0.217689 0.44196,-0.125663 1.055899,-0.04332 1.707806,0.229063 0.59354,0.247997 1.321726,0.358495 1.746986,0.265089 0.62495,-0.137258 0.70903,-0.261551 0.58806,-0.869024 -0.0776,-0.389871 -0.0108,-1.05107 0.14859,-1.469326 0.27364,-0.718098 0.35211,-0.750523 1.40833,-0.581941 0.61518,0.09819 1.39605,0.360151 1.73521,0.582136 0.78235,0.512033 1.46265,0.285655 1.24093,-0.412935 -0.24067,-0.758293 0.71368,-1.219575 1.25007,-0.604215 0.81696,0.937209 0.9642,1.48835 0.58209,2.178647 -0.20005,0.361411 -0.36796,0.930913 -0.37312,1.265561 -0.005,0.334647 -0.18616,0.950327 -0.40224,1.368176 -0.38114,0.737066 -0.35756,0.806693 0.79099,2.334599 0.65112,0.866182 1.63158,1.900224 2.17882,2.297869 0.54721,0.397647 1.42603,1.19954 1.95292,1.782 0.76343,0.84394 1.07624,1.02145 1.54048,0.87411 0.41709,-0.13238 0.52885,-0.30958 0.39349,-0.624 -0.10396,-0.24152 -0.22061,-0.73678 -0.25924,-1.100581 -0.0386,-0.363802 -0.15314,-0.868815 -0.25445,-1.122249 -0.12102,-0.302755 -0.0392,-0.516445 0.23868,-0.623067 0.37907,-0.145463 0.38211,-0.234797 0.0293,-0.862126 -0.21648,-0.384919 -0.50493,-1.012505 -0.64098,-1.394643 -0.15501,-0.435385 -0.67648,-0.902515 -1.39665,-1.251151 -1.32234,-0.64012 -2.26124,-1.926418 -1.72876,-2.368341 0.18116,-0.15036 0.68593,-0.359193 1.12167,-0.464076 0.43574,-0.104881 1.11969,-0.355635 1.51987,-0.557231 0.62561,-0.315138 0.83373,-0.311645 1.48458,0.02492 0.69549,0.359651 0.80296,0.348618 1.32292,-0.135802 0.31128,-0.289992 0.56594,-0.63862 0.56594,-0.774735 0,-0.409895 1.61176,-1.111874 2.26581,-0.986843 0.59574,0.113882 1.41436,-0.184097 1.1661,-0.424473 -0.0685,-0.06638 -1.19618,-0.538634 -2.50587,-1.049465 -2.40868,-0.939485 -2.85969,-1.42399 -1.21896,-1.309552 0.87678,0.06115 0.88673,0.05048 0.42701,-0.457505 -0.67312,-0.743786 -0.0169,-0.935053 1.46114,-0.425846 0.63103,0.217416 1.24986,0.331946 1.37514,0.25451 0.12531,-0.07743 0.37143,-0.02699 0.54695,0.112094 0.59695,0.473016 2.32936,0.90189 2.98172,0.738155 l 0.65011,-0.163166 -0.8626,-0.749231 c -1.38824,-1.205793 -1.97799,-1.433991 -2.88702,-1.1171 -0.66474,0.231733 -1.00116,0.173781 -2.03637,-0.350803 -0.68204,-0.345614 -1.95239,-0.715531 -2.82297,-0.822036 -0.87059,-0.106506 -2.11868,-0.400998 -2.77352,-0.654431 -1.25767,-0.486728 -4.97274,-1.164445 -8.06979,-1.472113 -1.84822,-0.183608 -1.85108,-0.182869 -1.37184,0.353645 0.66627,0.74586 0.17658,0.938808 -1.04746,0.412718 -0.75827,-0.325906 -1.903594,-0.44713 -4.459866,-0.472054 -2.778627,-0.02709 -3.613917,-0.126441 -4.346813,-0.51703 -0.722021,-0.384805 -1.674812,-0.504582 -4.667832,-0.586788 -3.154336,-0.08664 -3.96785,-0.196561 -5.045895,-0.681815 -0.706914,-0.318188 -1.702011,-0.60843 -2.211334,-0.644988 -0.509323,-0.03656 -1.684973,-0.202396 -2.612549,-0.368533 -2.025227,-0.362738 -3.673554,-0.154651 -3.208972,0.405109 0.240215,0.28946 0.138959,0.449448 -0.490459,0.77493 -0.64336,0.332693 -1.05918,0.35931 -2.201518,0.140917 -1.149297,-0.219718 -1.584034,-0.1905 -2.363258,0.15884 -0.930963,0.417359 -0.989383,0.409268 -2.331588,-0.322879 -0.757185,-0.41303 -1.870763,-1.018855 -2.474622,-1.346276 -1.214834,-0.658712 -3.308852,-0.792224 -5.01097,-0.319495 -0.745887,0.20715 -1.355807,0.17613 -2.532594,-0.128807 -1.127837,-0.292251 -1.79256,-0.332135 -2.440149,-0.14641 -0.648692,0.186044 -1.245933,0.149577 -2.202439,-0.134475 -1.165839,-0.346212 -1.489398,-0.343865 -2.897494,0.02101 -2.173934,0.563325 -2.553952,0.131183 -0.756624,-0.860406 0.744212,-0.410583 1.354807,-0.822119 1.356923,-0.914522 0.0021,-0.0924 -0.323609,-0.38885 -0.723791,-0.65877 -0.57849,-0.390189 -1.242722,-0.492816 -3.241146,-0.500833 -1.85915,-0.0074 -2.733992,-0.12869 -3.360298,-0.465706 -1.226585,-0.660027 -2.115796,-0.563592 -3.275965,0.35528 -0.904232,0.716163 -1.156912,0.790969 -2.162453,0.640178 -1.012198,-0.151789 -5.366168,0.454758 -5.706356,0.794946 -0.06733,0.06733 0.01939,0.293288 0.192717,0.502131 0.441966,0.532535 -0.05513,0.790366 -1.590971,0.825199 -0.757163,0.01717 -1.508104,0.22579 -1.952302,0.542369 -1.942317,1.384287 -2.651779,1.695341 -3.509476,1.538679 -0.572058,-0.104489 -0.859896,-0.05282 -0.859896,0.154358 0,0.607803 0.55548,1.334984 1.322917,1.731843 0.976172,0.504799 1.384956,1.248193 1.166027,2.120474 -0.186844,0.744448 -1.514433,1.57738 -2.134743,1.339345 -0.327382,-0.125627 -0.298958,-0.280712 0.172902,-0.94338 0.637223,-0.894895 0.686943,-0.76242 -1.263449,-3.366278 -1.502277,-2.005605 -1.971981,-2.320078 -3.058138,-2.04747 -1.871459,0.469707 -1.743692,2.018139 0.246303,2.98495 0.641813,0.311817 1.166931,0.68336 1.166931,0.825653 0,0.421511 -0.940498,0.8185 -1.236898,0.5221 -0.431011,-0.431012 -7.590821,-2.106216 -7.858384,-1.838653 -0.145843,0.145846 0.06202,0.308703 0.524201,0.410713 0.42123,0.09297 0.924602,0.218686 1.118605,0.279368 0.450591,0.140941 0.226293,0.799068 -0.234987,0.689493 -0.189902,-0.04511 -1.161111,0.05559 -2.158243,0.223777 -1.403419,0.236704 -1.900045,0.233516 -2.198439,-0.01413 C 9.2002315,82.406902 7.7585434,82.72337 5.9067591,83.69405 4.6439187,84.356014 4.2815983,84.443572 3.822324,84.197774 3.5165768,84.034145 3.2950015,83.754991 3.3299318,83.577435 3.3652801,83.397762 3.054654,83.215924 2.6294421,83.167373 1.8326177,83.076393 1.8402985,83.037915 2.3879463,84.376855 c 0.1447827,0.353978 0.017039,0.417922 -1.72858903,0.865214 -0.81571834,0.209018 -1.10487617,0.4025 -1.00204057,0.670486 0.21955654,0.572156 -0.7232597,0.965774 -1.5554378,0.64938 -1.0422625,-0.396267 -1.425313,-0.298932 -0.595413,0.151296 0.8972762,0.486781 0.9031737,0.588762 0.05275,0.912093 -0.8851106,0.336519 -2.6006742,-0.507873 -3.13631,-1.543679 -0.2103649,-0.406803 -0.7071809,-0.887585 -1.1040348,-1.068404 -0.5342413,-0.243416 -0.6443239,-0.405987 -0.4240635,-0.626247 0.2202629,-0.220263 0.6943301,-0.212622 1.8261885,0.02943 0.840785,0.17981 1.9789881,0.391779 2.5293425,0.471045 1.2016343,0.173067 2.59823745,-0.328586 2.39430721,-0.860023 -0.18899452,-0.492506 -5.06202681,-2.036207 -5.90463211,-1.87049 -0.4200604,0.08262 -0.7100914,-0.429234 -2.2004787,-1.047959 l -1.1706145,0.135821 -0.8526625,0.387575 -0.387572,0.07752 c -0.124,0.203242 -0.05088,0.593148 0.206706,0.82478 0.300736,0.109982 0.631118,0.145838 0.8773079,0.392187 -0.035396,0.452458 -0.1457034,0.652351 -0.4153959,0.979281 0.157903,0.286252 0.4548294,0.429 0.7008204,0.568441 0.1828456,0.283469 0.204732,0.612929 0.1789192,0.956014 l -0.1789192,0.361733 0.4909265,0.516766 0.3875722,0.465087 -0.1053253,0.546348 c 0.4001135,0.243653 0.6995927,0.329788 1.00965,0.538856 l 0.1550299,0.697632 -2.4287929,2.015382 -0.4134118,0.180866 0.180867,0.335899 c 0.6115048,0.137803 1.2230098,0.104212 1.8345148,0.413412 -0.5806678,0.267832 -0.083346,-0.295246 -1.6278088,0.232542 l 0.1033538,0.232545 -0.3358968,0.620117 -0.104693,0.594278 0.388914,0.568442 -0.234926,0.335896 c 0.2199215,0.241689 0.06636,0.665094 0.5191467,0.930177 l 0.3026489,0.544404 c 0.3282395,0.196453 0.7095384,0.338924 1.0673292,0.387615 l 1.2138422,0.154517 0.262464,0.504174 0.019923,0.683053 c 0.258408,0.329409 0.4970357,0.641001 0.8527521,0.856414 l 0.7749645,0.357981 0.1550459,0.568442 c -0.321191,0.224052 -0.5853298,0.203904 -0.9363604,0.278754 l 0.1852083,0.703102 c 0.4324112,0.52895 0.045302,0.39747 0.3208179,0.55019 l 0.3547374,-0.31765\"\n         style=\"fill:#003399;stroke-width:0.26458332;stroke-linejoin:round;fill-opacity:1\" />\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"sa\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path5997\"\n           d=\"m 331.53353,-619.49471 c -1.39345,-1.65603 -2.53355,-3.42592 -2.53355,-3.93309 0,-0.50717 -1.80457,-2.78162 -4.01016,-5.05433 -2.74691,-2.83049 -4.52189,-5.90225 -5.63459,-9.75115 -0.89344,-3.09041 -2.71152,-6.96894 -4.04019,-8.61894 -9.2245,-11.45538 -11.9096,-15.45149 -13.38867,-19.92574 -1.74907,-5.29105 -1.58715,-7.36753 0.44311,-5.68256 2.09313,1.73714 7.16389,-2.39093 8.52747,-6.94215 1.37625,-4.59352 4.02426,-6.11933 8.42807,-4.85633 3.64327,1.04488 10.93534,5.31067 12.68778,7.42223 2.07063,2.49496 8.64534,5.52971 11.72961,5.41416 7.34398,-0.27514 14.16398,5.29541 16.32962,13.33796 0.68611,2.548 1.81741,4.12011 3.39708,4.72069 1.30263,0.49526 2.96746,2.14621 3.69964,3.66878 1.61546,3.35935 7.27492,7.34296 10.43206,7.34296 1.26779,0 3.44259,0.51829 4.8329,1.15176 8.2955,3.77968 -0.15545,14.15991 -12.53045,15.39102 -5.07539,0.50492 -12.17569,3.63872 -15.28174,6.74477 -2.40423,2.40423 -2.45045,2.40896 -8.67801,0.88758 -5.69249,-1.39067 -6.51582,-1.38323 -9.06866,0.0819 -2.73722,1.57095 -2.87142,1.53578 -5.34132,-1.39952 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"sc\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           d=\"m 393.09469,-525.61244 c 0.011,-0.24611 -0.0813,-0.20084 0.19099,-0.20084 0.27225,0 0.53077,0.1626 0.53077,0.42438 0,0.26177 0.0991,0.23523 -0.17311,0.23523 -0.27225,0 -0.56288,-0.14004 -0.54865,-0.45877 z m 6.65125,-1.4621 c 0,-0.30996 -0.10688,-0.23781 0.25122,-0.23781 0.35811,0 0.69814,0.19253 0.69814,0.50249 0,0.30997 0.13041,0.27853 -0.22769,0.27853 -0.35811,0 -0.72167,-0.23324 -0.72167,-0.54321 z m -5.28127,3.40474 c 0.79006,-0.1804 0.293,-0.72194 0.6511,-0.72194 0.17906,0 -0.0561,0.89694 1.0716,0.95686 1.55257,0.0825 0.24665,0.534 0.75563,1.14958 0.20841,0.25206 -0.19532,0.24564 -0.55343,0.24564 -0.17905,0 0.0653,-0.89152 -1.31712,-0.95078 -0.4491,-0.0193 -0.7809,-0.63983 -0.60778,-0.67936 z\"\n           id=\"path6147-5-7\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"sg\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           transform=\"translate(-498.75,-802.60933)\"\n           d=\"m 1091.25,257.47916 a 1.25,1.25 0 0 1 -1.25,1.25 1.25,1.25 0 0 1 -1.25,-1.25 1.25,1.25 0 0 1 1.25,-1.25 1.25,1.25 0 0 1 1.25,1.25 z\"\n           id=\"path4052-7\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"lk\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path6087\"\n           d=\"m 491.68151,-568.06152 c -1.11796,-1.81588 -1.75365,-9.96479 -0.94604,-12.12716 0.85645,-2.29314 0.9208,-2.26531 3.46853,1.5 3.05337,4.51258 4.03069,7.40649 3.02315,8.9517 -0.96444,1.4791 -4.92909,2.67691 -5.54564,1.67546 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"sy\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path3292\"\n           d=\"m 301.82467,-687.69799 c 0.32791,-0.75883 0.95336,-2.46456 1.42955,-3.34089 1.84052,-3.38709 1.44133,-6.31335 -0.86123,-6.31335 -2.15831,0 -1.64432,-3.74869 0.85695,-6.25 1.75042,-1.75045 3.47111,-2.27386 7.75,-2.35747 3.02502,-0.0591 7.30004,-0.46719 9.50004,-0.90685 3.37654,-0.6748 3.81976,-0.58011 2.84359,0.60746 -0.63603,0.77377 -1.47463,3.54436 -1.86355,6.15686 -0.38892,2.6125 -1.01463,4.75 -1.39048,4.75 -0.37584,0 -3.77586,2.03117 -7.55559,4.51371 -4.70095,3.08759 -7.52969,4.33631 -8.95311,3.95225 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"tj\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path3306\"\n           d=\"m 425.09142,-709.72133 c 0.55565,-0.93218 0.7813,-2.10401 0.1746,-2.5 -0.53165,-0.34701 -1.48718,-1.61978 -2.12341,-2.82839 -0.9871,-1.87516 -0.78905,-2.5652 1.3503,-4.70455 1.37889,-1.37889 2.50707,-2.97753 2.50707,-3.55253 0,-0.575 0.96974,-1.04545 2.15499,-1.04545 1.98932,0 2.03319,0.13458 0.57069,1.75063 -2.34669,2.59305 -0.41706,5.63971 3.02483,4.77585 1.40633,-0.35297 3.8382,-0.11106 5.40413,0.53758 1.97656,0.81871 3.22912,0.86257 4.09626,0.14343 1.4673,-1.21685 6.15051,2.33117 7.12351,5.3968 0.4665,1.46983 0.0989,1.9043 -1.63637,1.93393 -1.23092,0.021 -3.47554,0.36709 -4.98804,0.76905 -2.10019,0.55814 -2.75,0.37734 -2.75,-0.76516 0,-0.8228 -1.18483,-2.27234 -2.63296,-3.22119 -2.56831,-1.68282 -2.68495,-1.66198 -4.75,0.84859 -2.05755,2.50145 -5.64771,4.86172 -7.05632,4.65235 -1.75759,-0.23515 -0.46928,-2.19094 -0.46928,-2.19094 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"th\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path4102\"\n           d=\"m 568.4375,-632.3385 -3.75,2.6875 c -4.9576,3.52738 -5.4668,6.06306 -2.4063,12 5.1981,10.0823 7.882,25.25572 5.3438,30.34375 -0.8621,1.72796 -1.813,4.58036 -2.0938,6.3125 -0.4538,2.80042 -0.0422,3.48499 3.7188,6.1875 1.6514,1.18662 2.6878,2.15249 3.5,3.3125 l 0.9688,1 c 0.8693,0.60772 1.7713,1.01001 2.25,1.1875 0.0227,0.005 0.0388,0.0245 0.0624,0.0312 0.0953,0.0269 0.1751,0.0449 0.2813,0.0937 0.5367,0.247 1.202,0.7588 1.6875,1.34375 0.6847,0.825 1.9799,1.461 2.875,1.4375 1.076,-0.0282 0.2369,-1.29911 -2.5,-3.75 -2.277,-2.03905 -4.4936,-4.82314 -4.9062,-6.1875 -0.4131,-1.36436 -1.6526,-3.70285 -2.75,-5.1875 -1.786,-2.41534 -1.8578,-3.16046 -0.8126,-7.3125 0.6429,-2.55218 0.8734,-6.14543 0.5313,-7.96875 -0.8122,-4.32926 0.9716,-5.42729 4.4063,-2.6875 6.7289,5.36792 9.653,5.78211 7.0937,1 -2.1454,-4.00876 3.7369,-9.16875 7.9063,-6.9375 1.6608,0.88896 1.9977,0.60478 2.5312,-2.0625 0.4794,-2.39717 0.0678,-3.72228 -1.875,-6.03125 -1.3733,-1.63205 -2.5,-3.55244 -2.5,-4.25 0,-0.69756 -0.8522,-2.04592 -1.9062,-3 -1.5375,-1.3911 -2.3441,-1.52793 -4.0313,-0.625 -1.1571,0.61927 -2.5829,0.85432 -3.1563,0.5 -0.5731,-0.35431 -1.8533,0.10674 -2.875,1.03125 -1.7484,1.58246 -1.9296,1.56664 -2.9687,-0.375 -0.6071,-1.13434 -0.8168,-3.20746 -0.4687,-4.59375 0.3825,-1.52483 0.1825,-2.5 -0.4688,-2.5 -0.592,0 -1.657,-1.12958 -2.375,-2.5 l -1.3125,-2.5 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"tl\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path6169\"\n           d=\"m 676.47298,-498.3957 c -1.4841,-2.40139 3.7114,-3.71953 8.025,-2.03599 1.7553,0.68505 1.6338,0.8416 -1,1.28829 -1.6489,0.27966 -3.74,0.82779 -4.6468,1.21807 -0.9273,0.39905 -1.9681,0.1932 -2.3782,-0.47037 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"tr\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path5883\"\n           d=\"m 285.55885,-704.88403 c -2.26221,-1.71105 -6.15195,-1.93563 -7.09505,-0.40965 -0.72354,1.1707 -5.83661,0.3501 -8.60983,-1.38181 -1.99238,-1.24426 -3.85399,-4.94773 -3.85399,-7.66709 0,-1.04293 -1.0125,-2.60945 -2.25,-3.48114 -1.91525,-1.3491 -2.02683,-1.73096 -0.75,-2.56665 0.825,-0.53997 2.522,-0.74133 3.77111,-0.44746 1.59321,0.37482 3.05805,-0.25265 4.90759,-2.10219 1.74053,-1.74053 3.85729,-2.70128 6.22889,-2.82715 1.97583,-0.10487 4.8378,-1.01134 6.35995,-2.01437 3.44107,-2.26752 10.95731,-1.53558 17.12753,1.6679 5.72185,2.97069 14.36121,3.01411 16.30808,0.082 1.22518,-1.84523 1.76757,-1.96916 4.35076,-0.99411 1.62309,0.61265 3.20156,1.90309 3.50769,2.86764 0.30614,0.96456 1.6701,2.6296 3.03101,3.7001 1.42826,1.12347 2.04215,2.21351 1.45201,2.57823 -0.6663,0.4118 -0.54009,1.39736 0.36237,2.82973 0.76162,1.20882 1.69574,3.23808 2.07583,4.50947 0.65007,2.17448 0.4877,2.27348 -2.73665,1.66858 -1.88524,-0.35367 -5.41187,-0.0987 -7.83694,0.56658 -2.42508,0.66529 -7.26494,1.27392 -10.75526,1.3525 -4.78643,0.10777 -6.662,0.575 -7.63173,1.90119 -1.1135,1.52281 -1.36431,1.55347 -1.87259,0.22892 -0.73042,-1.90345 -4.34701,-1.91735 -7.64965,-0.0294 -3.2006,1.82963 -5.99401,1.8191 -8.44113,-0.0318 z\" />\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path5857\"\n           d=\"m 262.31299,-726.20385 c 0.19482,-1.45658 1.0774,-2.78869 1.9613,-2.96023 1.48481,-0.28818 7.17781,2.69311 6.47836,3.39256 -0.17036,0.17036 -2.21867,0.73865 -4.5518,1.26287 -4.20711,0.94528 -4.23914,0.93131 -3.88786,-1.6952 z\" />\n        <path\n           transform=\"translate(-470,-892.401)\"\n           d=\"m 728.50223,171.33179 c -0.53065,-0.53056 0.53061,-1.06111 0.53061,-0.53056 0.53055,0 -0.53061,0.53056 -0.53061,0.53056\"\n           style=\"stroke:#ffffff;stroke-width:0.30000001;fill:#003399;fill-opacity:1\"\n           id=\"path3819b\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"tm\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path3302\"\n           d=\"m 361.18136,-731.18236 2.66725,-0.76327 c 1.66839,-0.47743 3.57577,0.27731 6.66348,2.49473 5.22161,3.74988 6.45442,3.82767 9.48789,0.59869 3.13997,-3.34235 6.86905,-3.18021 11.5,0.5 2.07626,1.65 4.62831,3 5.67123,3 1.09265,0 2.73767,1.42616 3.88184,3.36537 1.52091,2.57776 3.91188,4.23473 10.21627,7.08 l 7.94672,4.2825 -2.96537,0.80357 c -1.87226,0.50735 -3.74339,2.45581 -4.34726,3.78116 -0.60387,1.32536 -2.64445,3.14721 -4.53462,4.04857 -3.96194,1.88932 -3.55495,1.81777 -4.96911,0.87352 v -2e-5 c -0.60516,-0.40408 -1.62364,-1.72878 -2.26328,-2.94377 -1.2029,-2.28489 -5.92904,-4.73272 -14.87405,-7.70378 -5.00384,-1.662 -5.32637,-1.65242 -9.71458,0.28869 l -4.5389,2.00778 -0.63568,-2.69181 c -0.34963,-1.48049 -1.4204,-3.5918 -2.37949,-4.6918 -0.95908,-1.1 -2.30238,-3.08073 -2.98509,-4.40163 -1.09486,-2.1183 -1.04207,-2.32518 0.44748,-1.75359 0.92883,0.35643 2.56386,0.17971 3.63341,-0.39269 1.88291,-1.0077 1.86145,-1.14981 -0.67578,-4.47629 -2.1731,-2.84908 -2.94419,-3.26228 -4.51708,-2.42049 -1.28282,0.68654 -1.89666,0.68661 -1.89666,2e-4 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"ae\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path5955\"\n           d=\"m 377.68521,-643.32034 c -4.00094,-0.77413 -8.75887,-3.75281 -9.48788,-5.93984 -0.34152,-1.02457 0.0231,-1.04443 1.79225,-0.0976 3.8563,2.06383 8.50309,0.3888 12.95638,-4.6704 2.22971,-2.53308 4.09058,-4.20475 4.13526,-3.71482 0.51749,5.67412 0.23547,7.2986 -1.78473,10.28034 -1.26308,1.86425 -2.29651,3.77675 -2.29651,4.25 0,0.47325 -0.3375,0.8087 -0.75,0.74545 -0.4125,-0.0632 -2.46665,-0.44715 -4.56477,-0.85311 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"uz\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path5875\"\n           d=\"m 423.47413,-707.9561 c -0.9876,0.12094 -3.22895,-2.65025 -3.86093,-3.53133 -0.63198,-0.88109 -4.79128,-2.90002 -8.92233,-4.71548 -5.83283,-2.56334 -7.78023,-3.9508 -8.71596,-6.20983 -0.83137,-2.00713 -2.25892,-3.20001 -4.60459,-3.84768 -1.86981,-0.51628 -4.77759,-2.09814 -6.46172,-3.51525 -3.90693,-3.28746 -7.86603,-3.31525 -10.90862,-0.0766 -2.12796,2.26511 -6.83736,3.66389 -5.60114,1.66365 0.28429,-0.45999 -0.36071,-3.72249 -1.43334,-7.25 -1.07263,-3.52751 -1.95368,-6.49425 -1.95788,-6.59275 -0.004,-0.0985 2.37701,-0.67416 5.29159,-1.27922 5.13627,-1.06629 5.56361,-0.97622 13.89735,2.9291 5.57134,2.61082 10.01279,4.02922 12.61674,4.02922 3.51138,0 4.42934,0.51857 7.27248,4.10834 1.87149,2.36294 5.14103,4.91727 7.69591,6.01241 4.39076,1.8821 4.47926,1.88108 7.66613,-0.0885 2.76137,-1.70662 3.48747,-1.80002 5.05917,-0.65076 1.00929,0.73801 2.62142,1.1362 3.58251,0.88487 0.96109,-0.25133 2.52846,-0.0199 3.48305,0.51433 1.56712,0.87701 1.48317,1.1367 -0.86471,2.67509 -1.91599,1.25541 -3.07503,1.43814 -4.40409,0.69436 -0.99207,-0.55519 -1.57877,-1.37859 -1.30377,-1.82978 0.275,-0.45119 -0.48205,-0.96015 -1.68234,-1.13102 -1.46665,-0.2088 -2.57086,0.44709 -3.36704,2 -0.65158,1.27087 -2.08148,3.02491 -3.17754,3.89786 -1.94611,1.54997 -1.95045,1.66726 -0.17979,5 0.9971,1.87674 -0.47674,-1.22086 1.98063,3.33023 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"vn\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path6065\"\n           d=\"m 593.86448,-579.57915 c -0.0746,-0.15018 -0.2151,-2.18205 -0.3122,-4.51527 -0.1456,-3.49662 0.1858,-4.35452 1.8855,-4.88119 6.5774,-2.03804 9.6844,-7.41766 7.4809,-12.95287 -0.6402,-1.60804 -1.2213,-4.05323 -1.2913,-5.43374 -0.1493,-2.94082 -11.9478,-18.63952 -14.6544,-19.49855 -1.0087,-0.32015 -2.1294,-1.92694 -2.4904,-3.57064 -0.361,-1.64371 -1.6729,-3.65462 -2.9154,-4.4687 -1.2424,-0.81407 -2.7328,-2.52022 -3.312,-3.79143 -0.9952,-2.18406 -0.7487,-2.40505 4.4779,-4.01445 5.0214,-1.54624 5.7492,-1.56021 7.899,-0.15163 1.3023,0.85334 2.3679,2.0008 2.3679,2.54991 0,0.54911 1.0917,1.4958 2.426,2.10376 l 2.426,1.10537 -2.8168,2.37024 c -5.714,4.80799 -4.3126,10.82033 4.0695,17.45908 4.3294,3.42895 9.1864,12.03268 10.3271,18.29336 0.9921,5.44532 -0.7656,9.01954 -5.4812,11.14599 -2.1482,0.9687 -4.1584,2.55721 -4.4672,3.53003 -0.4808,1.51487 -5.2298,5.50474 -5.6189,4.72073 z\" />\n      </g>\n      <g\n         transform=\"matrix(0.26458333,0,0,0.26458333,-78.495093,305.4654)\"\n         id=\"ye\"\n         style=\"fill:#003399;stroke-linejoin:round;fill-opacity:1\">\n        <path\n           style=\"fill:#003399;fill-opacity:1\"\n           id=\"path6025\"\n           d=\"m 338.14151,-601.07474 c -1.06577,-2.08908 -2.2588,-6.3679 -2.6512,-9.50849 -0.6839,-5.4738 -0.60664,-5.75882 1.86657,-6.88569 2.04156,-0.9302 3.88903,-0.85574 8.85236,0.3568 6.26222,1.52985 6.27602,1.52837 8.53894,-0.91337 2.40363,-2.59355 8.77166,-5.7157 13.7518,-6.7423 2.78229,-0.57354 3.18143,-0.27247 5.5,4.1486 l 2.5,4.76702 -4.12106,4.0649 c -2.26658,2.23569 -6.31658,4.88912 -9,5.8965 -2.68342,1.00738 -7.35394,3.05393 -10.37894,4.54788 -3.025,1.49395 -7.16966,3.02007 -9.21035,3.39137 -3.5384,0.64381 -3.80017,0.49906 -5.64812,-3.12322 z\" />\n      </g>\n    </g>\n  </g>\n</svg>";
+window.ASIA_COUNTRY_META = {"af": {"label": "Афганистан", "region": "central_asia", "terrain": "mountain", "ct": "highland", "tmp": 12, "nm": 14, "pc": 350, "pp": 2100, "sectors": "сельское хозяйство, торговля", "military": "Силы обороны: ~180k чел, режим Талибан с 2021", "religion": "Ислам суннитский (99%)", "history": [["330 до н.э.", "Завоевание Александром Македонским"], ["652", "Арабское завоевание"], ["1747", "Образование Афганского государства"], ["1979", "Советское вторжение"], ["2001", "Операция США после 11 сентября"], ["2021", "Возврат Талибана"]]}, "am": {"label": "Армения", "region": "caucasus", "terrain": "mountain", "ct": "continental", "tmp": 8, "nm": 24, "pc": 8000, "pp": 18000, "sectors": "IT, туризм, добыча", "military": "Вооружённые силы: ~45k чел", "religion": "Армянская апостольская церковь (90%)", "history": [["301", "Первое христианское государство"], ["1915", "Геноцид армян"], ["1920", "Советизация"], ["1991", "Независимость"], ["2023", "Азербайджан занял Карабах"]]}, "az": {"label": "Азербайджан", "region": "caucasus", "terrain": "mountain", "ct": "continental", "tmp": 12, "nm": 54, "pc": 5500, "pp": 16000, "sectors": "нефть, газ, агропром", "military": "Вооружённые силы: ~67k чел", "religion": "Ислам шиитский (97%)", "history": [["1918", "АДР"], ["1920", "Советизация"], ["1991", "Независимость"], ["2020", "Победа в Карабахской войне"]]}, "bh": {"label": "Бахрейн", "region": "middle_east", "terrain": "island", "ct": "arid", "tmp": 26, "nm": 44, "pc": 26000, "pp": 50000, "sectors": "финансы, нефть, туризм", "military": "BDF: ~8k чел", "religion": "Ислам (70%)", "history": [["1783", "Власть Аль-Халифа"], ["1971", "Независимость"], ["2011", "Шиитские протесты"]]}, "bd": {"label": "Бангладеш", "region": "south_asia", "terrain": "delta", "ct": "monsoon", "tmp": 26, "nm": 460, "pc": 2700, "pp": 8700, "sectors": "текстиль, рис", "military": "Bangladesh Armed Forces: ~170k чел", "religion": "Ислам суннитский (91%)", "history": [["1947", "Восточный Пакистан"], ["1971", "Война за независимость"], ["2024", "Отставка премьера Хасины"]]}, "bt": {"label": "Бутан", "region": "south_asia", "terrain": "mountain", "ct": "highland", "tmp": 10, "nm": 3, "pc": 3500, "pp": 12000, "sectors": "гидроэнергетика, туризм", "military": "Royal Bhutan Army: 8k чел", "religion": "Буддизм Ваджраяны (75%)", "history": [["1616", "Зунгдру Намгьел объединяет страну"], ["1907", "Первый Друк Гьялпо"], ["2008", "Конституционная монархия"]]}, "bn": {"label": "Бруней", "region": "southeast_asia", "terrain": "island", "ct": "tropical", "tmp": 28, "nm": 15, "pc": 33000, "pp": 60000, "sectors": "нефть, газ", "military": "Royal Brunei Armed Forces: 7k чел", "religion": "Ислам (67%)", "history": [["15 век", "Расцвет Брунейского султаната"], ["1984", "Независимость"]]}, "kh": {"label": "Камбоджа", "region": "southeast_asia", "terrain": "plains", "ct": "tropical", "tmp": 28, "nm": 31, "pc": 1800, "pp": 5300, "sectors": "туризм, текстиль, рис", "military": "RCAF: ~124k чел", "religion": "Буддизм Тхеравады (97%)", "history": [["802", "Кхмерская империя"], ["1953", "Независимость"], ["1975", "Геноцид Пол Пота"], ["1991", "Мир"]]}, "cn": {"label": "Китай", "region": "east_asia", "terrain": "plateau", "ct": "continental", "tmp": 10, "nm": 19000, "pc": 13500, "pp": 23000, "sectors": "производство, технологии, экспорт", "military": "НОАК: ~2 млн, ядерное оружие", "religion": "Буддизм, даосизм, нерелигиозность", "history": [["221 до н.э.", "Цинь Шихуанди"], ["1271", "Монгольская Юань"], ["1912", "Китайская Республика"], ["1949", "КНР, Мао Цзэдун"], ["1978", "Реформы Дэн Сяопина"], ["2013", "Председатель Си Цзиньпин"]]}, "cy": {"label": "Кипр", "region": "middle_east", "terrain": "island", "ct": "mediterranean", "tmp": 20, "nm": 28, "pc": 32000, "pp": 44000, "sectors": "туризм, финансы", "military": "Национальная гвардия: ~15k чел", "religion": "Православие (72%), ислам (25%)", "history": [["1960", "Независимость"], ["1974", "Турецкое вторжение, раздел"], ["2004", "ЕС"]]}, "ge": {"label": "Грузия", "region": "caucasus", "terrain": "mountain", "ct": "continental", "tmp": 11, "nm": 28, "pc": 7500, "pp": 18000, "sectors": "туризм, вино, IT", "military": "Вооружённые силы: ~37k чел", "religion": "Православие (84%)", "history": [["IV век", "Грузинское царство"], ["1801", "Аннексия Россией"], ["1991", "Независимость"], ["2008", "Война с Россией"]]}, "in": {"label": "Индия", "region": "south_asia", "terrain": "plains", "ct": "tropical", "tmp": 25, "nm": 3900, "pc": 2600, "pp": 9000, "sectors": "IT, фармацевтика, сельское хозяйство", "military": "Вооружённые силы: ~1,46 млн, ядерное оружие", "religion": "Индуизм (80%), ислам (14%)", "history": [["2600 до н.э.", "Цивилизация Инда"], ["1858", "Британский Радж"], ["1947", "Независимость"], ["1998", "Ядерные испытания"], ["2014", "Премьер Моди"]]}, "id": {"label": "Индонезия", "region": "southeast_asia", "terrain": "island", "ct": "tropical", "tmp": 27, "nm": 1400, "pc": 5000, "pp": 14500, "sectors": "уголь, пальмовое масло, туризм", "military": "TNI: ~400k чел", "religion": "Ислам (87%)", "history": [["1945", "Провозглашение независимости"], ["1965", "Переворот Сухарто"], ["1998", "Демократизация"]]}, "ir": {"label": "Иран", "region": "middle_east", "terrain": "plateau", "ct": "arid", "tmp": 16, "nm": 360, "pc": 4100, "pp": 16000, "sectors": "нефть, газ, нефтехимия", "military": "Вооружённые силы + КСИР: ~610k чел", "religion": "Ислам шиитский (95%)", "history": [["550 до н.э.", "Ахемениды"], ["1979", "Исламская революция"], ["1980", "Война с Ираком"], ["2015", "Ядерное соглашение СВПД"]]}, "iq": {"label": "Ирак", "region": "middle_east", "terrain": "plains", "ct": "arid", "tmp": 23, "nm": 250, "pc": 5700, "pp": 12000, "sectors": "нефть (90% экспорта)", "military": "Iraqi Armed Forces: ~200k чел", "religion": "Ислам шиитский (60%), суннитский (35%)", "history": [["3500 до н.э.", "Шумер, Вавилон"], ["1958", "Революция"], ["1979", "Саддам Хусейн"], ["2003", "Операция США"], ["2014", "ИГИЛ"]]}, "il": {"label": "Израиль", "region": "middle_east", "terrain": "hills", "ct": "mediterranean", "tmp": 20, "nm": 510, "pc": 54000, "pp": 48000, "sectors": "технологии, оборонка, алмазы", "military": "IDF: ~170k + 465k резерв, ядерное оружие", "religion": "Иудаизм (75%), ислам (18%)", "history": [["1948", "Образование государства"], ["1967", "Шестидневная война"], ["2023", "Война в Газе"]]}, "jp": {"label": "Япония", "region": "east_asia", "terrain": "mountain", "ct": "temperate", "tmp": 14, "nm": 4400, "pc": 35000, "pp": 48000, "sectors": "автомобили, электроника, роботы", "military": "Силы самообороны: ~247k чел", "religion": "Синтоизм и буддизм (84%)", "history": [["1192", "Первый сёгунат"], ["1868", "Реставрация Мэйдзи"], ["1945", "Капитуляция, атомные бомбардировки"], ["1964", "Олимпиада в Токио"]]}, "jo": {"label": "Иордания", "region": "middle_east", "terrain": "hills", "ct": "arid", "tmp": 18, "nm": 50, "pc": 4700, "pp": 11000, "sectors": "туризм, фосфаты", "military": "Jordan Armed Forces: ~100k чел", "religion": "Ислам суннитский (95%)", "history": [["1946", "Независимость"], ["1994", "Мирный договор с Израилем"]]}, "kz": {"label": "Казахстан", "region": "central_asia", "terrain": "steppe", "ct": "continental", "tmp": 6, "nm": 220, "pc": 11000, "pp": 30000, "sectors": "нефть, газ, уран, металлы", "military": "Вооружённые силы: ~75k чел", "religion": "Ислам суннитский (70%)", "history": [["1456", "Казахское ханство"], ["1991", "Независимость"], ["2022", "Протесты, передача власти Токаеву"]]}, "kw": {"label": "Кувейт", "region": "middle_east", "terrain": "desert", "ct": "arid", "tmp": 25, "nm": 160, "pc": 35000, "pp": 70000, "sectors": "нефть (95% экспорта), финансы", "military": "Kuwait Armed Forces: ~17k чел", "religion": "Ислам (74%)", "history": [["1961", "Независимость"], ["1990", "Оккупация Ираком"], ["1991", "Освобождение"]]}, "kg": {"label": "Кыргызстан", "region": "central_asia", "terrain": "mountain", "ct": "highland", "tmp": 5, "nm": 13, "pc": 1700, "pp": 6400, "sectors": "золото, гидроэнергетика", "military": "Вооружённые силы: ~15k чел", "religion": "Ислам суннитский (90%)", "history": [["1991", "Независимость"], ["2005", "Революция тюльпанов"], ["2010", "Новая конституция"]]}, "la": {"label": "Лаос", "region": "southeast_asia", "terrain": "forest", "ct": "tropical", "tmp": 26, "nm": 15, "pc": 2100, "pp": 8200, "sectors": "гидроэнергетика, туризм", "military": "Lao People's Army: ~29k чел", "religion": "Буддизм Тхеравады (65%)", "history": [["1353", "Лан Санг"], ["1975", "Лаосская НДР"]]}, "lb": {"label": "Ливан", "region": "middle_east", "terrain": "mountain", "ct": "mediterranean", "tmp": 18, "nm": 22, "pc": 3200, "pp": 8000, "sectors": "финансы, торговля (в кризисе)", "military": "Lebanese Armed Forces: ~80k чел", "religion": "Многоконфессиональная", "history": [["1943", "Независимость"], ["1975", "Гражданская война"], ["2020", "Взрыв в Бейруте"]]}, "my": {"label": "Малайзия", "region": "southeast_asia", "terrain": "forest", "ct": "tropical", "tmp": 27, "nm": 430, "pc": 13000, "pp": 33000, "sectors": "электроника, пальмовое масло, туризм", "military": "Malaysian Armed Forces: ~110k чел", "religion": "Ислам (61%)", "history": [["1957", "Независимость"], ["1997", "Азиатский финансовый кризис"]]}, "mv": {"label": "Мальдивы", "region": "south_asia", "terrain": "island", "ct": "tropical", "tmp": 28, "nm": 7, "pc": 13000, "pp": 21000, "sectors": "туризм (90% ВВП), рыболовство", "military": "MNDF: 4k чел", "religion": "Ислам суннитский (100%)", "history": [["1965", "Независимость"], ["2008", "Первые многопартийные выборы"]]}, "mn": {"label": "Монголия", "region": "east_asia", "terrain": "steppe", "ct": "continental", "tmp": 0, "nm": 18, "pc": 5500, "pp": 13000, "sectors": "уголь, медь, кашемир", "military": "Mongolian Armed Forces: ~12k чел", "religion": "Буддизм (53%)", "history": [["1206", "Чингисхан"], ["1924", "МНР"], ["1990", "Демократическая революция"]]}, "mm": {"label": "Мьянма", "region": "southeast_asia", "terrain": "forest", "ct": "monsoon", "tmp": 27, "nm": 65, "pc": 1200, "pp": 5500, "sectors": "рис, тик, газ", "military": "Tatmadaw: ~350k чел, хунта с 2021", "religion": "Буддизм Тхеравады (88%)", "history": [["1948", "Независимость"], ["2015", "Победа Су Чжи"], ["2021", "Военный переворот"]]}, "np": {"label": "Непал", "region": "south_asia", "terrain": "mountain", "ct": "highland", "tmp": 14, "nm": 44, "pc": 1500, "pp": 5100, "sectors": "туризм, гидроэнергетика", "military": "Nepal Army: ~95k чел", "religion": "Индуизм (81%)", "history": [["1768", "Объединение"], ["2008", "Конец монархии, республика"]]}, "kp": {"label": "Сев. Корея", "region": "east_asia", "terrain": "mountain", "ct": "continental", "tmp": 8, "nm": 40, "pc": 1800, "pp": 1800, "sectors": "военная промышленность, горнодобыча", "military": "КНА: ~1,28 млн, ядерное оружие", "religion": "Культ личности Кима", "history": [["1948", "КНДР под Ким Ир Сеном"], ["1950", "Корейская война"], ["2006", "Первое ядерное испытание"]]}, "om": {"label": "Оман", "region": "middle_east", "terrain": "desert", "ct": "arid", "tmp": 27, "nm": 110, "pc": 23000, "pp": 49000, "sectors": "нефть, газ, туризм", "military": "Sultan's Armed Forces: ~43k чел", "religion": "Ислам ибадитский (45%)", "history": [["1650", "Изгнание португальцев"], ["1970", "Реформы Кабуса"]]}, "pk": {"label": "Пакистан", "region": "south_asia", "terrain": "mountain", "ct": "arid", "tmp": 22, "nm": 350, "pc": 1600, "pp": 5800, "sectors": "текстиль, сельское хозяйство", "military": "Pakistan Armed Forces: ~650k чел, ядерное оружие", "religion": "Ислам суннитский (77%)", "history": [["1947", "Раздел Индии"], ["1998", "Ядерные испытания"], ["2001", "Война с терроризмом"]]}, "ph": {"label": "Филиппины", "region": "southeast_asia", "terrain": "island", "ct": "tropical", "tmp": 27, "nm": 440, "pc": 3900, "pp": 10000, "sectors": "BPO, ремиттансы, производство", "military": "AFP: ~145k чел", "religion": "Католицизм (78%)", "history": [["1565", "Испанская колония"], ["1946", "Независимость"], ["1986", "Революция EDSA"]]}, "ps": {"label": "Палестина", "region": "middle_east", "terrain": "hills", "ct": "mediterranean", "tmp": 18, "nm": 20, "pc": 3500, "pp": 8000, "sectors": "сельское хозяйство, помощь ООН", "military": "PA Security Forces + Hamas", "religion": "Ислам суннитский (97%)", "history": [["1948", "Накба"], ["1967", "Оккупация"], ["1993", "Соглашения Осло"], ["2023", "Война в Газе"]]}, "qa": {"label": "Катар", "region": "middle_east", "terrain": "desert", "ct": "arid", "tmp": 28, "nm": 235, "pc": 83000, "pp": 120000, "sectors": "СПГ, нефть, финансы", "military": "Qatar Armed Forces: ~12k чел", "religion": "Ислам суннитский (67%)", "history": [["1971", "Независимость"], ["2022", "ЧМ по футболу"]]}, "sa": {"label": "Саудовская Аравия", "region": "middle_east", "terrain": "desert", "ct": "arid", "tmp": 28, "nm": 1100, "pc": 28000, "pp": 58000, "sectors": "нефть (97% экспорта), Vision 2030", "military": "RSLF: ~250k + Нацгвардия 100k", "religion": "Ислам суннитский (91%)", "history": [["7 век", "Зарождение ислама"], ["1932", "Королевство"], ["1938", "Открытие нефти"], ["2017", "МБС, Vision 2030"]]}, "sg": {"label": "Сингапур", "region": "southeast_asia", "terrain": "island", "ct": "tropical", "tmp": 28, "nm": 500, "pc": 84000, "pp": 140000, "sectors": "финансы, торговля, электроника", "military": "SAF: ~72k актив", "religion": "Буддизм (31%), ислам (15%)", "history": [["1819", "Основание Рэффлсом"], ["1965", "Независимость"]]}, "kr": {"label": "Южная Корея", "region": "east_asia", "terrain": "mountain", "ct": "temperate", "tmp": 12, "nm": 1800, "pc": 35000, "pp": 55000, "sectors": "электроника, автомобили, K-pop", "military": "ROK Armed Forces: ~500k чел", "religion": "Нерелигиозность (56%), христианство (28%)", "history": [["1948", "Республика Корея"], ["1950", "Корейская война"], ["1988", "Демократизация, Олимпиада"]]}, "lk": {"label": "Шри-Ланка", "region": "south_asia", "terrain": "island", "ct": "tropical", "tmp": 27, "nm": 74, "pc": 3400, "pp": 13500, "sectors": "туризм, чай, одежда", "military": "Sri Lanka Armed Forces: ~250k чел", "religion": "Буддизм Тхеравады (70%)", "history": [["1948", "Независимость"], ["2009", "Конец гражданской войны"], ["2022", "Экономический кризис"]]}, "sy": {"label": "Сирия", "region": "middle_east", "terrain": "hills", "ct": "mediterranean", "tmp": 18, "nm": 40, "pc": 2000, "pp": 7000, "sectors": "нефть, сельское хозяйство", "military": "SAA + оппозиция: раздроблена", "religion": "Ислам суннитский (74%)", "history": [["1946", "Независимость"], ["1971", "Хафез Асад"], ["2011", "Гражданская война"], ["2024", "Падение режима Асада"]]}, "tj": {"label": "Таджикистан", "region": "central_asia", "terrain": "mountain", "ct": "highland", "tmp": 6, "nm": 12, "pc": 1100, "pp": 5400, "sectors": "алюминий, хлопок", "military": "Вооружённые силы: ~9k чел", "religion": "Ислам суннитский (90%)", "history": [["1991", "Независимость"], ["1992", "Гражданская война"], ["1994", "Президент Рахмон"]]}, "th": {"label": "Таиланд", "region": "southeast_asia", "terrain": "plains", "ct": "tropical", "tmp": 28, "nm": 530, "pc": 7500, "pp": 21000, "sectors": "туризм, электроника, рис", "military": "Royal Thai Armed Forces: ~360k чел", "religion": "Буддизм Тхеравады (95%)", "history": [["1782", "Бангкок, Чакри"], ["1932", "Конституционная монархия"], ["2014", "Военный переворот"]]}, "tl": {"label": "Вост. Тимор", "region": "southeast_asia", "terrain": "mountain", "ct": "tropical", "tmp": 25, "nm": 3, "pc": 2400, "pp": 8000, "sectors": "нефть, кофе", "military": "F-FDTL: 2k чел", "religion": "Католицизм (98%)", "history": [["1975", "Оккупация Индонезии"], ["2002", "Независимость"]]}, "tr": {"label": "Турция", "region": "middle_east", "terrain": "plateau", "ct": "mediterranean", "tmp": 12, "nm": 1200, "pc": 14000, "pp": 38000, "sectors": "автомобили, текстиль, туризм, оборонка", "military": "TSK: ~350k — 2-я армия НАТО", "religion": "Ислам суннитский (99%)", "history": [["1299", "Османская империя"], ["1453", "Взятие Константинополя"], ["1923", "Республика, Ататюрк"], ["2002", "АКП Эрдогана"]]}, "tm": {"label": "Туркменистан", "region": "central_asia", "terrain": "desert", "ct": "arid", "tmp": 15, "nm": 40, "pc": 7000, "pp": 18000, "sectors": "газ (4-е место в мире)", "military": "Вооружённые силы: ~36k чел", "religion": "Ислам суннитский (89%)", "history": [["1991", "Независимость"], ["1999", "Ниязов — пожизненный президент"]]}, "ae": {"label": "ОАЭ", "region": "middle_east", "terrain": "desert", "ct": "arid", "tmp": 28, "nm": 500, "pc": 50000, "pp": 80000, "sectors": "нефть, туризм, торговля, финансы", "military": "UAE Armed Forces: ~65k чел", "religion": "Ислам (76%)", "history": [["1971", "Образование ОАЭ"], ["2020", "Авраамские соглашения с Израилем"]]}, "uz": {"label": "Узбекистан", "region": "central_asia", "terrain": "plains", "ct": "continental", "tmp": 13, "nm": 80, "pc": 2400, "pp": 10000, "sectors": "хлопок, золото, газ, туризм", "military": "Вооружённые силы: ~65k чел", "religion": "Ислам суннитский (90%)", "history": [["1370", "Тамерлан, Самарканд"], ["1991", "Независимость"], ["2016", "Президент Мирзиёев"]]}, "vn": {"label": "Вьетнам", "region": "southeast_asia", "terrain": "forest", "ct": "tropical", "tmp": 25, "nm": 430, "pc": 4200, "pp": 12500, "sectors": "электроника, текстиль, туризм, рис", "military": "PAVN: ~482k чел", "religion": "Буддизм, нерелигиозность", "history": [["938", "Независимость от Китая"], ["1945", "ДРВ, Хо Ши Мин"], ["1975", "Победа Севера"], ["1986", "Дой Мой, реформы"]]}, "ye": {"label": "Йемен", "region": "middle_east", "terrain": "mountain", "ct": "arid", "tmp": 25, "nm": 25, "pc": 800, "pp": 3000, "sectors": "нефть (иссякает), сельское хозяйство", "military": "Раздроблен: правительство, хуситы", "religion": "Ислам суннитский (65%), зайдитский (35%)", "history": [["1990", "Объединение"], ["2011", "Арабская весна"], ["2015", "Гражданская война, интервенция Саудовской Аравии"]]}, "tw": {"label": "Тайвань", "region": "east_asia", "terrain": "mountain", "ct": "subtropical", "tmp": 22, "nm": 760, "pc": 32000, "pp": 60000, "sectors": "полупроводники (TSMC), электроника", "military": "ROC Armed Forces: ~170k чел", "religion": "Буддизм, даосизм", "history": [["1895", "Японская колония"], ["1949", "Бегство Гоминьдана"], ["1996", "Первые прямые выборы"]]}, "pw": {"label": "Палау", "region": "southeast_asia", "terrain": "island", "ct": "tropical", "tmp": 28, "nm": 1, "pc": 16000, "pp": 16000, "sectors": "туризм, рыболовство", "military": "Нет армии, защита США", "religion": "Христианство (66%)", "history": [["1994", "Независимость от опеки США"]]}, "mu": {"label": "Маврикий", "region": "south_asia", "terrain": "island", "ct": "tropical", "tmp": 24, "nm": 14, "pc": 11000, "pp": 25000, "sectors": "туризм, финансы", "military": "Police Paramilitary Unit: 2k чел", "religion": "Индуизм (50%)", "history": [["1968", "Независимость"]]}, "sc": {"label": "Сейшелы", "region": "south_asia", "terrain": "island", "ct": "tropical", "tmp": 27, "nm": 2, "pc": 17000, "pp": 28000, "sectors": "туризм (70% ВВП), рыболовство", "military": "SPDF: 500 чел", "religion": "Католицизм (76%)", "history": [["1976", "Независимость"]]}, "fm": {"label": "Микронезия", "region": "southeast_asia", "terrain": "island", "ct": "tropical", "tmp": 28, "nm": 1, "pc": 3500, "pp": 3500, "sectors": "рыболовство, помощь США", "military": "Нет армии, договор с США", "religion": "Католицизм (50%)", "history": [["1986", "Свободная ассоциация с США"]]}};
+window.ASIA_REGION_COLORS = {"east_asia": "#c0745a", "southeast_asia": "#6aab7a", "south_asia": "#c8a050", "central_asia": "#8878c0", "middle_east": "#c49060", "caucasus": "#9070b0"};
+window.ASIA_TERRAIN_COLORS = {"mountain": "#8B7040", "desert": "#C8A830", "plateau": "#A08840", "forest": "#5A8A50", "plains": "#90C870", "island": "#5898B8", "urban": "#9090A8", "delta": "#70A898", "steppe": "#A8A850", "hills": "#7A9050", "highland": "#9A8060"};
+window.ASIA_REGION_VALUES = {"east_asia": [{"name": "Конфуцианство", "desc": "Уважение к иерархии, предкам, образованию."}, {"name": "Коллективизм", "desc": "Группа выше индивида."}, {"name": "Лицо (Мянь цзы)", "desc": "Репутация и честь в глазах общества."}], "southeast_asia": [{"name": "Готонг-роёнг", "desc": "Принцип взаимопомощи в общине (Индонезия)."}, {"name": "Буддийская умеренность", "desc": "Срединный путь в повседневной жизни."}, {"name": "Рис", "desc": "Культурный центр кухни и сельского хозяйства."}], "south_asia": [{"name": "Дхарма", "desc": "Нравственный долг и космический порядок."}, {"name": "Гостеприимство", "desc": "Гость — посланник богов: Атитхи Дэво Бхава."}, {"name": "Карма", "desc": "Причинно-следственный закон поступков."}], "central_asia": [{"name": "Кочевая традиция", "desc": "Юрта, пастбища, родовые связи."}, {"name": "Шёлковый путь", "desc": "Наследие торговых цивилизаций."}, {"name": "Байга", "desc": "Традиционные конные игры и состязания."}], "middle_east": [{"name": "Умма", "desc": "Единство мусульманской общины."}, {"name": "Гостеприимство", "desc": "Бедуинский кодекс чести — диафа."}, {"name": "Базар", "desc": "Торговля как культурная и социальная форма."}], "caucasus": [{"name": "Застольное братство", "desc": "Грузинский тост-тамада, культура сакрального пира."}, {"name": "Горная честь", "desc": "Адат — обычаи горских народов, кровная месть."}, {"name": "Кухня", "desc": "Хачапури, долма, люля-кебаб — идентичность народов."}]};
+window.ASIA_CLIMATE_LABELS = {"highland": "Высокогорный", "continental": "Континентальный", "monsoon": "Муссонный", "tropical": "Тропический", "arid": "Засушливый", "temperate": "Умеренный", "subtropical": "Субтропический", "mediterranean": "Средиземноморский"};
+window.ASIA_FETCH_CODES = 'AF,AM,AZ,BH,BD,BT,BN,KH,CN,CY,GE,IN,ID,IR,IQ,IL,JP,JO,KZ,KW,KG,LA,LB,MY,MV,MN,MM,NP,KP,OM,PK,PH,PS,QA,SA,SG,KR,LK,SY,TJ,TH,TL,TR,TM,AE,UZ,VN,YE,TW,PW,MU,SC,FM';
+
 </script>
 </body>
 </html>
